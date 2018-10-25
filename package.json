@@ -8,7 +8,8 @@
     "build": "npx tcm src && rm -rf dist && npx ./node_modules/.bin/webpack -p && npm run copy-base-styles",
     "start": "npx tcm src && npm run build -mode=development && node server.js",
     "test:watch": "./node_modules/.bin/jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "deploy": "gh-pages -d dist"
   },
   "author": "paul.klochkov@gmail.com",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.3.4",
+    "gh-pages": "^2.0.1",
     "gsap": "^2.0.2",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
