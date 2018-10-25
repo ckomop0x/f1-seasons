@@ -1,0 +1,33 @@
+.higlighted {
+    background: rgba(255, 255, 0, 0.31);
+}
+
+.favoriteButton {
+    background: none;
+    border: none;
+}
+
+.seasonStandings {
+    width: 100%;
+    overflow-x: scroll;
+    overflow: hidden;
+    min-width: 420px;
+}
+
+.seasonStandingsTable {
+    width: 100%;
+    text-align: left;
+}
+
+.seasonStandingsTableRaw td {
+    padding: 8px;
+}
+
+.seasonStandingsTable > tr:nth-child(odd) {
+    background: #979797;
+}
+
+.seasonStandingsTableRaw:hover {
+    cursor: pointer;
+    background: #979797;
+}

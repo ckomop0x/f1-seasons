@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the heading 1`] = `
+<div
+  className="seasonCard"
+>
+  <div
+    className="seasonCardRound"
+  >
+    Round: 
+    round
+  </div>
+  <div
+    className="seasonCardContent"
+  >
+    <h3>
+      Circuit
+    </h3>
+    <h4>
+      locality
+      , 
+      country
+    </h4>
+    <div>
+      Race – 
+      Race
+      ,
+    </div>
+    <div>
+      Date – 
+      date
+    </div>
+    <button
+      className="seasonCardButton"
+      onClick={[MockFunction]}
+      title="Read more on Wiki"
+    >
+      Go to season standings
+    </button>
+  </div>
+</div>
+`;
