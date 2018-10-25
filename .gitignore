@@ -1,9 +1,9 @@
-.idea
 .DS_Store
+.idea
+.vscode
 node_modules
 dist
 *.css.d.ts
 /npm-debug.log
 target
-.vscode
 test/coverage

@@ -6,16 +6,6 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const loaders = [
-    // {
-    //     loader: MiniCssExtractPlugin.loader
-    // },
-    // "style-loader",
-    // {
-    //     loader: "css-loader",
-    //     options: {
-    //         module: true
-    //     }
-    // },
     "style-loader",
     {
         loader: require.resolve('typings-for-css-modules-loader'),
@@ -38,7 +28,7 @@ module.exports = {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true // set to true if you want JS source maps
+                sourceMap: true
             }),
             new OptimizeCSSAssetsPlugin({})
         ]
@@ -91,8 +81,6 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
             filename: '/css/[name].css',
             chunkFilename: '/css/[id].css'
         }),
