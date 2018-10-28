@@ -2,16 +2,16 @@
 
 exports[`renders the heading 1`] = `
 <div
-  className="seasonCard"
+  className="sc-bwzfXH jDXDDZ"
 >
   <div
-    className="seasonCardRound"
+    className="title"
   >
     Round: 
     round
   </div>
   <div
-    className="seasonCardContent"
+    className="content"
   >
     <h3>
       Circuit
@@ -31,7 +31,7 @@ exports[`renders the heading 1`] = `
       date
     </div>
     <button
-      className="seasonCardButton"
+      className="sc-bdVaJa jYJGyW"
       onClick={[MockFunction]}
       title="Read more on Wiki"
     >

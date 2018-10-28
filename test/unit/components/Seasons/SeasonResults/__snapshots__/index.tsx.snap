@@ -2,17 +2,17 @@
 
 exports[`renders the heading 1`] = `
 <div
-  className="seasonStandings"
+  className="sc-bwzfXH bHcHZK"
 >
   <button
-    className="seasonCardButton"
+    className="sc-bdVaJa jYJGyW"
     onClick={[MockFunction]}
     title="Read more on Wiki"
   >
     Back to seasons
   </button>
   <table
-    className="seasonStandingsTable"
+    className="sc-htpNat gVwKGd"
   >
     <thead>
       <tr>
@@ -20,7 +20,7 @@ exports[`renders the heading 1`] = `
           Position
         </th>
         <th>
-          number
+          Number
         </th>
         <th>
           Driver

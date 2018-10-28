@@ -2,16 +2,17 @@
 
 exports[`renders the heading 1`] = `
 <div
-  className="container"
+  className="sc-bZQynM idYqwb"
 >
   <div
-    className="seasonsSelector"
+    className="sc-gzVnrw GRfge"
   >
     <h1>
       Selected season: 
       2009
     </h1>
     <form
+      className="select"
       onChange={[Function]}
     >
       <select
@@ -71,7 +72,7 @@ exports[`renders the heading 1`] = `
     </form>
   </div>
   <div
-    className="seasons"
+    className="sc-htoDjs cjLcbl"
   />
 </div>
 `;

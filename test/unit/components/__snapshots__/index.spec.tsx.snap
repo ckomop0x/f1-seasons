@@ -2,40 +2,38 @@
 
 exports[`renders the heading 1`] = `
 <div
-  className="mainContainer"
+  className="sc-gqjmRU euVurB"
   id="main-app"
 >
   <header
-    className="header"
+    className="sc-bwzfXH eqiOaE"
   >
     <a
-      className="logo"
+      className="sc-htpNat jeQxBj"
       href="/"
       title="Formula 1 winners application"
     >
       <img
         alt="Logo"
-        className="logoImage"
         src="test-file-stub"
       />
-      <span
-        className="logoText"
-      >
-        F1 standings application
+      <span>
+        F1 Standings
       </span>
     </a>
   </header>
   <div
-    className="container"
+    className="sc-dnqmqq fDcaLZ"
   >
     <div
-      className="seasonsSelector"
+      className="sc-iwsKbI eUOtas"
     >
       <h1>
         Selected season: 
         2009
       </h1>
       <form
+        className="select"
         onChange={[Function]}
       >
         <select
@@ -95,11 +93,11 @@ exports[`renders the heading 1`] = `
       </form>
     </div>
     <div
-      className="seasons"
+      className="sc-gZMcBi qaYbY"
     />
   </div>
   <footer
-    className="footer"
+    className="sc-bdVaJa euMOoR"
   >
     © 2018 Pavel Klochkov
   </footer>

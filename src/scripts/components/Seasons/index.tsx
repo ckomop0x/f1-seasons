@@ -2,11 +2,8 @@ import * as React from 'react';
 import getSeasons from '../../services/get-seasons';
 import SeasonCard from './SeasonCard/index';
 import SeasonResults from './SeasonResults/index';
-import {RaceSeason} from './seasons';
-import {seasons, container, seasonsSelector} from './seasons.css';
-
-interface SeasonsProps {
-}
+import {RaceSeason} from './seasonsTypes';
+import {MainContainer, Season, YearsSelect} from './SeasonsStyles';
 
 interface SeasonsState {
     year: number;
@@ -22,10 +19,10 @@ interface SeasonsState {
 
 const years: number[] = [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
 
-export default class Seasons extends React.PureComponent<SeasonsProps, SeasonsState> {
+export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     private loadingTimerId: number;
 
-    constructor (props: SeasonsProps) {
+    constructor (props: any) {
         super(props);
 
         this.onFormChange = this.onFormChange.bind(this);
@@ -98,42 +95,41 @@ export default class Seasons extends React.PureComponent<SeasonsProps, SeasonsSt
         const {selectedSeason} = this.state;
 
         return (
-            <div className={container}>
-                <div className={seasonsSelector}>
+            <MainContainer>
+                <YearsSelect>
                     <h1>Selected season: {this.state.year}</h1>
-                    <form onChange={this.onFormChange}>
+                    <form onChange={this.onFormChange} className="select">
                         <select name="years">
                             {years.map((year: number) => (
                                 <option value={year} key={year}>{year}</option>
                             ))}
                         </select>
                     </form>
-                </div>
+                </YearsSelect>
                 {this.state.isSeasons ? (
-                    <div className={seasons}>
+                    <Season>
                         {this.state.seasons.map(
                             ({season, round, Circuit, raceName, date, time}: RaceSeason) => {
-
-                            return <SeasonCard raceName={raceName}
-                                               key={raceName}
-                                               onSeasonSelect={this.showSeasonResults.bind(this, season, round)}
-                                               circuitName={Circuit.circuitName}
-                                               season={season}
-                                               round={round}
-                                               country={Circuit.Location.country}
-                                               locality={Circuit.Location.locality}
-                                               circuitId={Circuit.circuitId}
-                                               date={date}
-                                               time={time}/>;
-                        })}
-                    </div>
+                                return <SeasonCard raceName={raceName}
+                                                   key={raceName}
+                                                   onSeasonSelect={this.showSeasonResults.bind(this, season, round)}
+                                                   circuitName={Circuit.circuitName}
+                                                   season={season}
+                                                   round={round}
+                                                   country={Circuit.Location.country}
+                                                   locality={Circuit.Location.locality}
+                                                   circuitId={Circuit.circuitId}
+                                                   date={date}
+                                                   time={time}/>;
+                            })}
+                    </Season>
                 ) : (
                     <SeasonResults season={selectedSeason.season}
                                    toggleViews={this.toggleViews.bind(this)}
                                    year={selectedSeason.year}
                                    round={selectedSeason.round}/>
                 )}
-            </div>
+            </MainContainer>
         )
     }
 }

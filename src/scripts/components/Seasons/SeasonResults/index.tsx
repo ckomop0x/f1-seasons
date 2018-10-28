@@ -1,8 +1,8 @@
 import * as React from 'react';
 import getSeasonsResults from '../../../services/get-seasons-results';
-import {seasonCardButton} from '../SeasonCard/season-card.css';
-import {higlighted, seasonStandings, seasonStandingsTable, seasonStandingsTableRaw, favoriteButton} from './season-results.css';
-import {RacesResult, Result} from '../seasons';
+import CardButton from '../../styles/CardButton';
+import {RacesResult, Result} from '../seasonsTypes';
+import {FavoriteButton, Standings, StandingsTable, StandingsTableRow} from './ResultsStyles';
 
 interface SeasonResultsProps {
     season: string;
@@ -39,18 +39,18 @@ export default class SeasonResults extends React.PureComponent<SeasonResultsProp
             setTimeout((): void => {
                 this.setState({isUpdating: true});
                 getSeasonsResults(this.props.season, this.props.round)
-                    .then((response: any) => {
-                        this.setState({
-                            racesResult: response.data.MRData.RaceTable.Races[0],
-                            isUpdating: false
-                        })
+                .then((response: any) => {
+                    this.setState({
+                        racesResult: response.data.MRData.RaceTable.Races[0],
+                        isUpdating: false
                     })
-                    .catch((error) => {
-                        console.log(error);
-                        this.setState({
-                            isUpdating: false
-                        })
-                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.setState({
+                        isUpdating: false
+                    })
+                });
             }, timeout)
         );
     }
@@ -79,60 +79,56 @@ export default class SeasonResults extends React.PureComponent<SeasonResultsProp
     componentDidMount () {
         this.load();
     }
+
     componentWillUnmount () {
         this.saveFavoritesDrivers();
     }
 
     render () {
         return (
-            <div className={seasonStandings}>
+            <Standings>
                 {this.state.racesResult ? <h2>{this.state.racesResult.Circuit.circuitName}</h2> : null}
-                <button
-                    className={seasonCardButton}
+                <CardButton
                     onClick={this.props.toggleViews}
                     title="Read more on Wiki">
                     Back to seasons
-                </button>
-                <table className={seasonStandingsTable}>
+                </CardButton>
+                <StandingsTable>
                     <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>number</th>
-                        <th>Driver</th>
-                        <th>Code</th>
-                        <th>Favorites</th>
-                    </tr>
+                        <tr>
+                            <th>Position</th>
+                            <th>Number</th>
+                            <th>Driver</th>
+                            <th>Code</th>
+                            <th>Favorites</th>
+                        </tr>
                     </thead>
                     <tbody>
-                {this.state.racesResult && this.state.racesResult.Results.map((
-                    {position, number, Driver}: Result
-                ) => {
-                    const isDriverFavorite = this.state.savedDrivers.includes(Driver.code);
+                        {this.state.racesResult && this.state.racesResult.Results.map((
+                            {position, number, Driver}: Result
+                        ) => {
+                            const isDriverFavorite = this.state.savedDrivers.includes(Driver.code);
 
-                    return (
-                        <tr className={[seasonStandingsTableRaw, Number(position) === 1 ? higlighted : ''].join(' ')}
-                            onClick={
-                                isDriverFavorite
-                                    ? this.removeDriverFromFavorites.bind(this, Driver.code)
-                                    : this.addDriverToFavorite.bind(this, Driver.code)}>
-                            <td>{position}</td>
-                            <td>{number}</td>
-                            <td>{Driver.givenName} {Driver.familyName}</td>
-                            <td>{Driver.code}</td>
-                            <td>
-                                <button className={favoriteButton}>
-                                    <img style={{width: 24, height: 24}} src={isDriverFavorite
-                                        ? require('../../../../icons/star-solid.svg')
-                                        : require('../../../../icons/star-regular.svg')}
-                                         alt=""/>
-                                </button>
-                            </td>
-                        </tr>
-                    )
-                })}
-                </tbody>
-                </table>
-            </div>
+                            return (
+                                <StandingsTableRow position={position}
+                                                   onClick={
+                                                       isDriverFavorite
+                                                           ? this.removeDriverFromFavorites.bind(this, Driver.code)
+                                                           : this.addDriverToFavorite.bind(this, Driver.code)}>
+                                    <td>{position}</td>
+                                    <td>{number}</td>
+                                    <td>{Driver.givenName} {Driver.familyName}</td>
+                                    <td>{Driver.code}</td>
+                                    <td>
+                                        <FavoriteButton isDriverFavorite={isDriverFavorite}>
+                                        </FavoriteButton>
+                                    </td>
+                                </StandingsTableRow>
+                            )
+                        })}
+                    </tbody>
+                </StandingsTable>
+            </Standings>
         )
     }
 }

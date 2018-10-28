@@ -71,7 +71,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Formula 1 winners application',
             description: 'Formula 1 winners application',
-            baseCss: '/css/base.css',
             viewport:
                 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover',
             font: '<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">',

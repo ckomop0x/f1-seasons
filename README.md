@@ -10,3 +10,6 @@ Used technologies:
 3. CSS Modules
 4. Webpack
 5. Jest
+
+**Updates:**  
+version 1.1.0 – application moved to Styled-components.

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {seasonCard, seasonCardButton, seasonCardRound, seasonCardContent} from './season-card.css';
+import CardButton from '../../styles/CardButton';
+import {Card} from './SeasonCardStyles';
 
 export interface SeasonCardProps {
     raceName: string;
@@ -18,21 +19,20 @@ const SeasonCard = (
     {raceName, circuitName, round, country, locality, date, onSeasonSelect}: SeasonCardProps
 ) => {
     return (
-        <div className={seasonCard}>
-            <div className={seasonCardRound}>Round: {round}</div>
-            <div className={seasonCardContent}>
+        <Card>
+            <div className="title">Round: {round}</div>
+            <div className="content">
                 <h3>{circuitName}</h3>
                 <h4>{locality}, {country}</h4>
                 <div>Race – {raceName},</div>
                 <div>Date – {date}</div>
-                <button
-                    className={seasonCardButton}
+                <CardButton
                     onClick={onSeasonSelect}
                     title="Read more on Wiki">
                     Go to season standings
-                </button>
+                </CardButton>
             </div>
-        </div>
+        </Card>
     );
 };
 
