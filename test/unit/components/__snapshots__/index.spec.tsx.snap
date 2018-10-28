@@ -1,105 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders the heading 1`] = `
-<div
-  className="sc-gqjmRU euVurB"
-  id="main-app"
+<ThemeProvider
+  theme={
+    Object {
+      "gray1": "#353238",
+      "gray2": "#E0E0E0",
+      "gray3": "#EDF5FC",
+      "grid": 8,
+      "primaryRed": "#a50017",
+      "primaryRedLighten": "#7f1e1e",
+      "secondaryFont": "'Exo 2', sans-serif",
+    }
+  }
 >
-  <header
-    className="sc-bwzfXH eqiOaE"
+  <styled.div
+    id="main-app"
   >
-    <a
-      className="sc-htpNat jeQxBj"
-      href="/"
-      title="Formula 1 winners application"
-    >
-      <img
-        alt="Logo"
-        src="test-file-stub"
-      />
-      <span>
-        F1 Standings
-      </span>
-    </a>
-  </header>
-  <div
-    className="sc-dnqmqq fDcaLZ"
-  >
-    <div
-      className="sc-iwsKbI eUOtas"
-    >
-      <h1>
-        Selected season: 
-        2009
-      </h1>
-      <form
-        className="select"
-        onChange={[Function]}
-      >
-        <select
-          name="years"
-        >
-          <option
-            value={2009}
-          >
-            2009
-          </option>
-          <option
-            value={2010}
-          >
-            2010
-          </option>
-          <option
-            value={2011}
-          >
-            2011
-          </option>
-          <option
-            value={2012}
-          >
-            2012
-          </option>
-          <option
-            value={2013}
-          >
-            2013
-          </option>
-          <option
-            value={2014}
-          >
-            2014
-          </option>
-          <option
-            value={2015}
-          >
-            2015
-          </option>
-          <option
-            value={2016}
-          >
-            2016
-          </option>
-          <option
-            value={2017}
-          >
-            2017
-          </option>
-          <option
-            value={2018}
-          >
-            2018
-          </option>
-        </select>
-      </form>
-    </div>
-    <div
-      className="sc-gZMcBi qaYbY"
+    <GlobalStyleComponent
+      suppressMultiMountWarning={false}
     />
-  </div>
-  <footer
-    className="sc-bdVaJa euMOoR"
-  >
-    © 2018 Pavel Klochkov
-  </footer>
-</div>
+    <GlobalStyleComponent
+      suppressMultiMountWarning={false}
+    />
+    <Header />
+    <Seasons />
+    <Footer />
+  </styled.div>
+</ThemeProvider>
 `;

@@ -2,36 +2,34 @@ import styled from 'styled-components';
 
 export const Card = styled.div`
     width: 100%;
-    margin-bottom: 16px;
-    border: solid 2px #a70123;
-    border-radius: 8px;
+    margin-bottom: ${({theme}) => theme.grid * 2}px;
     background: white;
-    color: black;
+    color: ${({theme}) => theme.gray1};
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
-    :hover {
-      transition: all 0.5s cubic-bezier(0.2, 0, 0.05, 1);
-      box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3);
-    }
-    @media screen and (min-width: 640px) {
-        .seasonCard {
-            width: 48%;
-        }
+    
+    @media (min-width: 600px) {   
+        margin: 8px;     
+        width: 47%;
     }
 
-    @media screen and (min-width: 1023px) {
-        .seasonCard {
-            width: 32%;
-        }
+    @media (min-width: 900px) {
+        width: 31%;
     }
+    
+    @media (min-width: 1200px) {
+        width: 22%;
+    }
+    
+    @media (min-width: 1500px) {
+        width: 18%;
+    }
+    
     .content {
-        padding: 8px;
+        padding: ${({theme}) => theme.grid * 2.5}px;
+        background: ${({theme}) => theme.gray2};
     }
-    .title {
+    
+    h4 {
         text-align: center;
-        color: white;
-        background: linear-gradient(322deg, #6f2631 0%, #ed6f4b 44%, #6f2631 100%);
-        padding: 16px;
-        font-weight: 700;
-        font-size: 20px;
     }
 `;

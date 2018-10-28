@@ -1,27 +1,25 @@
 import styled from 'styled-components';
 
 const CardButton = styled.button`
-    margin: 24px auto 0;
-    display: inline-block;
-    background: #a70123;
+    display: block;
+    width: 100%;
+    background: ${({theme}) => theme.primaryRed};
     box-shadow: none;
-    color: #ffffff;
-    border-radius: 5px;
+    color: white;
     box-sizing: border-box;
+    border: 0;
     cursor: pointer;
     line-height: 1;
     text-decoration: none;
-    text-transform: uppercase;
     transition: all 0.5s cubic-bezier(0.2, 0, 0.05, 1);
-    border: 1px solid #a70123;
-    font-size: 13px;
+    font-size: 1rem;
     letter-spacing: 0.5px;
     font-weight: normal;
     position: relative;
-    padding: 12px;
+    padding: ${({theme}) => theme.grid * 2.5}px;
+
     :hover {
-      background: white;
-      color: #a70123;
+      background: ${({theme}) => theme.primaryRedLighten};
     }
 `;
 

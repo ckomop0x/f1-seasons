@@ -2,15 +2,17 @@
 
 exports[`renders the heading 1`] = `
 <div
-  className="sc-bZQynM idYqwb"
+  className="sc-dnqmqq eOGErS"
 >
-  <div
-    className="sc-gzVnrw GRfge"
+  <h1
+    className="sc-iwsKbI hHAERO"
   >
-    <h1>
-      Selected season: 
-      2009
-    </h1>
+    Selected season: 
+    2009
+  </h1>
+  <div
+    className="sc-gZMcBi mItAx"
+  >
     <form
       className="select"
       onChange={[Function]}
@@ -72,7 +74,7 @@ exports[`renders the heading 1`] = `
     </form>
   </div>
   <div
-    className="sc-htoDjs cjLcbl"
+    className="sc-gqjmRU kGVIiE"
   />
 </div>
 `;

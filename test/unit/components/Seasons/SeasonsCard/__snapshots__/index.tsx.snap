@@ -2,41 +2,58 @@
 
 exports[`renders the heading 1`] = `
 <div
-  className="sc-bwzfXH jDXDDZ"
+  className="sc-bxivhb tSgFj"
+  title="Circuit"
 >
-  <div
-    className="title"
+  <h2
+    className="sc-htpNat WMXmb"
   >
-    Round: 
-    round
-  </div>
+    Circuit
+  </h2>
   <div
     className="content"
   >
-    <h3>
-      Circuit
-    </h3>
+    <div
+      className="sc-bdVaJa hfzptC"
+    >
+      <img
+        alt="country"
+        src="test-file-stub"
+      />
+    </div>
     <h4>
       locality
       , 
       country
     </h4>
     <div>
-      Race – 
-      Race
-      ,
+      <b>
+        Round:
+      </b>
+       
+      round
     </div>
     <div>
-      Date – 
+      <b>
+        Race:
+      </b>
+       
+      Race
+    </div>
+    <div>
+      <b>
+        Date:
+      </b>
+       
       date
     </div>
-    <button
-      className="sc-bdVaJa jYJGyW"
-      onClick={[MockFunction]}
-      title="Read more on Wiki"
-    >
-      Go to season standings
-    </button>
   </div>
+  <button
+    className="sc-bwzfXH gZxkjL"
+    onClick={[MockFunction]}
+    title="Go to standings"
+  >
+    Go to standings →
+  </button>
 </div>
 `;

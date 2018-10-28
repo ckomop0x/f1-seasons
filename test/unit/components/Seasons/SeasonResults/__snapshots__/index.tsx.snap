@@ -2,38 +2,13 @@
 
 exports[`renders the heading 1`] = `
 <div
-  className="sc-bwzfXH bHcHZK"
+  className="sc-bdVaJa ajGN"
 >
   <button
-    className="sc-bdVaJa jYJGyW"
+    className="sc-ifAKCX dtXULS"
     onClick={[MockFunction]}
-    title="Read more on Wiki"
   >
-    Back to seasons
+    ← Back to seasons
   </button>
-  <table
-    className="sc-htpNat gVwKGd"
-  >
-    <thead>
-      <tr>
-        <th>
-          Position
-        </th>
-        <th>
-          Number
-        </th>
-        <th>
-          Driver
-        </th>
-        <th>
-          Code
-        </th>
-        <th>
-          Favorites
-        </th>
-      </tr>
-    </thead>
-    <tbody />
-  </table>
 </div>
 `;

@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     * {
         font-family: Roboto, sans-serif;
         box-sizing: border-box;
+        line-height: 1.5;
     }
     
     #root {
@@ -16,4 +17,4 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         height: 100%;
     }
-`
+`;

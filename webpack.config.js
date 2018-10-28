@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const loaders = [
-    "style-loader",
+    'style-loader',
     {
         loader: require.resolve('typings-for-css-modules-loader'),
         options: {
@@ -21,6 +21,7 @@ const loaders = [
         loader: 'postcss-loader'
     }
 ];
+const PRODUCTION = process.env.NODE_ENV === 'production';
 
 module.exports = {
     optimization: {
@@ -34,12 +35,12 @@ module.exports = {
         ]
     },
     entry: {
-        index: ['./src/scripts/index.tsx', 'webpack-hot-middleware/client'],
+        index: PRODUCTION ? ['./src/scripts/index.tsx'] : ['./src/scripts/index.tsx', 'webpack-hot-middleware/client'],
         vendor: ['react', 'react-dom']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'js/[name].bundle.js'
+        filename: PRODUCTION ? 'js/[name].[hash].bundle.js' : 'js/[name].bundle.js'
     },
     devtool: 'source-map',
     resolve: {
@@ -66,19 +67,40 @@ module.exports = {
             }
         ]
     },
-    plugins: [
+    plugins: PRODUCTION ? [
         new HtmlWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Formula 1 winners application',
             description: 'Formula 1 winners application',
             viewport:
                 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover',
-            font: '<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">',
+            font: '<link href="https://fonts.googleapis.com/css?family=Exo+2|Roboto" rel="stylesheet">',
+            filename: 'index.html',
+            template: path.resolve(__dirname, 'src/views/index.ejs')
+        }),
+        new MiniCssExtractPlugin({
+            filename: '/css/[name].css',
+            chunkFilename: '/css/[id].css'
+        }),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    autoprefixer()
+                ]
+            }
+        })
+    ] : [
+        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'Formula 1 winners application',
+            description: 'Formula 1 winners application',
+            viewport:
+                'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover',
+            font: '<link href="https://fonts.googleapis.com/css?family=Exo+2|Roboto" rel="stylesheet">',
             filename: 'index.html',
             template: path.resolve(__dirname, 'src/views/index.ejs')
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
         new MiniCssExtractPlugin({
             filename: '/css/[name].css',
             chunkFilename: '/css/[id].css'

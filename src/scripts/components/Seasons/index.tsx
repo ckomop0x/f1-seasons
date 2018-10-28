@@ -3,7 +3,7 @@ import getSeasons from '../../services/get-seasons';
 import SeasonCard from './SeasonCard/index';
 import SeasonResults from './SeasonResults/index';
 import {RaceSeason} from './seasonsTypes';
-import {MainContainer, Season, YearsSelect} from './SeasonsStyles';
+import {MainContainer, Season, YearsSelect, SelectedSeason} from './SeasonsStyles';
 
 interface SeasonsState {
     year: number;
@@ -27,7 +27,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
 
         this.onFormChange = this.onFormChange.bind(this);
         this.state = {
-            year: 2009,
+            year: years[0],
             seasons: [],
             isUpdating: false,
             isSeasons: true
@@ -69,7 +69,9 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
         clearTimeout(this.loadingTimerId);
         this.loadingTimerId = Number(
             setTimeout((): void => {
-                this.setState({isUpdating: true});
+                this.setState({
+                    isUpdating: true
+                });
                 getSeasons(this.state.year)
                 .then((response) => {
                     this.setState({
@@ -92,21 +94,23 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     }
 
     render () {
-        const {selectedSeason} = this.state;
+        const {selectedSeason, isSeasons} = this.state;
 
         return (
             <MainContainer>
-                <YearsSelect>
-                    <h1>Selected season: {this.state.year}</h1>
-                    <form onChange={this.onFormChange} className="select">
-                        <select name="years">
-                            {years.map((year: number) => (
-                                <option value={year} key={year}>{year}</option>
-                            ))}
-                        </select>
-                    </form>
-                </YearsSelect>
-                {this.state.isSeasons ? (
+                <SelectedSeason>Selected season: {this.state.year}</SelectedSeason>
+                {isSeasons ? (
+                    <YearsSelect>
+                        <form onChange={this.onFormChange} className="select">
+                            <select name="years">
+                                {years.map((year: number) => (
+                                    <option value={year} key={year}>{year}</option>
+                                ))}
+                            </select>
+                        </form>
+                    </YearsSelect>
+                ) : null}
+                {isSeasons ? (
                     <Season>
                         {this.state.seasons.map(
                             ({season, round, Circuit, raceName, date, time}: RaceSeason) => {

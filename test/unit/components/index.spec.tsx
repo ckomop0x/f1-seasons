@@ -1,8 +1,8 @@
 import * as React from "react";
-import * as renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 import App from "../../../src/scripts/components/App";
 
 it("renders the heading", () => {
-    const wrapper = renderer.create(<App/>).toJSON();
+    const wrapper = shallow(<App/>);
     expect(wrapper).toMatchSnapshot()
 });

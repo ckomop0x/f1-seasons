@@ -1,5 +1,7 @@
 import * as React from 'react';
+import Flag from '../../Flag/index';
 import CardButton from '../../styles/CardButton';
+import {CardTitle} from '../../styles/CardTitle';
 import {Card} from './SeasonCardStyles';
 
 export interface SeasonCardProps {
@@ -19,19 +21,20 @@ const SeasonCard = (
     {raceName, circuitName, round, country, locality, date, onSeasonSelect}: SeasonCardProps
 ) => {
     return (
-        <Card>
-            <div className="title">Round: {round}</div>
+        <Card title={circuitName}>
+            <CardTitle>{circuitName}</CardTitle>
             <div className="content">
-                <h3>{circuitName}</h3>
+                <Flag country={country}/>
                 <h4>{locality}, {country}</h4>
-                <div>Race – {raceName},</div>
-                <div>Date – {date}</div>
-                <CardButton
-                    onClick={onSeasonSelect}
-                    title="Read more on Wiki">
-                    Go to season standings
-                </CardButton>
+                <div><b>Round:</b> {round}</div>
+                <div><b>Race:</b> {raceName}</div>
+                <div><b>Date:</b> {date}</div>
             </div>
+            <CardButton
+                onClick={onSeasonSelect}
+                title="Go to standings">
+                Go to standings &rarr;
+            </CardButton>
         </Card>
     );
 };
