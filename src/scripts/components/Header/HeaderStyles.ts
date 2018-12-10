@@ -15,14 +15,14 @@ export const Logo = styled.a`
     line-height: 32px;
     vertical-align: top;
     display: inline-block;
-    
+
     img {
         width: ${({theme}) => theme.grid * 4}px;
         line-height: ${({theme}) => theme.grid * 4}px;
         vertical-align: top;
         display: inline-block;
     }
-    
+
     span {
         font-family: ${({theme}) => theme.secondaryFont};
         color: #ffffff;

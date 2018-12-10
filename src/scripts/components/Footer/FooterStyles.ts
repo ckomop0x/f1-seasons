@@ -7,11 +7,11 @@ export const Copyright = styled.div`
     background: ${({theme}) => theme.gray1};
     color: white;
     padding: ${({theme}) => theme.grid}px;
-    
+
     a {
         color: white;
-        text-decoration: none;        
-        
+        text-decoration: none;
+
         :hover {
             text-decoration: underline;
         }

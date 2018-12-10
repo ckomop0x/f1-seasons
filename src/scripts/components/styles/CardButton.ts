@@ -19,7 +19,7 @@ const CardButton = styled.button`
     padding: ${({theme}) => theme.grid * 2.5}px;
 
     :hover {
-      background: ${({theme}) => theme.primaryRedLighten};
+        background: ${({theme}) => theme.primaryRedLighten};
     }
 `;
 

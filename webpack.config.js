@@ -24,6 +24,7 @@ const loaders = [
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 module.exports = {
+    mode: PRODUCTION ? 'production' : 'development',
     optimization: {
         minimizer: [
             new UglifyJsPlugin({

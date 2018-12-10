@@ -1,4 +1,5 @@
 import * as React from 'react';
+import calculateYears from '../../services/calculate-years';
 import getSeasons from '../../services/get-seasons';
 import SeasonCard from './SeasonCard/index';
 import SeasonResults from './SeasonResults/index';
@@ -7,6 +8,7 @@ import {MainContainer, Season, YearsSelect, SelectedSeason} from './SeasonsStyle
 
 interface SeasonsState {
     year: number;
+    years: number[];
     seasons: RaceSeason[];
     isUpdating: boolean;
     isSeasons: boolean;
@@ -14,27 +16,26 @@ interface SeasonsState {
         season: string;
         round: string;
         year: string;
-    }
+    };
 }
-
-const years: number[] = [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
 
 export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     private loadingTimerId: number;
 
-    constructor (props: any) {
+    constructor(props: any) {
         super(props);
 
         this.onFormChange = this.onFormChange.bind(this);
         this.state = {
-            year: years[0],
+            years: calculateYears(),
+            year: calculateYears()[0],
             seasons: [],
             isUpdating: false,
             isSeasons: true
-        }
-    };
+        };
+    }
 
-    private onFormChange (event: React.FormEvent<HTMLFormElement>): void {
+    private onFormChange(event: React.FormEvent<HTMLFormElement>): void {
         const el: HTMLInputElement = event.target as HTMLInputElement;
 
         this.setState({
@@ -44,7 +45,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
         this.load();
     }
 
-    private showSeasonResults (season: string, round: string): void {
+    private showSeasonResults(season: string, round: string): void {
         this.setState({
             isSeasons: false,
             selectedSeason: {
@@ -55,13 +56,13 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
         });
     }
 
-    private toggleViews () {
+    private toggleViews(): void {
         this.setState({
             isSeasons: !this.state.isSeasons
-        })
+        });
     }
 
-    private load (timeout: number = 50): void {
+    private load(timeout: number = 50): void {
         if (this.state.isUpdating) {
             return;
         }
@@ -73,27 +74,27 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
                     isUpdating: true
                 });
                 getSeasons(this.state.year)
-                .then((response) => {
-                    this.setState({
-                        seasons: response.data.MRData.RaceTable.Races,
-                        isUpdating: false
+                    .then((response) => {
+                        this.setState({
+                            seasons: response.data.MRData.RaceTable.Races,
+                            isUpdating: false
+                        });
                     })
-                })
-                .catch((error) => {
-                    console.log(error);
-                    this.setState({
-                        isUpdating: false
-                    })
-                });
+                    .catch((error) => {
+                        console.log(error);
+                        this.setState({
+                            isUpdating: false
+                        });
+                    });
             }, timeout)
         );
     }
 
-    componentDidMount () {
+    componentDidMount(): void {
         this.load();
     }
 
-    render () {
+    render() {
         const {selectedSeason, isSeasons} = this.state;
 
         return (
@@ -103,8 +104,10 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
                     <YearsSelect>
                         <form onChange={this.onFormChange} className="select">
                             <select name="years">
-                                {years.map((year: number) => (
-                                    <option value={year} key={year}>{year}</option>
+                                {this.state.years.map((year: number) => (
+                                    <option value={year} key={year}>
+                                        {year}
+                                    </option>
                                 ))}
                             </select>
                         </form>
@@ -112,28 +115,33 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
                 ) : null}
                 {isSeasons ? (
                     <Season>
-                        {this.state.seasons.map(
-                            ({season, round, Circuit, raceName, date, time}: RaceSeason) => {
-                                return <SeasonCard raceName={raceName}
-                                                   key={raceName}
-                                                   onSeasonSelect={this.showSeasonResults.bind(this, season, round)}
-                                                   circuitName={Circuit.circuitName}
-                                                   season={season}
-                                                   round={round}
-                                                   country={Circuit.Location.country}
-                                                   locality={Circuit.Location.locality}
-                                                   circuitId={Circuit.circuitId}
-                                                   date={date}
-                                                   time={time}/>;
-                            })}
+                        {this.state.seasons.map(({season, round, Circuit, raceName, date, time}: RaceSeason) => {
+                            return (
+                                <SeasonCard
+                                    raceName={raceName}
+                                    key={raceName}
+                                    onSeasonSelect={this.showSeasonResults.bind(this, season, round)}
+                                    circuitName={Circuit.circuitName}
+                                    season={season}
+                                    round={round}
+                                    country={Circuit.Location.country}
+                                    locality={Circuit.Location.locality}
+                                    circuitId={Circuit.circuitId}
+                                    date={date}
+                                    time={time}
+                                />
+                            );
+                        })}
                     </Season>
                 ) : (
-                    <SeasonResults season={selectedSeason.season}
-                                   toggleViews={this.toggleViews.bind(this)}
-                                   year={selectedSeason.year}
-                                   round={selectedSeason.round}/>
+                    <SeasonResults
+                        season={selectedSeason.season}
+                        toggleViews={this.toggleViews.bind(this)}
+                        year={selectedSeason.year}
+                        round={selectedSeason.round}
+                    />
                 )}
             </MainContainer>
-        )
+        );
     }
 }

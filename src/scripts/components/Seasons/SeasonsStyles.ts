@@ -10,7 +10,7 @@ export const MainContainer = styled.div`
 `;
 
 export const SelectedSeason = styled.h1`
-    display: block;    
+    display: block;
     max-width: ${({theme}) => theme.grid * 50}px;
     text-align: center;
     margin: 1rem auto;
@@ -32,7 +32,7 @@ export const YearsSelect = styled.div`
         background: ${({theme}) => theme.primaryRed};
         background-image: none;
     }
-    
+
     /* Custom Select */
     .select {
         position: relative;
@@ -41,47 +41,47 @@ export const YearsSelect = styled.div`
         line-height: 3;
         background: ${({theme}) => theme.primaryRed};
         overflow: hidden;
-        border-radius: .25em;
+        border-radius: 0.25em;
         text-align: center;
         display: block;
         margin: 1rem auto;
         align-self: center;
     }
-    
+
     select {
-      width: 100%;
-      height: 100%;
-      font-size: 1.25rem;
-      margin: 0;
-      padding: 0 0 0 .5em;
-      color: #fff;
-      cursor: pointer;
+        width: 100%;
+        height: 100%;
+        font-size: 1.25rem;
+        margin: 0;
+        padding: 0 0 0 0.5em;
+        color: #fff;
+        cursor: pointer;
     }
-    
+
     select::-ms-expand {
-      display: none;
+        display: none;
     }
-    
+
     /* Arrow */
     .select::after {
-      color: white;
-      content: '\\25BC';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      padding: 0 1em;
-      background: ${({theme}) => theme.primaryRed};
-      pointer-events: none;
+        color: white;
+        content: '\\25BC';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0 1em;
+        background: ${({theme}) => theme.primaryRed};
+        pointer-events: none;
     }
-    
+
     /* Transition */
     .select:hover::after {
-      color: #f39c12;
+        color: #f39c12;
     }
-    
+
     .select::after {
-      transition: .25s all ease;
+        transition: 0.25s all ease;
     }
 `;
 

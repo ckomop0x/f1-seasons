@@ -12,14 +12,14 @@ const App = () => {
     return (
         <ThemeProvider theme={themeStyles}>
             <Container id="main-app">
-                <NormalizeStyles/>
-                <GlobalStyle/>
-                <Header/>
-                <Seasons/>
-                <Footer/>
+                <NormalizeStyles />
+                <GlobalStyle />
+                <Header />
+                <Seasons />
+                <Footer />
             </Container>
         </ThemeProvider>
-    )
+    );
 };
 
 export default App;

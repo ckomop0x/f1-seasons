@@ -4,7 +4,7 @@ export interface Circuit {
         lat: string;
         long: string;
         locality: string;
-    },
+    };
     circuitId: string;
     circuitName: string;
     url: string;
@@ -35,10 +35,10 @@ export interface FastestLap {
     AverageSpeed: {
         speed: string;
         units: string;
-    },
+    };
     Time: {
         time: string;
-    },
+    };
     lap: string;
     rank: string;
 }
@@ -59,7 +59,7 @@ export interface Result {
     Constructor: Constructor;
     Driver: Driver;
     FastestLap: FastestLap;
-    Time: Time,
+    Time: Time;
     grid: string;
     laps: string;
     number: string;

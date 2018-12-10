@@ -1,0 +1,3 @@
+{
+  "extends": "./settings/tslint-config/config.js"
+}
