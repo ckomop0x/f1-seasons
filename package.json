@@ -9,6 +9,7 @@
     "test": "./node_modules/.bin/jest --no-cache --no-watchman",
     "test:watch": "./node_modules/.bin/jest --watch",
     "test:coverage": "jest --coverage",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
