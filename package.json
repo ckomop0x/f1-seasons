@@ -14,7 +14,6 @@
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "start": "rm -rf dist && webpack --mode=development && node server.js",
-    "semantic-release": "semantic-release",
     "test": "./node_modules/.bin/jest --no-cache --no-watchman",
     "test:coverage": "jest --coverage",
     "test:watch": "./node_modules/.bin/jest --watch"
@@ -25,7 +24,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "commitizen": "3.1.1",
-    "cz-conventional-changelog": "2.1.0",
     "express": "^4.16.4",
     "ghooks": "2.0.4",
     "nprogress": "^0.2.0",
@@ -49,7 +47,8 @@
     "@types/webpack": "^4.4.20",
     "autoprefixer": "^9.2.1",
     "css-loader": "^1.0.0",
-    "cz-customizable": "^5.3.0",
+    "commitizen": "3.0.7",
+    "cz-conventional-changelog": "2.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.3.4",
@@ -82,17 +81,12 @@
     "webpack-dev-middleware": "^3.4.0",
     "webpack-hot-middleware": "^2.24.3"
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": "settings/git/commitizen.js"
-    }
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run cover && npm run check-coverage"
     }
   },
   "lint-staged": {
