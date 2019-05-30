@@ -1,5 +1,6 @@
-import axios from 'axios';
+import * as fetchImport from 'isomorphic-unfetch';
+const fetch = (fetchImport.default || fetchImport) as typeof fetchImport.default;
 
-export default function getSeasonsResults(season: string, round: string): Promise<any> {
-    return axios.get(`https://ergast.com/api/f1/${season}/${round}/results.json`);
+export default async function getSeasonsResults(season: string, round: string): Promise<any> {
+    return fetch(`https://ergast.com/api/f1/${season}/${round}/results.json`);
 }

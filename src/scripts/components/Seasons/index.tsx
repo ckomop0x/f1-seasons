@@ -74,9 +74,10 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
                     isUpdating: true
                 });
                 getSeasons(this.state.year)
-                    .then((response) => {
+                    .then( result => result.json() )
+                    .then( data => {
                         this.setState({
-                            seasons: response.data.MRData.RaceTable.Races,
+                            seasons: data.MRData.RaceTable.Races,
                             isUpdating: false
                         });
                     })

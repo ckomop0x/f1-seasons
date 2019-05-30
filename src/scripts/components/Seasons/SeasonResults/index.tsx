@@ -33,14 +33,17 @@ export default class SeasonResults extends React.PureComponent<SeasonResultsProp
             return;
         }
 
+        this.setState({isUpdating: true});
+
         clearTimeout(this.loadingTimerId);
         this.loadingTimerId = Number(
             setTimeout((): void => {
-                this.setState({isUpdating: true});
+
                 getSeasonsResults(this.props.season, this.props.round)
-                    .then((response: any) => {
+                    .then( result => result.json() )
+                    .then( data => {
                         this.setState({
-                            racesResult: response.data.MRData.RaceTable.Races[0],
+                            racesResult: data.MRData.RaceTable.Races[0],
                             isUpdating: false
                         });
                     })

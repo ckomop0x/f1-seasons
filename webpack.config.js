@@ -97,7 +97,7 @@ module.exports = {
             description: 'Formula 1 winners application',
             viewport:
                 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover',
-            font: '<link href="https://fonts.googleapis.com/css?family=Exo+2|Roboto" rel="stylesheet">',
+            font: '<link href="https://fonts.googleapis.com/css?family=Exo+2|Roboto&display=swap" rel="stylesheet">',
             filename: 'index.html',
             template: path.resolve(__dirname, 'src/views/index.ejs')
         }),
