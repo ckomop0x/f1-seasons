@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Copyright} from './FooterStyles';
+import { Copyright } from '../styles';
 
 const Footer = () => {
     return (
