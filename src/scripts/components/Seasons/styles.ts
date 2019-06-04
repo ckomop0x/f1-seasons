@@ -21,7 +21,7 @@ export const SelectedSeason = styled.h1`
   text-transform: uppercase;
 `;
 
-export const YearsSelect = styled.div`
+export const YearsSelectStyled = styled.div`
   /* Reset Select */
   select {
     display: block;

@@ -5,9 +5,9 @@ import SeasonsList from './SeasonsList';
 import { RaceSeason, ActiveSeason } from './types';
 import {
   MainContainer,
-  YearsSelect,
   SelectedSeason
 } from './styles';
+import YearsSelect from '../YearsSelector/YearsSelector';
 
 interface SeasonsState {
   year: number;
@@ -108,17 +108,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
       <MainContainer>
         <SelectedSeason>Selected season: {this.state.year}</SelectedSeason>
         {isSeasons ? (
-          <YearsSelect>
-            <form onChange={this.onFormChange} className="select">
-              <select name="years">
-                {this.state.years.map((year: number) => (
-                  <option value={year} key={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </form>
-          </YearsSelect>
+          <YearsSelect onFormChange={this.onFormChange} years={this.state.years}/>
         ) : null}
         {isUpdating ? <div>Here should be Loader ...</div> : null}
         {!isUpdating && !error && isSeasons ? (
