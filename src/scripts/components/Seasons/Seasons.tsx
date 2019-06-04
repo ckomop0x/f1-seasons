@@ -1,12 +1,10 @@
 import * as React from 'react';
-import calculateYears from '../../services/calculate-years';
-import getSeasons from '../../services/get-seasons';
-import SeasonCard from './SeasonCard/index';
-import SeasonResults from './SeasonResults/index';
+import { getSeasons, calculateYears } from '../../services';
+import SeasonResults from './SeasonResults';
+import SeasonsList from './SeasonsList';
 import { RaceSeason, ActiveSeason } from './types';
 import {
   MainContainer,
-  SeasonStyled,
   YearsSelect,
   SelectedSeason
 } from './styles';
@@ -18,6 +16,7 @@ interface SeasonsState {
   isUpdating: boolean;
   isSeasons: boolean;
   activeSeason?: ActiveSeason;
+  error?: Error;
 }
 
 export default class Seasons extends React.PureComponent<{}, SeasonsState> {
@@ -27,6 +26,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     super(props);
 
     this.onFormChange = this.onFormChange.bind(this);
+    this.showSeasonResults = this.showSeasonResults.bind(this)
     this.state = {
       years: calculateYears(),
       year: calculateYears()[0],
@@ -34,16 +34,6 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
       isUpdating: false,
       isSeasons: true
     };
-  }
-
-  private onFormChange(event: React.FormEvent<HTMLFormElement>): void {
-    const el: HTMLInputElement = event.target as HTMLInputElement;
-
-    this.setState({
-      year: Number(el.value),
-      isSeasons: true
-    });
-    this.load();
   }
 
   private showSeasonResults(season: string, round: string): void {
@@ -75,29 +65,44 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
           isUpdating: true
         });
         getSeasons(this.state.year)
-          .then((result) => result.json())
-          .then((data) => {
+          .then((data: any) => {
             this.setState({
               seasons: data.MRData.RaceTable.Races,
-              isUpdating: false
+              isUpdating: false,
+              error: null
             });
           })
-          .catch((error) => {
+          .catch((error: any) => {
             console.log(error);
             this.setState({
-              isUpdating: false
+              isUpdating: false,
+              error
             });
           });
       }, timeout)
     );
   }
 
+  onFormChange = (event: React.FormEvent<HTMLFormElement>): void => {
+    const el: HTMLInputElement = event.target as HTMLInputElement;
+
+    this.setState({
+      year: Number(el.value),
+      isSeasons: true
+    });
+    this.load();
+  }
+
   componentDidMount(): void {
     this.load();
   }
 
+  componentWillUnmount () {
+    clearTimeout(this.loadingTimerId);
+  }
+
   render() {
-    const { activeSeason, isSeasons } = this.state;
+    const { activeSeason, isSeasons, isUpdating, error } = this.state;
 
     return (
       <MainContainer>
@@ -115,47 +120,19 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
             </form>
           </YearsSelect>
         ) : null}
-        {isSeasons ? (
-          <SeasonStyled>
-            {this.state.seasons.map(
-              ({
-                season,
-                round,
-                Circuit,
-                raceName,
-                date,
-                time
-              }: RaceSeason) => {
-                return (
-                  <SeasonCard
-                    raceName={raceName}
-                    key={raceName}
-                    onSeasonSelect={this.showSeasonResults.bind(
-                      this,
-                      season,
-                      round
-                    )}
-                    circuitName={Circuit.circuitName}
-                    season={season}
-                    round={round}
-                    country={Circuit.Location.country}
-                    locality={Circuit.Location.locality}
-                    circuitId={Circuit.circuitId}
-                    date={date}
-                    time={time}
-                  />
-                );
-              }
-            )}
-          </SeasonStyled>
-        ) : (
+        {isUpdating ? <div>Here should be Loader ...</div> : null}
+        {!isUpdating && !error && isSeasons ? (
+          <SeasonsList seasons={this.state.seasons} onSeasonSelect={this.showSeasonResults}/>
+        ) : null}
+        {!isUpdating && error ? <div>No Data {isSeasons}</div> : null}
+        {!isUpdating && !error && activeSeason ? (
           <SeasonResults
             season={activeSeason.season}
             toggleViews={this.toggleViews.bind(this)}
             year={activeSeason.year}
             round={activeSeason.round}
           />
-        )}
+        ) : null}
       </MainContainer>
     );
   }

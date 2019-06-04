@@ -1,16 +1,16 @@
 import * as React from 'react';
-import {FlagStyled} from './FlagStyles';
+import { FlagStyled } from './FlagStyles';
 
 export interface FlagProps {
-    country: string;
+  country: string;
 }
 
-const Flag = ({country}: FlagProps) => {
-    return (
-        <FlagStyled>
-            <img src={require(`./flags/${country.toLowerCase()}.svg`) || ''} alt={country} />
-        </FlagStyled>
-    );
+const Flag = ({ country }: FlagProps) => {
+  return (
+    <FlagStyled>
+      <img src={require(`./flags/${country.toLowerCase()}.svg`) || ''} alt={country} className="flag-icon"/>
+    </FlagStyled>
+  );
 };
 
 export default Flag;
