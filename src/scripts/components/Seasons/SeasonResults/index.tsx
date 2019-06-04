@@ -1,5 +1,5 @@
 import * as React from 'react';
-import getSeasonsResults from '../../../services/get-seasons-results';
+import { getSeasonsResults } from '../../../services';
 import { RacesResult, Result } from '../types';
 import {
   BackButton,

@@ -5,7 +5,7 @@ import * as React from 'react';
 
 export interface SeasonsListProps {
   seasons: any
-  onSeasonSelect: any
+  onSeasonSelect: (season: string, round: string) => void
 }
 
 const SeasonsList: React.FC<SeasonsListProps> = ({seasons, onSeasonSelect}) => (
