@@ -1,5 +1,5 @@
 # Formula 1 – Seasons standings
-![Version](https://img.shields.io/badge/version-2.2.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-2.2.1-blue.svg?cacheSeconds=2592000)
 ![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)
 
 Small application that shows Formula 1 seasons standings.  
