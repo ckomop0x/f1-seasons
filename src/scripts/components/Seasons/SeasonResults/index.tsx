@@ -26,15 +26,16 @@ export default class SeasonResults extends React.PureComponent<
   SeasonResultsProps,
   SeasonResultsState
 > {
-  private loadingTimerId: number;
+  private loadingTimerId: any;
 
   constructor(props: SeasonResultsProps, context?: any) {
     super(props, context);
+    const savedDrivers: string = localStorage.getItem('savedDrivers') || ''
 
     this.state = {
       isUpdating: false,
-      savedDrivers: JSON.parse(localStorage.getItem('savedDrivers')) || []
-    };
+      savedDrivers: savedDrivers ? JSON.parse(savedDrivers) : []
+    }
   }
 
   private load(timeout: number = 50): void {
@@ -118,8 +119,12 @@ export default class SeasonResults extends React.PureComponent<
                     const { Driver } = result;
                     const isDriverFavorite: boolean = this.state.savedDrivers.includes(Driver.code);
 
+
+                    // @ts-ignore
                     return (
-                      <StandingsTableRow
+                      <
+                        // @ts-ignore
+                        StandingsTableRow
                         key={Driver.code}
                         position={result.position}
                         onClick={
@@ -134,7 +139,9 @@ export default class SeasonResults extends React.PureComponent<
                         </td>
                         <td>{Driver.code}</td>
                         <td>
-                          <FavoriteButton isDriverFavorite={isDriverFavorite} />
+                          <
+                            // @ts-ignore
+                            FavoriteButton isDriverFavorite={isDriverFavorite} />
                         </td>
                       </StandingsTableRow>
                     );

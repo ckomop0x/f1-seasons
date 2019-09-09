@@ -2,67 +2,69 @@
   "name": "formula-1-season-standings",
   "version": "1.0.0",
   "description": "",
-  "main": "index.tsx",
   "scripts": {
-    "build": "rm -rf dist && NODE_ENV='production' webpack -p",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "-": "",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "commit": "git-cz",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "lint:write": "tslint -c tslint.json 'src/**/*.{ts,tsx}' --fix",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "start": "rm -rf dist && webpack --mode=development && node server.js",
-    "test": "./node_modules/.bin/jest --no-cache --no-watchman",
+    "start:cra": "react-scripts start",
+    "test": "react-scripts test --env=jsdom",
     "test:coverage": "jest --coverage",
-    "test:watch": "./node_modules/.bin/jest --watch"
+    "test:watch": "./node_modules/.bin/jest --watch",
+    "eject": "react-scripts eject"
   },
   "author": "Pavel \"Ckomop0x\" Klochkov <paul.klochkov@gmail.com> (https://ckomop0x.github.io/)",
-  "homepage": "https://github.com/ckomop0x/formula-1-season-standings#readme",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "isomorphic-unfetch": "3.0.0",
     "nprogress": "^0.2.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.0.2",
-    "styled-components-ts": "0.0.14",
-    "typescript": "^3.1.3"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "styled-components": "^4.3.2",
+    "typescript": "^3.6.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",
     "@types/enzyme": "^3.1.14",
     "@types/enzyme-adapter-react-16": "^1.0.3",
-    "@types/jest": "^23.3.7",
     "@types/nprogress": "0.0.29",
-    "@types/react": "^16.8.19",
-    "@types/react-dom": "^16.8.4",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
     "@types/react-test-renderer": "^16.8.1",
-    "@types/styled-components": "^4.0.3",
-    "@types/webpack": "^4.4.20",
+    "@types/styled-components": "^4.1.19",
     "autoprefixer": "^9.2.1",
     "commitizen": "3.1.1",
     "css-loader": "^1.0.0",
+    "customize-cra": "0.6.0",
     "cypress": "3.3.1",
     "cz-conventional-changelog": "2.1.0",
+    "ejs-loader": "0.3.3",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.3.4",
     "gh-pages": "^2.0.1",
     "ghooks": "2.0.4",
+    "html-loader": "0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^1.2.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.6.0",
-    "jest-styled-components": "^6.2.2",
     "lint-staged": "^8.1.0",
     "mini-css-extract-plugin": "^0.4.4",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-custom-media": "^7.0.7",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.15.2",
+    "raw-loader": "3.1.0",
+    "react-app-rewire-styled-components": "3.0.2",
+    "react-app-rewired": "2.1.3",
+    "react-dev-utils": "9.0.3",
+    "react-scripts": "3.1.1",
     "react-test-renderer": "^16.6.0",
     "semantic-release": "15.13.14",
     "source-map-loader": "^0.2.4",
@@ -77,10 +79,8 @@
     "typings-for-css-modules-loader": "^1.7.0",
     "uglifyjs-webpack-plugin": "2.1.3",
     "url-loader": "^1.1.2",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-middleware": "^3.7.0",
-    "webpack-hot-middleware": "^2.25.0"
+    "webpack-bundle-analyzer": "3.4.1",
+    "webpack-log": "3.0.1"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -139,5 +139,17 @@
       "^.+\\.(d.ts)$"
     ],
     "testRegex": "/__tests__/.*\\.(ts|tsx|js|jsx)$"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

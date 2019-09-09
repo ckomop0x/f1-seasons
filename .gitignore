@@ -7,3 +7,5 @@ dist
 /npm-debug.log
 target
 test/coverage
+.env
+build

@@ -3,7 +3,7 @@
     "target": "es5",
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
-    "noEmit": false,
+    "noEmit": true,
     "outDir": "./build/",
     "preserveConstEnums": true,
     "removeComments": true,
@@ -12,12 +12,20 @@
     "importHelpers": true,
     "noImplicitAny": true,
     "noUnusedParameters": true,
-    "module": "commonjs",
+    "module": "esnext",
     "lib": [
       "es2015",
       "es2017",
       "dom"
-    ]
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
     "./src/**/**/*"

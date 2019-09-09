@@ -20,7 +20,7 @@ interface SeasonsState {
 }
 
 export default class Seasons extends React.PureComponent<{}, SeasonsState> {
-  private loadingTimerId: number;
+  private loadingTimerId: any;
 
   constructor(props: any) {
     super(props);
@@ -66,6 +66,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
         });
         getSeasons(this.state.year)
           .then((data: any) => {
+            // @ts-ignore
             this.setState({
               seasons: data.MRData.RaceTable.Races,
               isUpdating: false,
