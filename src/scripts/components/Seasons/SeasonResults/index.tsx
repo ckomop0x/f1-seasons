@@ -1,5 +1,5 @@
 import * as React from 'react';
-import getSeasonsResults from '../../../services/get-seasons-results';
+import { getSeasonsResults } from '../../../services';
 import { RacesResult, Result } from '../types';
 import {
   BackButton,
@@ -49,7 +49,6 @@ export default class SeasonResults extends React.PureComponent<
     this.loadingTimerId = Number(
       setTimeout((): void => {
         getSeasonsResults(this.props.season, this.props.round)
-          .then((result) => result.json())
           .then((data) => {
             this.setState({
               racesResult: data.MRData.RaceTable.Races[0],
@@ -57,7 +56,7 @@ export default class SeasonResults extends React.PureComponent<
             });
           })
           .catch((error) => {
-            console.log(error);
+            alert(error);
             this.setState({
               isUpdating: false
             });
@@ -66,13 +65,13 @@ export default class SeasonResults extends React.PureComponent<
     );
   }
 
-  addDriverToFavorite(driverCode: string): void {
+  addDriverToFavorite = (driverCode: string): void => {
     this.setState({
       savedDrivers: this.state.savedDrivers.concat(driverCode)
     });
   }
 
-  removeDriverFromFavorites(driverCode: string): void {
+  removeDriverFromFavorites = (driverCode: string): void => {
     this.setState({
       savedDrivers: this.state.savedDrivers.filter(
         (savedDriverCode): boolean => savedDriverCode !== driverCode
@@ -94,13 +93,15 @@ export default class SeasonResults extends React.PureComponent<
 
   componentWillUnmount() {
     this.saveFavoritesDrivers();
+    this.setState({})
   }
 
   render() {
     return (
       <StandingsStyled>
         <BackButton onClick={this.props.toggleViews}>&larr; Back to seasons</BackButton>
-        {this.state.racesResult ? <h2>{this.state.racesResult.Circuit.circuitName}</h2> : null}
+        {this.state.isUpdating && <div style={{textAlign: 'center'}}>Loading results...</div>}
+        {this.state.racesResult && <h2>{this.state.racesResult.Circuit.circuitName}</h2>}
         {this.state.racesResult ? (
           <StandingsTable>
             <table>

@@ -53,7 +53,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     });
   }
 
-  private load(timeout: number = 50): void {
+  load(timeout: number = 50): void {
     if (this.state.isUpdating) {
       return;
     }
@@ -126,7 +126,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
           <SeasonsList seasons={this.state.seasons} onSeasonSelect={this.showSeasonResults}/>
         ) : null}
         {!isUpdating && error ? <div>No Data {isSeasons}</div> : null}
-        {!isUpdating && !error && activeSeason ? (
+        {!isUpdating && !error && activeSeason && !isSeasons ? (
           <SeasonResults
             season={activeSeason.season}
             toggleViews={this.toggleViews.bind(this)}

@@ -1,6 +1,6 @@
 {
   "name": "formula-1-season-standings",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "",
   "scripts": {
     "start": "react-app-rewired start",
@@ -21,7 +21,6 @@
   "author": "Pavel \"Ckomop0x\" Klochkov <paul.klochkov@gmail.com> (https://ckomop0x.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
     "isomorphic-unfetch": "3.0.0",
     "nprogress": "^0.2.0",
     "react": "^16.9.0",
