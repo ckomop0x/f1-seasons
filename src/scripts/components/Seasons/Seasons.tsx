@@ -108,7 +108,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     return (
       <MainContainer>
         <SelectedSeason>Selected season: {this.state.year}</SelectedSeason>
-        {isSeasons ? (
+        {isSeasons && (
           <YearsSelect>
             <form onChange={this.onFormChange} className="select">
               <select name="years">
@@ -120,11 +120,11 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
               </select>
             </form>
           </YearsSelect>
-        ) : null}
-        {isUpdating ? <div>Here should be Loader ...</div> : null}
-        {!isUpdating && !error && isSeasons ? (
+        )}
+        {isUpdating ? <div style={{textAlign: 'center', marginTop: 40}}>Here should be Loader ...</div> : null}
+        {!isUpdating && !error && isSeasons && (
           <SeasonsList seasons={this.state.seasons} onSeasonSelect={this.showSeasonResults}/>
-        ) : null}
+        )}
         {!isUpdating && error ? <div>No Data {isSeasons}</div> : null}
         {!isUpdating && !error && activeSeason && !isSeasons ? (
           <SeasonResults

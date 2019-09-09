@@ -100,7 +100,7 @@ export default class SeasonResults extends React.PureComponent<
     return (
       <StandingsStyled>
         <BackButton onClick={this.props.toggleViews}>&larr; Back to seasons</BackButton>
-        {this.state.isUpdating && <div style={{textAlign: 'center'}}>Loading results...</div>}
+        {this.state.isUpdating && <div style={{textAlign: 'center', marginTop: 40}}>Loading results...</div>}
         {this.state.racesResult && <h2>{this.state.racesResult.Circuit.circuitName}</h2>}
         {this.state.racesResult ? (
           <StandingsTable>
@@ -150,7 +150,9 @@ export default class SeasonResults extends React.PureComponent<
               </tbody>
             </table>
           </StandingsTable>
-        ) : null}
+        ) : (
+          !this.state.isUpdating && <div style={{textAlign: 'center', marginTop: 40}}>No results available</div>
+        )}
       </StandingsStyled>
     );
   }
