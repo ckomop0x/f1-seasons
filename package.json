@@ -81,6 +81,9 @@
     "webpack-bundle-analyzer": "3.4.1",
     "webpack-log": "3.0.1"
   },
+  "env": {
+    "REACT_APP_TITLE": "f1_react_app_title"
+  },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
   },
