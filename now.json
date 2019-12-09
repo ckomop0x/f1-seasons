@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "env": {
-    "REACT_APP_TITLE": "@f1_react_app_title"
+  "build": {
+    "env": {
+      "REACT_APP_TITLE": "@f1_react_app_title"
+    }
   }
 }

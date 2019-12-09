@@ -127,6 +127,7 @@ export default class SeasonResults extends React.PureComponent<
                         // @ts-ignore
                         StandingsTableRow
                         key={Driver.code}
+                        // @ts-ignore
                         position={result.position}
                         onClick={
                           isDriverFavorite
