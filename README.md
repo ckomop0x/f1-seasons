@@ -4,8 +4,8 @@
 
 Small application that shows Formula 1 seasons standings.  
   
-### 🏠 [Homepage](https://formula-1-season-standings.paulklochkov.now.sh//)
-### 📄 [Documentation](https://github.com/ckomop0x/formula-1-season-standings)
+### 🏠 [Homepage](https://f1-seasons.now.sh)
+### 📄 [Documentation](https://github.com/ckomop0x/f1-seasons)
 
 ## Install
 
