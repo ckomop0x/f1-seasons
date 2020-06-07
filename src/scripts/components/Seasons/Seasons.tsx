@@ -1,13 +1,9 @@
 import * as React from 'react';
+
 import { getSeasons, calculateYears } from '../../services';
-import SeasonResults from './SeasonResults';
-import SeasonsList from './SeasonsList';
 import { RaceSeason, ActiveSeason } from './types';
-import {
-  MainContainer,
-  YearsSelect,
-  SelectedSeason
-} from './styles';
+import { MainContainer, SelectedSeason } from './styles';
+import { YearsSelect, Loader, SeasonsList, SeasonResults } from './components';
 
 interface SeasonsState {
   year: number;
@@ -26,7 +22,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     super(props);
 
     this.onFormChange = this.onFormChange.bind(this);
-    this.showSeasonResults = this.showSeasonResults.bind(this)
+    this.showSeasonResults = this.showSeasonResults.bind(this);
     this.state = {
       years: calculateYears(),
       year: calculateYears()[0],
@@ -66,11 +62,10 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
         });
         getSeasons(this.state.year)
           .then((data: any) => {
-            // @ts-ignore
             this.setState({
               seasons: data.MRData.RaceTable.Races,
               isUpdating: false,
-              error: null
+              error: undefined
             });
           })
           .catch((error: any) => {
@@ -92,13 +87,13 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
       isSeasons: true
     });
     this.load();
-  }
+  };
 
   componentDidMount(): void {
     this.load();
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearTimeout(this.loadingTimerId);
   }
 
@@ -108,32 +103,20 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     return (
       <MainContainer>
         <SelectedSeason>Selected season: {this.state.year}</SelectedSeason>
-        {isSeasons && (
-          <YearsSelect>
-            <form onChange={this.onFormChange} className="select">
-              <select name="years">
-                {this.state.years.map((year: number) => (
-                  <option value={year} key={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </form>
-          </YearsSelect>
-        )}
-        {isUpdating ? <div style={{textAlign: 'center', marginTop: 40}}>Here should be Loader ...</div> : null}
+        {isSeasons && <YearsSelect years={this.state.years} onChange={this.onFormChange} />}
+        {isUpdating && <Loader />}
         {!isUpdating && !error && isSeasons && (
-          <SeasonsList seasons={this.state.seasons} onSeasonSelect={this.showSeasonResults}/>
+          <SeasonsList seasons={this.state.seasons} onSeasonSelect={this.showSeasonResults} />
         )}
-        {!isUpdating && error ? <div>No Data {isSeasons}</div> : null}
-        {!isUpdating && !error && activeSeason && !isSeasons ? (
+        {!isUpdating && error && <div>No Data {isSeasons}</div>}
+        {!isUpdating && !error && activeSeason && !isSeasons && (
           <SeasonResults
             season={activeSeason.season}
             toggleViews={this.toggleViews.bind(this)}
             year={activeSeason.year}
             round={activeSeason.round}
           />
-        ) : null}
+        )}
       </MainContainer>
     );
   }

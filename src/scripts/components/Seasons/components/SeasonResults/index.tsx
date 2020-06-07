@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { getSeasonsResults } from '../../../services';
-import { RacesResult, Result } from '../types';
+import { getSeasonsResults } from '../../../../services';
+import { RacesResult, Result } from '../../types';
 import {
   BackButton,
   FavoriteButton,
   StandingsStyled,
   StandingsTable,
   StandingsTableRow
-} from './ResultsStyles';
+} from './styles';
 
 interface SeasonResultsProps {
   season: string;
@@ -22,20 +22,17 @@ interface SeasonResultsState {
   savedDrivers: string[];
 }
 
-export default class SeasonResults extends React.PureComponent<
-  SeasonResultsProps,
-  SeasonResultsState
-> {
+class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResultsState> {
   private loadingTimerId: any;
 
-  constructor(props: SeasonResultsProps, context?: any) {
-    super(props, context);
-    const savedDrivers: string = localStorage.getItem('savedDrivers') || ''
+  constructor(props: SeasonResultsProps) {
+    super(props);
+    const savedDrivers: string = localStorage.getItem('savedDrivers') || '';
 
     this.state = {
       isUpdating: false,
       savedDrivers: savedDrivers ? JSON.parse(savedDrivers) : []
-    }
+    };
   }
 
   private load(timeout: number = 50): void {
@@ -69,7 +66,7 @@ export default class SeasonResults extends React.PureComponent<
     this.setState({
       savedDrivers: this.state.savedDrivers.concat(driverCode)
     });
-  }
+  };
 
   removeDriverFromFavorites = (driverCode: string): void => {
     this.setState({
@@ -77,7 +74,7 @@ export default class SeasonResults extends React.PureComponent<
         (savedDriverCode): boolean => savedDriverCode !== driverCode
       )
     });
-  }
+  };
 
   saveFavoritesDrivers(): void {
     localStorage.setItem('savedDrivers', JSON.stringify(this.state.savedDrivers));
@@ -93,14 +90,16 @@ export default class SeasonResults extends React.PureComponent<
 
   componentWillUnmount() {
     this.saveFavoritesDrivers();
-    this.setState({})
+    this.setState({});
   }
 
   render() {
     return (
       <StandingsStyled>
         <BackButton onClick={this.props.toggleViews}>&larr; Back to seasons</BackButton>
-        {this.state.isUpdating && <div style={{textAlign: 'center', marginTop: 40}}>Loading results...</div>}
+        {this.state.isUpdating && (
+          <div style={{ textAlign: 'center', marginTop: 40 }}>Loading results...</div>
+        )}
         {this.state.racesResult && <h2>{this.state.racesResult.Circuit.circuitName}</h2>}
         {this.state.racesResult ? (
           <StandingsTable>
@@ -120,14 +119,9 @@ export default class SeasonResults extends React.PureComponent<
                     const { Driver } = result;
                     const isDriverFavorite: boolean = this.state.savedDrivers.includes(Driver.code);
 
-
-                    // @ts-ignore
                     return (
-                      <
-                        // @ts-ignore
-                        StandingsTableRow
+                      <StandingsTableRow
                         key={Driver.code}
-                        // @ts-ignore
                         position={result.position}
                         onClick={
                           isDriverFavorite
@@ -141,9 +135,7 @@ export default class SeasonResults extends React.PureComponent<
                         </td>
                         <td>{Driver.code}</td>
                         <td>
-                          <
-                            // @ts-ignore
-                            FavoriteButton isDriverFavorite={isDriverFavorite} />
+                          <FavoriteButton isDriverFavorite={isDriverFavorite} />
                         </td>
                       </StandingsTableRow>
                     );
@@ -152,9 +144,13 @@ export default class SeasonResults extends React.PureComponent<
             </table>
           </StandingsTable>
         ) : (
-          !this.state.isUpdating && <div style={{textAlign: 'center', marginTop: 40}}>No results available</div>
+          !this.state.isUpdating && (
+            <div style={{ textAlign: 'center', marginTop: 40 }}>No results available</div>
+          )
         )}
       </StandingsStyled>
     );
   }
 }
+
+export default SeasonResults;
