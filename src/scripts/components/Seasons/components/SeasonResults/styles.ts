@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
+import starSolid from '../../../../../icons/star-solid.svg';
+import starRegular from '../../../../../icons/star-regular.svg';
+
 interface StandingsTableRawTypes {
-  position: string;
+  position: any;
 }
 
 interface FavoriteButtonTypes {
@@ -50,7 +53,8 @@ export const StandingsTable = styled.div`
 `;
 
 export const StandingsTableRow = styled.tr`
-  background: ${({ position }: any) => (position === '1' ? 'rgba(255,255,0,0.4);' : '')};
+  background: ${({ position }: StandingsTableRawTypes) =>
+    position === '1' ? 'rgba(255,255,0,0.4);' : ''};
 
   :hover {
     cursor: pointer;
@@ -71,15 +75,13 @@ export const StandingsTableRow = styled.tr`
 `;
 
 export const FavoriteButton = styled.button`
-  background: url(${({ isDriverFavorite }: any) =>
-    isDriverFavorite
-      ? require('../../../../icons/star-solid.svg')
-      : require('../../../../icons/star-regular.svg')});
   border: none;
   background-size: 100%;
   background-repeat: no-repeat;
   width: ${({ theme }) => theme.grid * 3}px;
   height: ${({ theme }) => theme.grid * 3}px;
+  ${({ isDriverFavorite }: FavoriteButtonTypes) =>
+    isDriverFavorite ? `background: url(${starSolid})` : `background: url(${starRegular}`};
 `;
 
 export const BackButton = styled.button`

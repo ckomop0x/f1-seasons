@@ -21,8 +21,7 @@ export const SelectedSeason = styled.h1`
   text-transform: uppercase;
 `;
 
-export const YearsSelect = styled.div`
-  /* Reset Select */
+export const YearsSelectWrapper = styled.div`
   select {
     display: block;
     appearance: none;
@@ -33,7 +32,6 @@ export const YearsSelect = styled.div`
     background-image: none;
   }
 
-  /* Custom Select */
   .select {
     position: relative;
     width: ${({ theme }) => theme.grid * 20}px;
@@ -62,7 +60,6 @@ export const YearsSelect = styled.div`
     display: none;
   }
 
-  /* Arrow */
   .select::after {
     color: white;
     content: '\\25BC';
@@ -75,7 +72,6 @@ export const YearsSelect = styled.div`
     pointer-events: none;
   }
 
-  /* Transition */
   .select:hover::after {
     color: #f39c12;
   }

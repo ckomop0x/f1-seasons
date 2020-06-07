@@ -1,10 +1,13 @@
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 import App from './scripts/App';
-const root = document.getElementById('root')
-
-// declare let module: any;
+const root = document.getElementById('root');
 
 if (root) {
-  render(<App />, root)
+  render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    root
+  );
 }

@@ -8,7 +8,11 @@ export interface FlagProps {
 const Flag = ({ country }: FlagProps) => {
   return (
     <FlagStyled>
-      <img src={require(`./flags/${country.toLowerCase()}.svg`) || ''} alt={country} className="flag-icon"/>
+      <img
+        src={require(`./flags/${country.toLowerCase()}.svg`) || ''}
+        alt={country}
+        className="flag-icon"
+      />
     </FlagStyled>
   );
 };
