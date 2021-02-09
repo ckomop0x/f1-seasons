@@ -1,5 +1,5 @@
 # Formula 1 – Seasons standings
-![Version](https://img.shields.io/badge/version-2.2.1-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-2.2.2-blue.svg?cacheSeconds=2592000)
 ![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)
 
 Small application that shows Formula 1 seasons standings.  
@@ -10,25 +10,25 @@ Small application that shows Formula 1 seasons standings.
 ## Install
 
 ```sh
-npm install
+yarn install
 ```
 
 ## Usage
 
 ```sh
-npm run start
+yarn start
 ```
 
 ## Run tests
 
 ```sh
-npm run test
+yarn test
 ```
 
 ## Used technologies:
 1. React
 2. TypeScript
-3. Styles components
+3. Styles Components
 4. Webpack
 5. Jest
 
