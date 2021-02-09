@@ -9,7 +9,7 @@ const Flag = ({ country }: FlagProps) => {
   return (
     <FlagStyled>
       <img
-        src={require(`./flags/${country.toLowerCase()}.svg`) || ''}
+        src={require(`./flags/${country.toLowerCase().replace(' ', '-')}.svg`) || ''}
         alt={country}
         className="flag-icon"
       />
