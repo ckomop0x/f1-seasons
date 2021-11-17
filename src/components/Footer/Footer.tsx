@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FooterStyled } from './FooterStyles';
-import { version } from '../../../../package.json';
+import { version } from '../../../package.json';
 
 const Footer = () => {
   const year = new Date().getFullYear();

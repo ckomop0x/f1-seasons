@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import starSolid from '../../../../../icons/star-solid.svg';
-import starRegular from '../../../../../icons/star-regular.svg';
+import starSolid from '../../../../icons/star-solid.svg';
+import starRegular from '../../../../icons/star-regular.svg';
 
 interface StandingsTableRawTypes {
   position: any;

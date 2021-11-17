@@ -13,6 +13,7 @@ interface SeasonResultsProps {
   season: string;
   round: string;
   year: string;
+
   toggleViews(): void;
 }
 
@@ -23,7 +24,6 @@ interface SeasonResultsState {
 }
 
 class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResultsState> {
-  private loadingTimerId: any;
 
   constructor(props: SeasonResultsProps) {
     super(props);
@@ -35,31 +35,24 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
     };
   }
 
-  private load(timeout: number = 50): void {
+  private load(): void {
     if (this.state.isUpdating) {
       return;
     }
-
     this.setState({ isUpdating: true });
-
-    clearTimeout(this.loadingTimerId);
-    this.loadingTimerId = Number(
-      setTimeout((): void => {
-        getSeasonsResults(this.props.season, this.props.round)
-          .then((data) => {
-            this.setState({
-              racesResult: data.MRData.RaceTable.Races[0],
-              isUpdating: false
-            });
-          })
-          .catch((error) => {
-            alert(error);
-            this.setState({
-              isUpdating: false
-            });
-          });
-      }, timeout)
-    );
+    getSeasonsResults(this.props.season, this.props.round)
+      .then((data) => {
+        this.setState({
+          racesResult: data.MRData.RaceTable.Races[0],
+          isUpdating: false
+        });
+      })
+      .catch((error) => {
+        alert(error);
+        this.setState({
+          isUpdating: false
+        });
+      });
   }
 
   addDriverToFavorite = (driverCode: string): void => {
@@ -105,41 +98,41 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
           <StandingsTable>
             <table>
               <thead>
-                <tr>
-                  <th>Position</th>
-                  <th>Number</th>
-                  <th>Driver</th>
-                  <th>Code</th>
-                  <th>Favorites</th>
-                </tr>
+              <tr>
+                <th>Position</th>
+                <th>Number</th>
+                <th>Driver</th>
+                <th>Code</th>
+                <th>Favorites</th>
+              </tr>
               </thead>
               <tbody>
-                {this.state.racesResult &&
-                  this.state.racesResult.Results.map((result: Result) => {
-                    const { Driver } = result;
-                    const isDriverFavorite: boolean = this.state.savedDrivers.includes(Driver.code);
+              {this.state.racesResult &&
+              this.state.racesResult.Results.map((result: Result) => {
+                const { Driver } = result;
+                const isDriverFavorite: boolean = this.state.savedDrivers.includes(Driver.code);
 
-                    return (
-                      <StandingsTableRow
-                        key={Driver.code}
-                        position={result.position}
-                        onClick={
-                          isDriverFavorite
-                            ? this.removeDriverFromFavorites.bind(this, Driver.code)
-                            : this.addDriverToFavorite.bind(this, Driver.code)
-                        }>
-                        <td>{result.position}</td>
-                        <td>{result.number}</td>
-                        <td>
-                          {Driver.givenName} {Driver.familyName}
-                        </td>
-                        <td>{Driver.code}</td>
-                        <td>
-                          <FavoriteButton isDriverFavorite={isDriverFavorite} />
-                        </td>
-                      </StandingsTableRow>
-                    );
-                  })}
+                return (
+                  <StandingsTableRow
+                    key={Driver.code}
+                    position={result.position}
+                    onClick={
+                      isDriverFavorite
+                        ? this.removeDriverFromFavorites.bind(this, Driver.code)
+                        : this.addDriverToFavorite.bind(this, Driver.code)
+                    }>
+                    <td>{result.position}</td>
+                    <td>{result.number}</td>
+                    <td>
+                      {Driver.givenName} {Driver.familyName}
+                    </td>
+                    <td>{Driver.code}</td>
+                    <td>
+                      <FavoriteButton isDriverFavorite={isDriverFavorite} />
+                    </td>
+                  </StandingsTableRow>
+                );
+              })}
               </tbody>
             </table>
           </StandingsTable>

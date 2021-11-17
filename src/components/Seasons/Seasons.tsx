@@ -1,9 +1,8 @@
-import * as React from 'react';
-
 import { getSeasons, calculateYears } from '../../services';
 import { RaceSeason, ActiveSeason } from './types';
 import { MainContainer, SelectedSeason } from './styles';
 import { YearsSelect, Loader, SeasonsList, SeasonResults } from './components';
+import { PureComponent } from 'react';
 
 interface SeasonsState {
   year: number;
@@ -15,10 +14,8 @@ interface SeasonsState {
   error?: Error;
 }
 
-export default class Seasons extends React.PureComponent<{}, SeasonsState> {
-  private loadingTimerId: any;
-
-  constructor(props: any) {
+export default class Seasons extends PureComponent<{}, SeasonsState> {
+  constructor(props: {}) {
     super(props);
 
     this.onFormChange = this.onFormChange.bind(this);
@@ -54,29 +51,26 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
       return;
     }
 
-    clearTimeout(this.loadingTimerId);
-    this.loadingTimerId = Number(
-      setTimeout((): void => {
+
+    this.setState({
+      isUpdating: true
+    });
+    getSeasons(this.state.year)
+      .then((data: any) => {
         this.setState({
-          isUpdating: true
+          seasons: data.MRData.RaceTable.Races,
+          isUpdating: false,
+          error: undefined
         });
-        getSeasons(this.state.year)
-          .then((data: any) => {
-            this.setState({
-              seasons: data.MRData.RaceTable.Races,
-              isUpdating: false,
-              error: undefined
-            });
-          })
-          .catch((error: any) => {
-            console.log(error);
-            this.setState({
-              isUpdating: false,
-              error
-            });
-          });
-      }, timeout)
-    );
+      })
+      .catch((error: any) => {
+        console.log(error);
+        this.setState({
+          isUpdating: false,
+          error
+        });
+      });
+
   }
 
   onFormChange = (event: React.FormEvent<HTMLFormElement>): void => {
