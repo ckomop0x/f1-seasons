@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Flag from '../../../Flag';
-import CardButton from '../../../styles/CardButton';
-import { CardTitle } from '../../../styles/CardTitle';
+import Flag from '../../Flag';
+import CardButton from '../../styles/CardButton';
+import { CardTitle } from '../../styles/CardTitle';
 import { Card } from './SeasonCardStyles';
 
 export interface SeasonCardProps {

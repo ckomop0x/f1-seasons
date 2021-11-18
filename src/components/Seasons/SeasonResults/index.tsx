@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RacesResult, Result } from '../../types';
+import { RacesResult, Result } from '../types';
 import {
   BackButton,
   FavoriteButton,

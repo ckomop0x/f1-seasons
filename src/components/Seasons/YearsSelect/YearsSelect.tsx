@@ -1,11 +1,11 @@
 import React from 'react';
-
-import { SelectForm, SelectWrapper } from '../../styles';
+import { SelectForm, SelectWrapper } from './styles';
 
 interface IYearsSelectProps {
   years: number[];
-  onChange(value: number): void;
   selectedYear: number;
+
+  onChange(value: number): void;
 }
 
 export default function YearsSelect({ years, onChange, selectedYear }: IYearsSelectProps) {
