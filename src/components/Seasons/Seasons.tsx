@@ -22,6 +22,10 @@ export default function Seasons() {
 
   useEffect(() => {
     loadSeasons();
+  }, [selectedYear]);
+
+  useEffect(() => {
+    loadSeasons();
   }, []);
 
   return (

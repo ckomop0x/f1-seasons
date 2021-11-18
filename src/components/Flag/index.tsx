@@ -5,8 +5,6 @@ export interface FlagProps {
 }
 
 export default function Flag({ country }: FlagProps) {
-  console.log(country);
-
   return (
     <FlagStyled>
       <img
