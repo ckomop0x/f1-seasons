@@ -37,6 +37,7 @@ export default function RaceItem({
         {raceName} ({locality}, {country})
       </h2>
       <h4>{circuitName}</h4>
+      <a />
     </RaceItemWrapper>
   );
 }

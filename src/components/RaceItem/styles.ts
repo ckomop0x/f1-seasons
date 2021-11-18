@@ -13,6 +13,7 @@ export const RaceItemWrapper = styled.article`
   transition: all 0.5s ease;
   width: 98%;
   margin: 1%;
+  position: relative;
 
   @media (min-width: 700px) {
     width: 48%;
@@ -25,6 +26,15 @@ export const RaceItemWrapper = styled.article`
 
   :hover {
     border-color: #e10600;
+  }
+
+  a {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
   }
 `;
 
