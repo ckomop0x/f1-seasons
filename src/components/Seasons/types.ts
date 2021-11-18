@@ -1,16 +1,21 @@
-export interface Circuit {
-  Location: {
-    country: string;
-    lat: string;
-    long: string;
-    locality: string;
+export interface APIData {
+  MRData: {
+    xmlns: string;
+    series: string;
+    url: string;
+    limit: string;
+    offset: string;
+    total: string;
+    RaceTable: RaceTable;
   };
-  circuitId: string;
-  circuitName: string;
-  url: string;
 }
 
-export interface RaceSeason {
+interface RaceTable {
+  season: string;
+  Races: Race[];
+}
+
+export interface Race {
   Circuit: Circuit;
   date: string;
   raceName: string;
@@ -18,6 +23,20 @@ export interface RaceSeason {
   season: string;
   time: string;
   url: string;
+}
+
+export interface Circuit {
+  Location: Location;
+  circuitId: string;
+  circuitName: string;
+  url: string;
+}
+
+interface Location {
+  country: string;
+  lat: string;
+  long: string;
+  locality: string;
 }
 
 export interface Driver {

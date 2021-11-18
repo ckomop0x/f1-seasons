@@ -1,34 +1,35 @@
-import * as React from 'react';
-
-import { RaceSeason } from '../types';
+import { Race } from '../types';
 import SeasonCard from '../SeasonCard';
 import { SeasonStyled } from '../styles';
 
-export interface SeasonsListProps {
-  seasons: any;
-  onSeasonSelect: any;
+export interface ISeasonsListProps {
+  seasons: Race[];
+
+  onSeasonSelect(season: string, round: string): void;
 }
 
-const SeasonsList: React.FC<SeasonsListProps> = ({ seasons, onSeasonSelect }) => (
-  <SeasonStyled>
-    {seasons.map(({ season, round, Circuit, raceName, date, time }: RaceSeason) => {
-      return (
-        <SeasonCard
-          raceName={raceName}
-          key={raceName}
-          onSeasonSelect={() => onSeasonSelect(season, round)}
-          circuitName={Circuit.circuitName}
-          season={season}
-          round={round}
-          country={Circuit.Location.country}
-          locality={Circuit.Location.locality}
-          circuitId={Circuit.circuitId}
-          date={date}
-          time={time}
-        />
-      );
-    })}
-  </SeasonStyled>
-);
+export default function SeasonsList({ seasons, onSeasonSelect }: ISeasonsListProps) {
+  console.log(seasons);
 
-export default SeasonsList;
+  return (
+    <SeasonStyled>
+      {seasons.map(({ season, round, Circuit, raceName, date, time }: Race) => {
+        return (
+          <SeasonCard
+            raceName={raceName}
+            key={raceName}
+            onSeasonSelect={() => onSeasonSelect(season, round)}
+            circuitName={Circuit.circuitName}
+            season={season}
+            round={round}
+            country={Circuit.Location.country}
+            locality={Circuit.Location.locality}
+            circuitId={Circuit.circuitId}
+            date={date}
+            time={time}
+          />
+        );
+      })}
+    </SeasonStyled>
+  );
+}
