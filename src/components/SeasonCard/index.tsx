@@ -1,7 +1,6 @@
-import * as React from 'react';
-import Flag from '../../Flag';
-import CardButton from '../../styles/CardButton';
-import { CardTitle } from '../../styles/CardTitle';
+import Flag from '../Flag';
+import CardButton from '../styles/CardButton';
+import { CardTitle } from '../styles/CardTitle';
 import { Card } from './SeasonCardStyles';
 
 export interface SeasonCardProps {
@@ -17,7 +16,7 @@ export interface SeasonCardProps {
   onSeasonSelect(): void;
 }
 
-const SeasonCard = ({
+export default function SeasonCard({
   raceName,
   circuitName,
   round,
@@ -25,7 +24,7 @@ const SeasonCard = ({
   locality,
   date,
   onSeasonSelect
-}: SeasonCardProps) => {
+}: SeasonCardProps) {
   return (
     <Card title={circuitName}>
       <CardTitle>{circuitName}</CardTitle>
@@ -49,6 +48,4 @@ const SeasonCard = ({
       </CardButton>
     </Card>
   );
-};
-
-export default SeasonCard;
+}

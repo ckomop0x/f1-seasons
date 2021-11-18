@@ -1,19 +1,17 @@
-import { Race } from '../types';
 import SeasonCard from '../SeasonCard';
-import { SeasonStyled } from '../styles';
+import styled from 'styled-components';
+import { Race } from '../../types';
 
 export interface ISeasonsListProps {
-  seasons: Race[];
+  races: Race[];
 
   onSeasonSelect(season: string, round: string): void;
 }
 
-export default function SeasonsList({ seasons, onSeasonSelect }: ISeasonsListProps) {
-  console.log(seasons);
-
+export default function RacesList({ races, onSeasonSelect }: ISeasonsListProps): JSX.Element {
   return (
-    <SeasonStyled>
-      {seasons.map(({ season, round, Circuit, raceName, date, time }: Race) => {
+    <RacesListWrapper>
+      {races.map(({ season, round, Circuit, raceName, date, time }: Race) => {
         return (
           <SeasonCard
             raceName={raceName}
@@ -30,6 +28,14 @@ export default function SeasonsList({ seasons, onSeasonSelect }: ISeasonsListPro
           />
         );
       })}
-    </SeasonStyled>
+    </RacesListWrapper>
   );
 }
+
+export const RacesListWrapper = styled.div`
+  padding-top: ${({ theme }) => theme.grid * 2}px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+`;

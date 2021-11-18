@@ -1,7 +1,8 @@
 import { GlobalStyles, NormalizeStyles } from '../styles';
-import { Footer, Header } from '../index';
 import ErrorBoundary from '../ErrorBoundary';
 import { LayoutWrapper } from './styles';
+import Footer from '../Footer';
+import Header from '../Header';
 
 interface LayoutProps {
   children: JSX.Element;

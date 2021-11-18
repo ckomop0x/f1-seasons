@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { RacesResult, Result } from '../types';
 import {
   BackButton,
   FavoriteButton,
@@ -7,6 +5,8 @@ import {
   StandingsTable,
   StandingsTableRow
 } from './styles';
+import { RacesResult, Result } from '../../types';
+import { PureComponent } from 'react';
 
 interface SeasonResultsProps {
   season: string;
@@ -22,7 +22,7 @@ interface SeasonResultsState {
   savedDrivers: string[];
 }
 
-class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResultsState> {
+class SeasonResults extends PureComponent<SeasonResultsProps, SeasonResultsState> {
   constructor(props: SeasonResultsProps) {
     super(props);
     const savedDrivers: string = localStorage.getItem('savedDrivers') || '';
@@ -69,19 +69,6 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
 
   saveFavoritesDrivers(): void {
     localStorage.setItem('savedDrivers', JSON.stringify(this.state.savedDrivers));
-  }
-
-  componentDidUpdate() {
-    this.saveFavoritesDrivers();
-  }
-
-  componentDidMount() {
-    // this.load();
-  }
-
-  componentWillUnmount() {
-    this.saveFavoritesDrivers();
-    this.setState({});
   }
 
   render() {
