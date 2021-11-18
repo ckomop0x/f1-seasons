@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { HeaderStyled, Logo } from '../styles';
 import logoImage from '../../icons/racing.svg';
 
-const Header: React.FC = () => {
+export default function Header() {
   return (
     <HeaderStyled>
       <Logo href="/" title="Formula 1 winners application" data-cy="logo">
@@ -11,6 +10,4 @@ const Header: React.FC = () => {
       </Logo>
     </HeaderStyled>
   );
-};
-
-export default Header;
+}

@@ -1,4 +1,3 @@
-export { Container } from './Container';
 export { Copyright } from './Copyright';
 export { HeaderStyled } from './HeaderStyled';
 export { themeStyles } from './themeStyles';

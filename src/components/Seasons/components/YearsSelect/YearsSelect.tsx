@@ -1,26 +1,26 @@
 import React from 'react';
 
-import { YearsSelectWrapper } from '../../styles';
+import { SelectForm, SelectWrapper } from '../../styles';
 
-interface IYearsSelect {
+interface IYearsSelectProps {
   years: number[];
-  onChange(event: React.FormEvent<HTMLFormElement>): void;
+  onChange(value: number): void;
+  selectedYear: number;
 }
 
-const YearsSelect: React.FC<IYearsSelect> = ({ years, onChange }) => {
-  return (
-    <YearsSelectWrapper>
-      <form onChange={onChange} className="select">
-        <select name="years">
-          {years.map((year: number) => (
-            <option value={year} key={year}>
-              {year}
-            </option>
-          ))}
-        </select>
-      </form>
-    </YearsSelectWrapper>
-  );
-};
+export default function YearsSelect({ years, onChange, selectedYear }: IYearsSelectProps) {
+  const onYearsChange = (event: React.ChangeEvent<HTMLFormElement>): void =>
+    onChange(Number(event.target.value));
 
-export default YearsSelect;
+  return (
+    <SelectForm onChange={onYearsChange}>
+      <SelectWrapper name="years" defaultValue={selectedYear}>
+        {years.map((year: number) => (
+          <option value={year} key={year}>
+            {year}
+          </option>
+        ))}
+      </SelectWrapper>
+    </SelectForm>
+  );
+}
