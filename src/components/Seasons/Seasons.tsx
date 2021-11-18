@@ -7,32 +7,47 @@ import RacesList from '../RacesList';
 import getYears from '../../utils/getYears';
 import getSeasonData from '../../utils/getSeasonData';
 import { Race } from '../../types';
+import getRaceData from '../../utils/getRaceData';
 
 export default function Seasons() {
-  const years: number[] = getYears();
-  const [selectedYear, setSelectedYear] = useState<number>(years[0]);
+  const seasons: number[] = getYears();
+  const [selectedSeason, setSelectedSeason] = useState<number>(seasons[0]);
+  const [selectedRace, setSelectedRace] = useState<string | undefined>(undefined);
   const [races, setRaces] = useState<Race[]>([]);
   const [isUpdating, setIsUpdating] = useState(true);
 
-  const loadSeasons = async () => {
-    const seasonData = await getSeasonData(selectedYear);
+  const loadSeason = async () => {
+    const seasonData = await getSeasonData(selectedSeason);
     setRaces(seasonData);
     setIsUpdating(() => false);
   };
 
-  useEffect(() => {
-    loadSeasons();
-  }, [selectedYear]);
+  const loadRace = async () => {
+    const raceData = await getRaceData(selectedSeason.toString(), selectedRace?.toString() || '');
+    console.log('Race data', raceData);
+  };
+
+  const onRaceSelect = (race: string) => {
+    setSelectedRace(() => race);
+  };
 
   useEffect(() => {
-    loadSeasons();
+    loadSeason();
+  }, [selectedSeason]);
+
+  useEffect(() => {
+    loadSeason();
   }, []);
 
   return (
     <SeasonsWrapper>
-      <SelectedSeason selectedYear={selectedYear} setSelectedYear={setSelectedYear} years={years} />
+      <SelectedSeason
+        selectedSeason={selectedSeason}
+        setSelectedYear={setSelectedSeason}
+        seasons={seasons}
+      />
       {isUpdating && <Loader />}
-      {!isUpdating && <RacesList races={races} onSeasonSelect={() => {}} />}
+      {!isUpdating && <RacesList races={races} onRaceSelect={onRaceSelect} />}
     </SeasonsWrapper>
   );
 }

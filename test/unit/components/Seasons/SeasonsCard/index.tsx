@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import SeasonCard from '../../../../../src/components/SeasonCard';
+import SeasonCard from '../../../../../src/components/RaceItem/RaceItem';
 
 it('renders the heading', () => {
   const props = {

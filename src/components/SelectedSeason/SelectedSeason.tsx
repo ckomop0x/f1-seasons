@@ -1,21 +1,21 @@
-import YearsSelect from '../YearsSelect';
+import SeasonsSelect from '../SeasonsSelect';
 import { SelectedSeasonTitle, SelectedSeasonWrapper } from './styles';
 
 interface ISelectedSeasonProps {
-  years: number[];
-  selectedYear: number;
+  seasons: number[];
+  selectedSeason: number;
   setSelectedYear(value: number): void;
 }
 
 export default function SelectedSeason({
-  years,
+  seasons,
   setSelectedYear,
-  selectedYear
+  selectedSeason
 }: ISelectedSeasonProps) {
   return (
     <SelectedSeasonWrapper>
       <SelectedSeasonTitle>Selected season:</SelectedSeasonTitle>
-      <YearsSelect years={years} onChange={setSelectedYear} selectedYear={selectedYear} />
+      <SeasonsSelect seasons={seasons} onChange={setSelectedYear} selectedSeason={selectedSeason} />
     </SelectedSeasonWrapper>
   );
 }
