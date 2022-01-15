@@ -12,7 +12,7 @@ import getRaceData from '../../utils/getRaceData';
 export default function Seasons() {
   const seasons: number[] = getYears();
   const [selectedSeason, setSelectedSeason] = useState<number>(seasons[0]);
-  const [selectedRace, setSelectedRace] = useState<string | undefined>(undefined);
+  const [selectedRace, setSelectedRace] = useState<string>('');
   const [races, setRaces] = useState<Race[]>([]);
   const [isUpdating, setIsUpdating] = useState(true);
 
@@ -30,6 +30,10 @@ export default function Seasons() {
   const onRaceSelect = (race: string) => {
     setSelectedRace(() => race);
   };
+
+  useEffect(() => {
+    if (selectedRace) loadRace();
+  }, [selectedRace]);
 
   useEffect(() => {
     loadSeason();

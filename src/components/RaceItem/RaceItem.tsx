@@ -12,7 +12,7 @@ export interface ISeasonCardProps {
   date: string;
   time: string;
 
-  onSeasonSelect(): void;
+  onRaceSelect(round: string): void;
 }
 
 export default function RaceItem({
@@ -22,7 +22,7 @@ export default function RaceItem({
   country,
   locality,
   date,
-  onSeasonSelect
+  onRaceSelect
 }: ISeasonCardProps): JSX.Element {
   return (
     <RaceItemWrapper>
@@ -37,7 +37,7 @@ export default function RaceItem({
         {raceName} ({locality}, {country})
       </h2>
       <h4>{circuitName}</h4>
-      <a />
+      <a onClick={() => onRaceSelect(round)} />
     </RaceItemWrapper>
   );
 }

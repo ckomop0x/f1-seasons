@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Flag from '../Flag';
 import { FlagWrapper } from '../Flag/Flag';
 
 export const RaceItemWrapper = styled.article`
@@ -49,11 +48,11 @@ export const RoundNumber = styled.div`
   color: #e10600;
   text-transform: uppercase;
   display: block;
-  border: 8px solid white;
+  padding: 8px 16px;
   background: white;
   position: absolute;
   top: -52px;
-  left: -24px;
+  left: -18px;
   font-size: 18px;
 `;
 

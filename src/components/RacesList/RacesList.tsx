@@ -1,4 +1,4 @@
-import SeasonCard from '../RaceItem/RaceItem';
+import RaceItem from '../RaceItem';
 import styled from 'styled-components';
 import { Race } from '../../types';
 
@@ -13,10 +13,10 @@ export default function RacesList({ races, onRaceSelect }: ISeasonsListProps): J
     <RacesListWrapper>
       {races.map(({ season, round, Circuit, raceName, date, time }: Race) => {
         return (
-          <SeasonCard
+          <RaceItem
             raceName={raceName}
             key={raceName}
-            onSeasonSelect={() => onRaceSelect(round)}
+            onRaceSelect={() => onRaceSelect(round)}
             circuitName={Circuit.circuitName}
             season={season}
             round={round}
