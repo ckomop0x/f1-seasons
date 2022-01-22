@@ -4,5 +4,5 @@ const fetch = (fetchImport.default || fetchImport) as typeof fetchImport.default
 
 export default async function getSeasonsResults(season: string, round: string): Promise<any> {
   const roundData = await fetch(`${API_ENDPOINT}${season}/${round}/results.json`);
-  return await roundData.json();
+  return roundData.json();
 }
