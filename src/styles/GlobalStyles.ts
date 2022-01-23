@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   html, body, #root {
     margin: 0;
     padding: 0;
@@ -18,3 +18,5 @@ export const GlobalStyles = createGlobalStyle`
     height: 100%;
   }
 `;
+
+export default GlobalStyles;

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-export const Logo = styled.a`
+const Logo = styled.a`
   text-decoration: none;
   line-height: 32px;
   vertical-align: top;
   display: inline-block;
 
   img {
+    //width: ${({ theme }) => theme.grid * 4}px;
     width: ${({ theme }) => theme.grid * 4}px;
     line-height: ${({ theme }) => theme.grid * 4}px;
     vertical-align: top;
@@ -24,3 +25,5 @@ export const Logo = styled.a`
     display: inline-block;
   }
 `;
+
+export default Logo;

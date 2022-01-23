@@ -9,3 +9,5 @@ export const HeaderStyled = styled.header`
   box-shadow: rgba(0, 0, 0, 0.4) 0 0 2px 2px;
   position: relative;
 `;
+
+export default HeaderStyled;

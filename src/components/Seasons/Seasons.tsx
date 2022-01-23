@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { getSeasons, calculateYears } from '../../scripts/services';
 import { RaceSeason, ActiveSeason } from './types';
 import { MainContainer, SelectedSeason } from './styles';

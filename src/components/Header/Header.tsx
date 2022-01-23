@@ -1,12 +1,15 @@
-import { HeaderStyled, Logo } from '../styles';
 import { FC } from 'react';
+import { HeaderStyled } from 'styles/HeaderStyled';
+import Logo from 'styles/Logo';
 
 const Header: FC = () => {
+  const headerTitle = 'F1 Standings';
+
   return (
     <HeaderStyled>
-      <Logo href="/" title="Formula 1 winners application" data-cy="logo">
-        <img src="/icons/racing.svg" alt="Formula 1 winners application" />
-        <span className="logo-title">F1 Standings</span>
+      <Logo href="/" title={headerTitle} data-cy="logo">
+        <img src="/icons/racing.svg" alt={headerTitle} />
+        <span>{headerTitle}</span>
       </Logo>
     </HeaderStyled>
   );

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const NormalizeStyles = createGlobalStyle`
+const NormalizeStyles = createGlobalStyle`
   /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
     /* Document
@@ -344,3 +344,5 @@ export const NormalizeStyles = createGlobalStyle`
     }
 
 `;
+
+export default NormalizeStyles;
