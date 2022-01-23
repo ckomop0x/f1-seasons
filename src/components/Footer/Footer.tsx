@@ -3,11 +3,12 @@ import { FooterStyled } from './FooterStyles';
 import packageJSON from '../../../package.json';
 
 const Footer = () => {
-  const year = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
   return (
     <FooterStyled>
-      &copy; {year} <a href="https://github.com/ckomop0x">Pavel Klochkov</a>. Icons & flags by&nbsp;
+      &copy; {currentYear} <a href="https://github.com/ckomop0x">Pavel Klochkov</a>. Icons & flags
+      by{' '}
       <a href="https://www.flaticon.com" target="_blank" rel="noreferrer noopener nofollow">
         Flaticon
       </a>

@@ -1,7 +1,11 @@
 import { getSeasons, calculateYears } from '../../scripts/services';
 import { RaceSeason, ActiveSeason } from './types';
 import { MainContainer, SelectedSeason } from './styles';
-import { YearsSelect, Loader, SeasonsList, SeasonResults } from './components';
+import { FormEvent, PureComponent } from 'react';
+import YearsSelect from 'components/YearsSelect';
+import Loader from 'components/Loader';
+import SeasonsList from 'components/SeasonsList';
+import SeasonResults from 'components/SeasonResults';
 
 interface SeasonsState {
   year: number;
@@ -13,7 +17,7 @@ interface SeasonsState {
   error?: Error;
 }
 
-export default class Seasons extends React.PureComponent<{}, SeasonsState> {
+export default class Seasons extends PureComponent<{}, SeasonsState> {
   private loadingTimerId: any;
 
   constructor(props: any) {
@@ -77,7 +81,7 @@ export default class Seasons extends React.PureComponent<{}, SeasonsState> {
     );
   }
 
-  onFormChange = (event: React.FormEvent<HTMLFormElement>): void => {
+  onFormChange = (event: FormEvent<HTMLFormElement>): void => {
     const el: HTMLInputElement = event.target as HTMLInputElement;
 
     this.setState({

@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-import starSolid from '../../../icons/star-solid.svg';
-import starRegular from '../../../icons/star-regular.svg';
-
 interface StandingsTableRawTypes {
   position: any;
 }
@@ -81,7 +78,9 @@ export const FavoriteButton = styled.button`
   width: ${({ theme }) => theme.grid * 3}px;
   height: ${({ theme }) => theme.grid * 3}px;
   ${({ isDriverFavorite }: FavoriteButtonTypes) =>
-    isDriverFavorite ? `background: url(${starSolid})` : `background: url(${starRegular}`};
+    isDriverFavorite
+      ? `background: url(/icons/star-solid.svg)`
+      : `background: url(/icons/star-regular.svg`};
 `;
 
 export const BackButton = styled.button`

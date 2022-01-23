@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { YearsSelectWrapper } from '../../styles';
+import { YearsSelectWrapper } from '../Seasons/styles';
 
 interface IYearsSelect {
   years: number[];
