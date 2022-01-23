@@ -8,13 +8,18 @@ const SeasonPage: FC = () => {
   const [seasonData, setSeasonData] = useState(undefined);
   const router = useRouter();
 
+  console.log(router);
+
   const loadSeason = async (season: number) => {
-    return await getSeasons(season);
+    return getSeasons(season);
   };
 
   useEffect(() => {
-    if (typeof router.query.season === 'string') {
-      loadSeason(parseInt(router.query.season))
+    const season = router?.query?.slug?.[0];
+    const race = router?.query?.slug?.[1];
+
+    if (season && !race) {
+      loadSeason(parseInt(season))
         .then((loadedSeasonData) => {
           if (loadedSeasonData) {
             setSeasonData(loadedSeasonData.MRData.RaceTable.Races);
@@ -22,7 +27,7 @@ const SeasonPage: FC = () => {
         })
         .catch((error) => console.log(error.message));
     }
-  }, [router.query.season]);
+  }, [router.query.slug]);
 
   return (
     <Layout>{seasonData && <SeasonsList seasons={seasonData} onSeasonSelect={() => {}} />}</Layout>
