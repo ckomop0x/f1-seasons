@@ -1,4 +1,4 @@
-import { getSeasons, calculateYears } from '../../scripts/services';
+import { getSeasons } from '../../scripts/services';
 import { RaceSeason, ActiveSeason } from './types';
 import { MainContainer, SelectedSeason } from './styles';
 import { FormEvent, PureComponent } from 'react';
@@ -6,6 +6,7 @@ import YearsSelect from 'components/YearsSelect';
 import Loader from 'components/Loader';
 import SeasonsList from 'components/SeasonsList';
 import SeasonResults from 'components/SeasonResults';
+import getYearsRange from '../../services/getYearsRange';
 
 interface SeasonsState {
   year: number;
@@ -26,8 +27,8 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
     this.onFormChange = this.onFormChange.bind(this);
     this.showSeasonResults = this.showSeasonResults.bind(this);
     this.state = {
-      years: calculateYears(),
-      year: calculateYears()[0],
+      years: getYearsRange(1950, new Date().getFullYear()).reverse(),
+      year: new Date().getFullYear(),
       seasons: [],
       isUpdating: false,
       isSeasons: true

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const FooterStyled = styled.div`
+export const FooterWrapper = styled.footer`
   text-align: center;
-  margin: 0;
+  margin: auto 0 0;
   font-size: 0.8125rem;
   background: ${({ theme }) => theme.gray1};
   color: white;

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import getSeasons from '../../scripts/services/get-seasons';
+import getSeasons from '../../services/api/getSeason';
 import SeasonsList from 'components/SeasonsList';
 import Layout from 'components/layouts/Layout';
 

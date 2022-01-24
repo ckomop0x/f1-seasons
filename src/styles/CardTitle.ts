@@ -4,9 +4,9 @@ export interface CardTitleTypes {
   fontSize?: string;
 }
 
-export const CardTitle = styled.h2`
+export const CardTitle = styled.h2<CardTitleTypes>`
   margin: 0;
-  font-size: ${({ fontSize }: CardTitleTypes) => (fontSize ? fontSize : '1.25rem')};
+  font-size: ${({ fontSize }) => fontSize ?? '1.25rem'};
   padding: ${({ theme }) => theme.grid * 2}px;
   text-align: center;
   font-family: ${({ theme }) => theme.secondaryFont};

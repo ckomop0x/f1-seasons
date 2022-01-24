@@ -7,7 +7,6 @@ const Logo = styled.a`
   display: inline-block;
 
   img {
-    //width: ${({ theme }) => theme.grid * 4}px;
     width: ${({ theme }) => theme.grid * 4}px;
     line-height: ${({ theme }) => theme.grid * 4}px;
     vertical-align: top;

@@ -1,3 +1,2 @@
-export { default as calculateYears } from './calculate-years';
-export { default as getSeasons } from './get-seasons';
-export { default as getSeasonsResults } from './get-seasons-results';
+export { default as getSeasons } from '../../services/api/getSeason';
+export { default as getSeasonsResults } from '../../services/api/get-seasons-results';

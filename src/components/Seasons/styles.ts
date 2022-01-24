@@ -6,6 +6,7 @@ export const MainContainer = styled.div`
   overflow-x: auto;
   overflow-y: auto;
   flex: 1 auto;
+  flex-grow: initial;
   padding: ${({ theme }) => theme.grid * 2}px;
 `;
 
