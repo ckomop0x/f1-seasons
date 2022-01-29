@@ -1,20 +1,20 @@
-import { getSeasons } from '../../scripts/services';
-import { RaceSeason, ActiveSeason } from './types';
 import { MainContainer, SelectedSeason } from './styles';
 import { FormEvent, PureComponent } from 'react';
 import YearsSelect from 'components/YearsSelect';
 import Loader from 'components/Loader';
 import SeasonsList from 'components/SeasonsList';
 import SeasonResults from 'components/SeasonResults';
-import getYearsRange from '../../services/getYearsRange';
+import getYearsRange from 'utils/getYearsRange';
+import { RaceSeasonInterface } from 'types/RaceSeason.interface';
+import { ActiveSeasonInterface } from 'types/ActiveSeason.interface';
 
 interface SeasonsState {
   year: number;
   years: number[];
-  seasons: RaceSeason[];
+  seasons: RaceSeasonInterface[];
   isUpdating: boolean;
   isSeasons: boolean;
-  activeSeason?: ActiveSeason;
+  activeSeason?: ActiveSeasonInterface;
   error?: Error;
 }
 

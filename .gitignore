@@ -6,7 +6,7 @@ dist
 *.css.d.ts
 /npm-debug.log
 target
-test/coverage
 .env
 build
 .next
+coverage

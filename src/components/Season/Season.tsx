@@ -1,5 +1,5 @@
-import getYearsRange from '../../services/getYearsRange';
-import { FormEvent, useState } from 'react';
+import getYearsRange from 'utils/getYearsRange';
+import { FormEvent, useEffect, useState } from 'react';
 import { SelectedSeason } from 'components/Seasons/styles';
 import YearsSelect from 'components/YearsSelect';
 import RacesList from 'components/RacesList';
@@ -14,6 +14,7 @@ const Season = () => {
 
     setSelectedYear(() => Number(el.value));
   };
+  useEffect(() => {}, []);
 
   return (
     <>

@@ -1,7 +1,12 @@
 import { API_ENDPOINT } from '../../config';
 import axios from 'axios';
 
-export default async function dataLoader(url: string) {
+export default async function dataLoader(
+  url: string,
+  params?: {
+    [key: string]: string | number;
+  }
+) {
   try {
     const { status, data } = await axios.get(`${API_ENDPOINT}${url}.json`);
 
