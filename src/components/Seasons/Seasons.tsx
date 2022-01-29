@@ -3,10 +3,11 @@ import { FormEvent, PureComponent } from 'react';
 import YearsSelect from 'components/YearsSelect';
 import Loader from 'components/Loader';
 import SeasonsList from 'components/SeasonsList';
-import SeasonResults from 'components/SeasonResults';
+import SeasonResults from 'components/SeasonResults/SeasonResults';
 import getYearsRange from 'utils/getYearsRange';
 import { RaceSeasonInterface } from 'types/RaceSeason.interface';
 import { ActiveSeasonInterface } from 'types/ActiveSeason.interface';
+import getSeason from '../../services/api/getSeason';
 
 interface SeasonsState {
   year: number;
@@ -63,7 +64,7 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
         this.setState({
           isUpdating: true
         });
-        getSeasons(this.state.year)
+        getSeason(this.state.year)
           .then((data: any) => {
             this.setState({
               seasons: data.MRData.RaceTable.Races,

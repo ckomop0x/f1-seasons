@@ -1,5 +1,5 @@
-import { API_ENDPOINT } from '../../config';
 import axios from 'axios';
+import { API_ENDPOINT } from 'utils/constants/API_ENDPOINT';
 
 export default async function dataLoader(
   url: string,

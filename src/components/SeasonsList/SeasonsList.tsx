@@ -1,7 +1,7 @@
-import { RaceSeason } from '../Seasons/types';
 import SeasonCard from '../SeasonCard';
 import { FC } from 'react';
 import { SeasonStyled } from 'components/Seasons/styles';
+import { RaceSeasonInterface } from 'types/RaceSeason.interface';
 
 export interface SeasonsListProps {
   seasons: any;
@@ -10,7 +10,7 @@ export interface SeasonsListProps {
 
 const SeasonsList: FC<SeasonsListProps> = ({ seasons, onSeasonSelect }) => (
   <SeasonStyled>
-    {seasons.map(({ season, round, Circuit, raceName, date, time }: RaceSeason) => (
+    {seasons.map(({ season, round, Circuit, raceName, date, time }: RaceSeasonInterface) => (
       <SeasonCard
         raceName={raceName}
         key={raceName}

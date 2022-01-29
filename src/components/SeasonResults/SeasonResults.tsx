@@ -1,6 +1,3 @@
-import * as React from 'react';
-import { getSeasonsResults } from '../../scripts/services';
-import { RacesResult, Result } from '../Seasons/types';
 import {
   BackButton,
   FavoriteButton,
@@ -8,6 +5,10 @@ import {
   StandingsTable,
   StandingsTableRow
 } from './styles';
+import { PureComponent } from 'react';
+import { RacesResultInterface } from 'types/RacesResult.interface';
+import getSeasonsResults from '../../services/api/getSeasonsResults';
+import { ResultInterface } from 'types/Result.interface';
 
 interface SeasonResultsProps {
   season: string;
@@ -18,11 +19,11 @@ interface SeasonResultsProps {
 
 interface SeasonResultsState {
   isUpdating: boolean;
-  racesResult?: RacesResult;
+  racesResult?: RacesResultInterface;
   savedDrivers: string[];
 }
 
-class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResultsState> {
+class SeasonResults extends PureComponent<SeasonResultsProps, SeasonResultsState> {
   private loadingTimerId: any;
 
   constructor(props: SeasonResultsProps) {
@@ -43,7 +44,7 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
     this.setState({ isUpdating: true });
 
     getSeasonsResults(this.props.season, this.props.round)
-      .then((data) => {
+      .then((data: any) => {
         this.setState({
           racesResult: data?.MRData?.RaceTable?.Races?.[0],
           isUpdating: false
@@ -109,7 +110,7 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
                 </tr>
               </thead>
               <tbody>
-                {this.state?.racesResult?.Results.map((result: Result) => {
+                {this.state?.racesResult?.Results.map((result: ResultInterface) => {
                   const { Driver } = result;
                   const isDriverFavorite: boolean = this.state.savedDrivers.includes(Driver.code);
 
