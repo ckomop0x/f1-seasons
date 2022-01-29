@@ -1,6 +1,6 @@
 import { MainContainer, SelectedSeason } from './styles';
 import { FormEvent, PureComponent } from 'react';
-import YearsSelect from 'components/YearsSelect';
+import YearsSelect from 'components/SeasonsSelect';
 import Loader from 'components/Loader';
 import SeasonsList from 'components/SeasonsList';
 import SeasonResults from 'components/SeasonResults/SeasonResults';

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_ENDPOINT } from 'utils/constants/API_ENDPOINT';
+import getParamsString from 'utils/getParamsString';
 
 export default async function dataLoader(
   url: string,
@@ -8,7 +9,8 @@ export default async function dataLoader(
   }
 ) {
   try {
-    const { status, data } = await axios.get(`${API_ENDPOINT}${url}.json`);
+    const paramsString = params ? getParamsString(params) : '';
+    const { status, data } = await axios.get(`${API_ENDPOINT}${url}.json${paramsString}`);
 
     if (status === 200) {
       return {

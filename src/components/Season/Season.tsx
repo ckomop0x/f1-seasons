@@ -1,16 +1,32 @@
-import { FC, useEffect } from 'react';
+import Loader from 'components/Loader';
+import { SelectedSeason } from 'components/Seasons/styles';
+import YearsSelect from 'components/SeasonsSelect/SeasonsSelect';
 import RacesList from 'components/RacesList';
+import { FormEvent, useEffect, useState } from 'react';
+import getSeasons from '../../services/api/getSeasons';
 
-interface SeasonProps {
-  year: number;
-}
+const Season = () => {
+  const currentYear = new Date().getFullYear();
+  const [selectedSeason, setSelectedSeason] = useState(currentYear);
+  const [seasons, setSeasons] = useState<string[]>([]);
 
-const Season: FC<SeasonProps> = ({ year }) => {
-  useEffect(() => {}, []);
+  const onFormChange = (event: FormEvent<HTMLFormElement>): void => {
+    const el: HTMLInputElement = event.target as HTMLInputElement;
 
-  return (
+    setSelectedSeason(() => Number(el.value));
+  };
+
+  useEffect(() => {
+    getSeasons().then(setSeasons);
+  }, []);
+
+  return !seasons ? (
+    <Loader />
+  ) : (
     <>
-      <RacesList selectedYear={year} />
+      <SelectedSeason>Selected season: {selectedSeason}</SelectedSeason>
+      <YearsSelect years={seasons} onChange={onFormChange} />
+      <RacesList selectedYear={selectedSeason} />
     </>
   );
 };

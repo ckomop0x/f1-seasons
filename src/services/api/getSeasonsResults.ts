@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { API_ENDPOINT } from 'utils/constants/API_ENDPOINT';
-// import { RaceSeasonInterface } from 'types/RaceSeason.interface';
 
 export default async function getSeasonsResults(
   season: string,

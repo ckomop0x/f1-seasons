@@ -1,13 +1,11 @@
 import { CircuitInterface } from 'types/Circuit.interface';
-import { ResultInterface } from 'types/Result.interface';
 
 export interface RacesResultInterface {
-  Circuit: CircuitInterface;
-  Results: ResultInterface[];
-  date: string;
-  raceName: string;
-  round: string;
   season: string;
-  time: string;
+  round: string;
   url: string;
+  raceName: string;
+  Circuit: CircuitInterface;
+  date: string;
+  time: string;
 }
