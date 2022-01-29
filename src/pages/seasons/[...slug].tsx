@@ -1,14 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import getSeasons from '../../services/api/getSeason';
 import SeasonsList from 'components/SeasonsList';
 import Layout from 'components/layouts/Layout';
+import { NextPage } from 'next';
 
-const SeasonPage: FC = () => {
+const SeasonPage: NextPage = () => {
   const [seasonData, setSeasonData] = useState(undefined);
   const router = useRouter();
-
-  console.log(router);
 
   const loadSeason = async (season: number) => {
     return getSeasons(season);
