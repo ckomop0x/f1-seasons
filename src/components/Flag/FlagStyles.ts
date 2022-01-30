@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const FlagStyled = styled.div`
+export const FlagWrapper = styled.div`
   text-align: center;
 
-  .flag-icon {
-    height: auto;
-    width: 30%;
+  img {
+    width: 48px;
   }
 `;
