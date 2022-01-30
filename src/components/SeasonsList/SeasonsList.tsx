@@ -1,11 +1,14 @@
-import SeasonCard from '../SeasonCard';
 import { FC } from 'react';
+
+import SeasonCard from '../SeasonCard';
+
 import { SeasonStyled } from 'components/Seasons/styles';
 import { RaceSeasonInterface } from 'types/RaceSeason.interface';
+import { RacesResultInterface } from 'types/RacesResult.interface';
 
 export interface SeasonsListProps {
-  seasons: any;
-  onSeasonSelect: any;
+  seasons: RacesResultInterface[];
+  onSeasonSelect(): void;
 }
 
 const SeasonsList: FC<SeasonsListProps> = ({ seasons, onSeasonSelect }) => (
@@ -14,7 +17,7 @@ const SeasonsList: FC<SeasonsListProps> = ({ seasons, onSeasonSelect }) => (
       <SeasonCard
         raceName={raceName}
         key={raceName}
-        onSeasonSelect={() => onSeasonSelect(season, round)}
+        onSeasonSelect={onSeasonSelect}
         circuitName={Circuit.circuitName}
         season={season}
         round={round}

@@ -1,9 +1,11 @@
+import { FormEvent, useEffect, useState } from 'react';
+
+import getSeasons from '../../services/api/getSeasons';
+
 import Loader from 'components/Loader';
+import RacesList from 'components/RacesList';
 import { SelectedSeason } from 'components/Seasons/styles';
 import YearsSelect from 'components/SeasonsSelect/SeasonsSelect';
-import RacesList from 'components/RacesList';
-import { FormEvent, useEffect, useState } from 'react';
-import getSeasons from '../../services/api/getSeasons';
 
 const Season = () => {
   const currentYear = new Date().getFullYear();
