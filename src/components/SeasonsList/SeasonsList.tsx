@@ -8,25 +8,13 @@ import { RacesResultInterface } from 'types/RacesResult.interface';
 
 export interface SeasonsListProps {
   seasons: RacesResultInterface[];
-  onSeasonSelect(): void;
+  year: number;
 }
 
-const SeasonsList: FC<SeasonsListProps> = ({ seasons, onSeasonSelect }) => (
+const SeasonsList: FC<SeasonsListProps> = ({ seasons, year }) => (
   <SeasonStyled>
-    {seasons.map(({ season, round, Circuit, raceName, date, time }: RaceSeasonInterface) => (
-      <SeasonCard
-        raceName={raceName}
-        key={raceName}
-        onSeasonSelect={onSeasonSelect}
-        circuitName={Circuit.circuitName}
-        season={season}
-        round={round}
-        country={Circuit.Location.country}
-        locality={Circuit.Location.locality}
-        circuitId={Circuit.circuitId}
-        date={date}
-        time={time}
-      />
+    {seasons.map((season, index) => (
+      <SeasonCard key={index} season={season} year={year} />
     ))}
   </SeasonStyled>
 );

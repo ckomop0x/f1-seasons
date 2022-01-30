@@ -1,13 +1,16 @@
-import { MainContainer, SelectedSeason } from './styles';
 import { FormEvent, PureComponent } from 'react';
-import YearsSelect from 'components/SeasonsSelect';
-import Loader from 'components/Loader';
-import SeasonsList from 'components/SeasonsList';
-import SeasonResults from 'components/SeasonResults/SeasonResults';
-import getYearsRange from 'utils/getYearsRange';
-import { RaceSeasonInterface } from 'types/RaceSeason.interface';
-import { ActiveSeasonInterface } from 'types/ActiveSeason.interface';
+
 import getSeason from '../../services/api/getSeason';
+
+import { MainContainer, SelectedSeason } from './styles';
+
+import Loader from 'components/Loader';
+import SeasonResults from 'components/SeasonResults/SeasonResults';
+import SeasonsList from 'components/SeasonsList';
+import YearsSelect from 'components/SeasonsSelect';
+import { ActiveSeasonInterface } from 'types/ActiveSeason.interface';
+import { RaceSeasonInterface } from 'types/RaceSeason.interface';
+import getYearsRange from 'utils/getYearsRange';
 
 interface SeasonsState {
   year: number;
@@ -53,7 +56,7 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
     });
   }
 
-  load(timeout: number = 50): void {
+  load(timeout = 50): void {
     if (this.state.isUpdating) {
       return;
     }
