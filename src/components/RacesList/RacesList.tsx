@@ -6,21 +6,21 @@ import SeasonsList from 'components/SeasonsList';
 import { RacesResultInterface } from 'types/RacesResult.interface';
 
 interface RacesListProps {
-  selectedYear: number;
+  selectedSeason: number;
 }
 
-const RacesList: FC<RacesListProps> = ({ selectedYear }) => {
+const RacesList: FC<RacesListProps> = ({ selectedSeason }) => {
   const [racesList, setRacesList] = useState<RacesResultInterface[]>([]);
 
   useEffect(() => {
-    getSeason(selectedYear).then((data: any) => {
+    getSeason(selectedSeason).then((data: any) => {
       if (typeof data !== 'string' && data?.MRData?.RaceTable?.Races) {
         setRacesList(() => data.MRData.RaceTable.Races);
       }
     });
-  }, [selectedYear]);
+  }, [selectedSeason]);
 
-  return <SeasonsList seasons={racesList} year={selectedYear} />;
+  return <SeasonsList seasons={racesList} year={selectedSeason} />;
 };
 
 export default RacesList;

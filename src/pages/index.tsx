@@ -1,16 +1,15 @@
-import Layout from 'components/layouts/Layout';
-import { MainContainer } from 'components/Seasons/styles';
 import { NextPage } from 'next';
-import Season from 'components/Season/Season';
 
-const IndexPage: NextPage = () => {
-  return (
-    <Layout>
-      <MainContainer>
-        <Season />
-      </MainContainer>
-    </Layout>
-  );
-};
+import Season from 'components/Season/Season';
+import { MainContainer } from 'components/Seasons/styles';
+import Layout from 'components/layouts/Layout';
+
+const IndexPage: NextPage = () => (
+  <Layout>
+    <MainContainer>
+      <Season />
+    </MainContainer>
+  </Layout>
+);
 
 export default IndexPage;

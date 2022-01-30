@@ -1,11 +1,14 @@
-import Seasons from 'components/Seasons/Seasons';
-
-import Layout from 'components/layouts/Layout';
 import { NextPage } from 'next';
+
+import Season from 'components/Season/Season';
+import { MainContainer } from 'components/Seasons/styles';
+import Layout from 'components/layouts/Layout';
 
 const SeasonsPage: NextPage = () => (
   <Layout>
-    <Seasons />
+    <MainContainer>
+      <Season />
+    </MainContainer>
   </Layout>
 );
 

@@ -1,35 +1,44 @@
-import { useEffect, useState } from 'react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+
 import getSeasons from '../../services/api/getSeason';
+
+import Season from 'components/Season/Season';
+import { MainContainer } from 'components/Seasons/styles';
 import SeasonsList from 'components/SeasonsList';
 import Layout from 'components/layouts/Layout';
-import { NextPage } from 'next';
 
 const SeasonPage: NextPage = () => {
-  const [seasonData, setSeasonData] = useState(undefined);
   const router = useRouter();
+  console.log(router);
 
-  const loadSeason = async (season: number) => {
-    return getSeasons(season);
-  };
-
-  useEffect(() => {
-    const season = router?.query?.slug?.[0];
-    const race = router?.query?.slug?.[1];
-
-    if (season && !race) {
-      loadSeason(parseInt(season))
-        .then((loadedSeasonData) => {
-          if (loadedSeasonData) {
-            setSeasonData(loadedSeasonData.MRData.RaceTable.Races);
-          }
-        })
-        .catch((error) => console.log(error.message));
-    }
-  }, [router.query.slug]);
-
+  // const [seasonData, setSeasonData] = useState(undefined);
+  // const router = useRouter();
+  //
+  // const loadSeason = async (season: number) => getSeasons(season);
+  //
+  // useEffect(() => {
+  //   const season = router?.query?.slug?.[0];
+  //   const race = router?.query?.slug?.[1];
+  //
+  //   if (season && !race) {
+  //     loadSeason(parseInt(season))
+  //       .then((loadedSeasonData) => {
+  //         if (loadedSeasonData) {
+  //           setSeasonData(loadedSeasonData.MRData.RaceTable.Races);
+  //         }
+  //       })
+  //       .catch((error) => console.log(error.message));
+  //   }
+  // }, [router.query.slug]);
+  //
   return (
-    <Layout>{seasonData && <SeasonsList seasons={seasonData} onSeasonSelect={() => {}} />}</Layout>
+    <Layout>
+      <MainContainer>
+        <Season />
+      </MainContainer>
+    </Layout>
   );
 };
 

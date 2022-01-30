@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useState } from 'react';
 
 import getSeasons from '../../services/api/getSeasons';
@@ -8,8 +9,7 @@ import { SelectedSeason } from 'components/Seasons/styles';
 import YearsSelect from 'components/SeasonsSelect/SeasonsSelect';
 
 const Season = () => {
-  const currentYear = new Date().getFullYear();
-  const [selectedSeason, setSelectedSeason] = useState(currentYear);
+  const [selectedSeason, setSelectedSeason] = useState<number | undefined>(undefined);
   const [seasons, setSeasons] = useState<string[]>([]);
 
   const onFormChange = (event: FormEvent<HTMLFormElement>): void => {
@@ -22,13 +22,17 @@ const Season = () => {
     getSeasons().then(setSeasons);
   }, []);
 
-  return !seasons ? (
+  useEffect(() => {
+    seasons.length > 0 && setSelectedSeason(() => Number(seasons[0]));
+  }, [seasons]);
+
+  return !selectedSeason ? (
     <Loader />
   ) : (
     <>
       <SelectedSeason>Selected season: {selectedSeason}</SelectedSeason>
       <YearsSelect years={seasons} onChange={onFormChange} />
-      <RacesList selectedYear={selectedSeason} />
+      <RacesList selectedSeason={selectedSeason} />
     </>
   );
 };
