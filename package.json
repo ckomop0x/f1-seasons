@@ -59,7 +59,7 @@
     "react-dev-utils": "11.0.4",
     "react-scripts": "^3.4.1",
     "react-test-renderer": "^16.6.0",
-    "semantic-release": "17.2.3",
+    "semantic-release": "19.0.3",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "ts-loader": "^7.0.5",
