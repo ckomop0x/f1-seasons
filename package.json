@@ -1,6 +1,6 @@
 {
   "name": "formula-1-season-standings",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "",
   "scripts": {
     "start": "react-scripts start",

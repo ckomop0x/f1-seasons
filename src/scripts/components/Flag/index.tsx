@@ -6,10 +6,23 @@ export interface FlagProps {
 }
 
 const Flag = ({ country }: FlagProps) => {
+  let flagUrl = "";
+  let countryName = country?.toLowerCase()?.replace(' ', '-')
+
+  if (countryName === "united-states") {
+    countryName = "usa"
+  }
+
+  try {
+    flagUrl = require(`./flags/${countryName?.toLowerCase()?.replace(' ', '-')}.svg`)
+  } catch (e) {
+    console.log(`Flag Icon for ${countryName} not found`)
+  }
+
   return (
     <FlagStyled>
       <img
-        src={require(`./flags/${country.toLowerCase().replace(' ', '-')}.svg`) || ''}
+        src={flagUrl}
         alt={country}
         className="flag-icon"
       />
