@@ -1,12 +1,14 @@
-import * as React from 'react';
-import { getSeasonsResults } from '../../../../services';
-import { RacesResult, Result } from '../../types';
+import { PureComponent } from 'react';
+
+import getSeasonsResults from '../../../services/get-seasons-results';
+import { RacesResult, Result } from '../types';
+
 import {
   BackButton,
   FavoriteButton,
   StandingsStyled,
   StandingsTable,
-  StandingsTableRow
+  StandingsTableRow,
 } from './styles';
 
 interface SeasonResultsProps {
@@ -22,7 +24,10 @@ interface SeasonResultsState {
   savedDrivers: string[];
 }
 
-class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResultsState> {
+class SeasonResults extends PureComponent<
+  SeasonResultsProps,
+  SeasonResultsState
+> {
   private loadingTimerId: any;
 
   constructor(props: SeasonResultsProps) {
@@ -31,11 +36,11 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
 
     this.state = {
       isUpdating: false,
-      savedDrivers: savedDrivers ? JSON.parse(savedDrivers) : []
+      savedDrivers: savedDrivers ? JSON.parse(savedDrivers) : [],
     };
   }
 
-  private load(timeout: number = 50): void {
+  private load(timeout = 50): void {
     if (this.state.isUpdating) {
       return;
     }
@@ -46,38 +51,41 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
     this.loadingTimerId = Number(
       setTimeout((): void => {
         getSeasonsResults(this.props.season, this.props.round)
-          .then((data) => {
+          .then(data => {
             this.setState({
               racesResult: data.MRData.RaceTable.Races[0],
-              isUpdating: false
+              isUpdating: false,
             });
           })
-          .catch((error) => {
+          .catch(error => {
             alert(error);
             this.setState({
-              isUpdating: false
+              isUpdating: false,
             });
           });
-      }, timeout)
+      }, timeout),
     );
   }
 
   addDriverToFavorite = (driverCode: string): void => {
     this.setState({
-      savedDrivers: this.state.savedDrivers.concat(driverCode)
+      savedDrivers: this.state.savedDrivers.concat(driverCode),
     });
   };
 
   removeDriverFromFavorites = (driverCode: string): void => {
     this.setState({
       savedDrivers: this.state.savedDrivers.filter(
-        (savedDriverCode): boolean => savedDriverCode !== driverCode
-      )
+        (savedDriverCode): boolean => savedDriverCode !== driverCode,
+      ),
     });
   };
 
   saveFavoritesDrivers(): void {
-    localStorage.setItem('savedDrivers', JSON.stringify(this.state.savedDrivers));
+    localStorage.setItem(
+      'savedDrivers',
+      JSON.stringify(this.state.savedDrivers),
+    );
   }
 
   componentDidUpdate() {
@@ -96,11 +104,17 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
   render() {
     return (
       <StandingsStyled>
-        <BackButton onClick={this.props.toggleViews}>&larr; Back to seasons</BackButton>
+        <BackButton onClick={this.props.toggleViews}>
+          &larr; Back to seasons
+        </BackButton>
         {this.state.isUpdating && (
-          <div style={{ textAlign: 'center', marginTop: 40 }}>Loading results...</div>
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            Loading results...
+          </div>
         )}
-        {this.state.racesResult && <h2>{this.state.racesResult.Circuit.circuitName}</h2>}
+        {this.state.racesResult && (
+          <h2>{this.state.racesResult.Circuit.circuitName}</h2>
+        )}
         {this.state.racesResult ? (
           <StandingsTable>
             <table>
@@ -117,7 +131,8 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
                 {this.state.racesResult &&
                   this.state.racesResult.Results.map((result: Result) => {
                     const { Driver } = result;
-                    const isDriverFavorite: boolean = this.state.savedDrivers.includes(Driver.code);
+                    const isDriverFavorite: boolean =
+                      this.state.savedDrivers.includes(Driver.code);
 
                     return (
                       <StandingsTableRow
@@ -125,9 +140,13 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
                         position={result.position}
                         onClick={
                           isDriverFavorite
-                            ? this.removeDriverFromFavorites.bind(this, Driver.code)
+                            ? this.removeDriverFromFavorites.bind(
+                                this,
+                                Driver.code,
+                              )
                             : this.addDriverToFavorite.bind(this, Driver.code)
-                        }>
+                        }
+                      >
                         <td>{result.position}</td>
                         <td>{result.number}</td>
                         <td>
@@ -145,7 +164,9 @@ class SeasonResults extends React.PureComponent<SeasonResultsProps, SeasonResult
           </StandingsTable>
         ) : (
           !this.state.isUpdating && (
-            <div style={{ textAlign: 'center', marginTop: 40 }}>No results available</div>
+            <div style={{ textAlign: 'center', marginTop: 40 }}>
+              No results available
+            </div>
           )
         )}
       </StandingsStyled>

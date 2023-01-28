@@ -1,25 +1,29 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { Theme } from '../../theme/theme';
 
-export const MainContainer = styled.div`
-  background: white;
-  color: ${({ theme }) => theme.gray1};
-  overflow-x: auto;
-  overflow-y: auto;
-  flex: 1 auto;
-  padding: ${({ theme }) => theme.grid * 2}px;
-`;
+export const MainContainer = styled.div(
+  ({theme}: {theme: Theme}) => css`
+    background: white;
+    color: ${theme.colors.gray1};
+    overflow-x: auto;
+    overflow-y: auto;
+    flex: 1 auto;
+    padding: ${theme.sizes.grid * 2}px;
+  `);
 
-export const SelectedSeason = styled.h1`
+export const SelectedSeason = styled.h1(
+  ({theme}) => css`
   display: block;
-  max-width: ${({ theme }) => theme.grid * 50}px;
+  max-width: ${theme.grid * 50}px;
   text-align: center;
   margin: 1rem auto;
   color: white;
-  background: ${({ theme }) => theme.primaryRed};
+  background: ${theme.primaryColor};
   padding: 0.5rem;
   transform: skew(-7deg);
   text-transform: uppercase;
-`;
+`);
 
 export const YearsSelectWrapper = styled.div`
   select {
@@ -28,7 +32,7 @@ export const YearsSelectWrapper = styled.div`
     outline: 0;
     box-shadow: none;
     border: 0 !important;
-    background: ${({ theme }) => theme.primaryRed};
+    background: ${({ theme }) => theme.primaryColor};
     background-image: none;
   }
 
@@ -37,7 +41,7 @@ export const YearsSelectWrapper = styled.div`
     width: ${({ theme }) => theme.grid * 20}px;
     height: 3em;
     line-height: 3;
-    background: ${({ theme }) => theme.primaryRed};
+    background: ${({ theme }) => theme.primaryColor};
     overflow: hidden;
     border-radius: 0.25em;
     text-align: center;
@@ -68,7 +72,7 @@ export const YearsSelectWrapper = styled.div`
     right: 0;
     bottom: 0;
     padding: 0 1em;
-    background: ${({ theme }) => theme.primaryRed};
+    background: ${({ theme }) => theme.primaryColor};
     pointer-events: none;
   }
 

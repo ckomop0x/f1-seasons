@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import starSolid from '../../../../icons/star-solid.svg';
-import starRegular from '../../../../icons/star-regular.svg';
+import starSolid from '../../../icons/star-solid.svg';
+import starRegular from '../../../icons/star-regular.svg';
 
 interface StandingsTableRawTypes {
   position: any;
@@ -90,7 +90,7 @@ export const BackButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primaryRed};
+  color: ${({ theme }) => theme.primaryColor};
 
   :hover {
     text-decoration: underline;

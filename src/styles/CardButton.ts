@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const CardButton = styled.button`
   display: block;
   width: 100%;
-  background: ${({ theme }) => theme.primaryRed};
+  background: ${({ theme }) => theme.primaryColor};
   box-shadow: none;
   color: white;
   box-sizing: border-box;
@@ -19,7 +19,7 @@ const CardButton = styled.button`
   padding: ${({ theme }) => theme.grid * 2.5}px;
 
   :hover {
-    background: ${({ theme }) => theme.primaryRedLighten};
+    background: ${({ theme }) => theme.primaryColorLighten};
   }
 `;
 

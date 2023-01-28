@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { RaceSeason } from '../../types';
+import { RaceSeason } from '../types';
 import SeasonCard from '../SeasonCard';
-import { SeasonStyled } from '../../styles';
+import { SeasonStyled } from '../styles';
 
 export interface SeasonsListProps {
   seasons: any;

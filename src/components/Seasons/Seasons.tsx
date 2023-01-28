@@ -1,9 +1,12 @@
-import * as React from 'react';
-
-import { getSeasons, calculateYears } from '../../services';
 import { RaceSeason, ActiveSeason } from './types';
 import { MainContainer, SelectedSeason } from './styles';
-import { YearsSelect, Loader, SeasonsList, SeasonResults } from './components';
+import calculateYears from '../../services/calculate-years';
+import { PureComponent } from 'react';
+import getSeasons from '../../services/get-seasons';
+import YearsSelect from 'components/Seasons/YearsSelect';
+import SeasonsList from 'components/Seasons/SeasonsList';
+import SeasonResults from 'components/Seasons/SeasonResults';
+import Loader from 'components/Seasons/Loader';
 
 interface SeasonsState {
   year: number;
@@ -15,7 +18,7 @@ interface SeasonsState {
   error?: Error;
 }
 
-export default class Seasons extends React.PureComponent<{}, SeasonsState> {
+export default class Seasons extends PureComponent<{}, SeasonsState> {
   private loadingTimerId: any;
 
   constructor(props: any) {
