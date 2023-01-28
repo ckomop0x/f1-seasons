@@ -1,19 +1,24 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const FooterStyled = styled.div`
-  text-align: center;
-  margin: 0;
-  font-size: 0.8125rem;
-  background: ${({ theme }) => theme.gray1};
-  color: white;
-  padding: ${({ theme }) => theme.sizes.grid}px;
+import { Theme } from '../../theme/theme';
 
-  a {
+export const FooterStyled = styled.div(
+  ({ theme }: { theme: Theme }) => css`
+    text-align: center;
+    margin: 0;
+    font-size: 0.8125rem;
+    background: ${theme.colors.gray1};
     color: white;
-    text-decoration: none;
+    padding: ${theme.sizes.grid * 2}px;
 
-    :hover {
-      text-decoration: underline;
+    a {
+      color: white;
+      text-decoration: none;
+
+      :hover {
+        text-decoration: underline;
+      }
     }
-  }
-`;
+  `,
+);
