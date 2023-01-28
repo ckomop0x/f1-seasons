@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { HeaderStyled, Logo } from '../styles';
-import logoImage from '../../../icons/racing.svg';
+import logoImage from '../../icons/racing.svg';
 
 const Header: React.FC = () => {
   return (

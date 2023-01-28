@@ -1,5 +1,5 @@
 import * as fetchImport from 'isomorphic-unfetch';
-import { API_ENDPOINT } from '../../config';
+import { API_ENDPOINT } from '../config';
 const fetch = (fetchImport.default || fetchImport) as typeof fetchImport.default;
 
 export default async function getSeasonsResults(season: string, round: string): Promise<any> {
