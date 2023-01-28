@@ -3,8 +3,8 @@ import { Theme } from '../theme/theme';
 import { css } from '@emotion/react';
 
 export const HeaderStyled = styled.header(
-  ({theme}: {theme?: Theme}) => css`
-  background: ${theme?.colors?.primaryColor};
+  ({theme}: {theme: Theme}) => css`
+  background: ${theme.colors.primaryColor};
   padding: ${theme?.sizes?.grid * 2}px;
   width: 100%;
   flex-shrink: 0;

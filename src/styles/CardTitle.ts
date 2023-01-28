@@ -1,19 +1,20 @@
-import styled from 'styled-components';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-export interface CardTitleTypes {
-  fontSize?: string;
-}
+import { Theme } from '../theme/theme';
 
-export const CardTitle = styled.h2`
-  margin: 0;
-  font-size: ${({ fontSize }: CardTitleTypes) => (fontSize ? fontSize : '1.25rem')};
-  padding: ${({ theme }) => theme.grid * 2}px;
-  text-align: center;
-  font-family: ${({ theme }) => theme.secondaryFont};
-  background: ${({ theme }) => theme.gray1};
-  color: white;
-  height: ${({ theme }) => theme.grid * 10}px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export const CardTitle = styled.h2(
+  ({ theme }: { theme: Theme }) => css`
+    margin: 0;
+    padding: ${theme.sizes.grid * 2}px;
+    text-align: center;
+    font-family: ${theme.secondaryFont};
+    background: ${theme.colors.gray1};
+    color: white;
+    height: ${theme.sizes.grid * 10}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  `,
+);

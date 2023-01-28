@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled'
 
 export const Copyright = styled.div`
   text-align: center;
@@ -6,7 +6,7 @@ export const Copyright = styled.div`
   font-size: 0.8125rem;
   background: ${({ theme }) => theme.gray1};
   color: white;
-  padding: ${({ theme }) => theme.grid}px;
+  padding: ${({ theme }) => theme.sizes.grid}px;
 
   a {
     color: white;

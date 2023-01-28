@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled'
 
 import starSolid from '../../../icons/star-solid.svg';
 import starRegular from '../../../icons/star-regular.svg';
@@ -24,13 +24,13 @@ export const StandingsStyled = styled.div`
 
 export const StandingsTable = styled.div`
   overflow-y: scroll;
-  max-width: ${({ theme }) => theme.grid * 120}px;
+  max-width: ${({ theme }) => theme.sizes.grid * 120}px;
   margin: auto;
 
   table {
     text-align: left;
     width: 100%;
-    margin-bottom: ${({ theme }) => theme.grid * 6}px;
+    margin-bottom: ${({ theme }) => theme.sizes.grid * 6}px;
     border: 1px solid ${({ theme }) => theme.gray1};
     border-spacing: 0;
     border-collapse: collapse;
@@ -38,7 +38,7 @@ export const StandingsTable = styled.div`
     th {
       font-family: ${({ theme }) => theme.secondaryFont};
       background: ${({ theme }) => theme.gray1};
-      padding: ${({ theme }) => theme.grid * 2}px;
+      padding: ${({ theme }) => theme.sizes.grid * 2}px;
       font-size: 1rem;
       color: white;
     }
@@ -47,7 +47,7 @@ export const StandingsTable = styled.div`
     th:nth-child(2),
     th:nth-child(4),
     th:nth-child(5) {
-      width: ${({ theme }) => theme.grid * 5}px;
+      width: ${({ theme }) => theme.sizes.grid * 5}px;
     }
   }
 `;
@@ -62,7 +62,7 @@ export const StandingsTableRow = styled.tr`
   }
 
   td {
-    padding: ${({ theme }) => theme.grid}px;
+    padding: ${({ theme }) => theme.sizes.grid}px;
     border-bottom: 1px solid ${({ theme }) => theme.gray1};
 
     :nth-child(1),
@@ -78,8 +78,8 @@ export const FavoriteButton = styled.button`
   border: none;
   background-size: 100%;
   background-repeat: no-repeat;
-  width: ${({ theme }) => theme.grid * 3}px;
-  height: ${({ theme }) => theme.grid * 3}px;
+  width: ${({ theme }) => theme.sizes.grid * 3}px;
+  height: ${({ theme }) => theme.sizes.grid * 3}px;
   ${({ isDriverFavorite }: FavoriteButtonTypes) =>
     isDriverFavorite ? `background: url(${starSolid})` : `background: url(${starRegular}`};
 `;
@@ -90,7 +90,7 @@ export const BackButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => theme.colors.primaryColor};
 
   :hover {
     text-decoration: underline;

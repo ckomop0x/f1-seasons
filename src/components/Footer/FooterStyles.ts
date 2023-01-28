@@ -6,7 +6,7 @@ export const FooterStyled = styled.div`
   font-size: 0.8125rem;
   background: ${({ theme }) => theme.gray1};
   color: white;
-  padding: ${({ theme }) => theme.grid}px;
+  padding: ${({ theme }) => theme.sizes.grid}px;
 
   a {
     color: white;

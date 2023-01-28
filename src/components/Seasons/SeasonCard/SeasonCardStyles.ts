@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled'
 
 export const Card = styled.div`
   width: 100%;
-  margin-bottom: ${({ theme }) => theme.grid * 2}px;
+  margin-bottom: ${({ theme }) => theme.sizes.grid * 2}px;
   background: white;
   color: ${({ theme }) => theme.gray1};
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
@@ -25,7 +25,7 @@ export const Card = styled.div`
   }
 
   .content {
-    padding: ${({ theme }) => theme.grid * 2.5}px;
+    padding: ${({ theme }) => theme.sizes.grid * 2.5}px;
     background: ${({ theme }) => theme.gray2};
   }
 

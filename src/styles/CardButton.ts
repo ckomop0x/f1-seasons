@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const CardButton = styled.button`
   display: block;
   width: 100%;
-  background: ${({ theme }) => theme.primaryColor};
+  background: ${({ theme }) => theme.colors.primaryColor};
   box-shadow: none;
   color: white;
   box-sizing: border-box;
@@ -16,10 +16,10 @@ const CardButton = styled.button`
   letter-spacing: 0.5px;
   font-weight: normal;
   position: relative;
-  padding: ${({ theme }) => theme.grid * 2.5}px;
+  padding: ${({ theme }) => theme.sizes.grid * 2.5}px;
 
   :hover {
-    background: ${({ theme }) => theme.primaryColorLighten};
+    background: ${({ theme }) => theme.colors.primaryColorLighten};
   }
 `;
 

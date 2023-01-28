@@ -22,12 +22,12 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "styles/*": ["styles/*"],
+      "config/*": ["config/*"]
     }
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": [
     "node_modules"
   ]
