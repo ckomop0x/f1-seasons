@@ -22,12 +22,27 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "components/*": ["components/*"],
-      "styles/*": ["styles/*"],
-      "config/*": ["config/*"]
-    }
+      "components/*": [
+        "components/*"
+      ],
+      "styles/*": [
+        "styles/*"
+      ],
+      "config/*": [
+        "config/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

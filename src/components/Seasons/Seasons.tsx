@@ -1,12 +1,14 @@
-import { RaceSeason, ActiveSeason } from './types';
-import { MainContainer, SelectedSeason } from './styles';
-import calculateYears from '../../services/calculate-years';
-import { PureComponent } from 'react';
-import getSeasons from '../../services/get-seasons';
-import YearsSelect from 'components/Seasons/YearsSelect';
-import SeasonsList from 'components/Seasons/SeasonsList';
-import SeasonResults from 'components/Seasons/SeasonResults';
 import Loader from 'components/Seasons/Loader';
+import SeasonResults from 'components/Seasons/SeasonResults';
+import SeasonsList from 'components/Seasons/SeasonsList';
+import YearsSelect from 'components/Seasons/YearsSelect';
+import { PureComponent } from 'react';
+
+import calculateYears from '../../services/calculate-years';
+import getSeasons from '../../services/get-seasons';
+
+import { MainContainer, SelectedSeason } from './styles';
+import { RaceSeason, ActiveSeason } from './types';
 
 interface SeasonsState {
   year: number;
@@ -31,7 +33,7 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
       year: calculateYears()[0],
       seasons: [],
       isUpdating: false,
-      isSeasons: true
+      isSeasons: true,
     };
   }
 
@@ -41,18 +43,18 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
       activeSeason: {
         season,
         round,
-        year: String(this.state.year)
-      }
+        year: String(this.state.year),
+      },
     });
   }
 
   private toggleViews(): void {
     this.setState({
-      isSeasons: !this.state.isSeasons
+      isSeasons: !this.state.isSeasons,
     });
   }
 
-  load(timeout: number = 50): void {
+  load(timeout = 50): void {
     if (this.state.isUpdating) {
       return;
     }
@@ -61,24 +63,24 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
     this.loadingTimerId = Number(
       setTimeout((): void => {
         this.setState({
-          isUpdating: true
+          isUpdating: true,
         });
         getSeasons(this.state.year)
           .then((data: any) => {
             this.setState({
               seasons: data.MRData.RaceTable.Races,
               isUpdating: false,
-              error: undefined
+              error: undefined,
             });
           })
           .catch((error: any) => {
             console.log(error);
             this.setState({
               isUpdating: false,
-              error
+              error,
             });
           });
-      }, timeout)
+      }, timeout),
     );
   }
 
@@ -87,7 +89,7 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
 
     this.setState({
       year: Number(el.value),
-      isSeasons: true
+      isSeasons: true,
     });
     this.load();
   };
@@ -106,10 +108,15 @@ export default class Seasons extends PureComponent<{}, SeasonsState> {
     return (
       <MainContainer>
         <SelectedSeason>Selected season: {this.state.year}</SelectedSeason>
-        {isSeasons && <YearsSelect years={this.state.years} onChange={this.onFormChange} />}
+        {isSeasons && (
+          <YearsSelect years={this.state.years} onChange={this.onFormChange} />
+        )}
         {isUpdating && <Loader />}
         {!isUpdating && !error && isSeasons && (
-          <SeasonsList seasons={this.state.seasons} onSeasonSelect={this.showSeasonResults} />
+          <SeasonsList
+            seasons={this.state.seasons}
+            onSeasonSelect={this.showSeasonResults}
+          />
         )}
         {!isUpdating && error && <div>No Data {isSeasons}</div>}
         {!isUpdating && !error && activeSeason && !isSeasons && (

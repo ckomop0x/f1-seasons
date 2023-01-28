@@ -31,40 +31,17 @@ class SeasonResults extends PureComponent<
   private loadingTimerId: any;
 
   constructor(props: SeasonResultsProps) {
+    let savedDrivers: string[] = [];
     super(props);
-    const savedDrivers: string = localStorage.getItem('savedDrivers') || '';
+    if (typeof window !== 'undefined') {
+      savedDrivers =
+        JSON.parse(localStorage.getItem('savedDrivers') || '') || [];
+    }
 
     this.state = {
       isUpdating: false,
-      savedDrivers: savedDrivers ? JSON.parse(savedDrivers) : [],
+      savedDrivers,
     };
-  }
-
-  private load(timeout = 50): void {
-    if (this.state.isUpdating) {
-      return;
-    }
-
-    this.setState({ isUpdating: true });
-
-    clearTimeout(this.loadingTimerId);
-    this.loadingTimerId = Number(
-      setTimeout((): void => {
-        getSeasonsResults(this.props.season, this.props.round)
-          .then(data => {
-            this.setState({
-              racesResult: data.MRData.RaceTable.Races[0],
-              isUpdating: false,
-            });
-          })
-          .catch(error => {
-            alert(error);
-            this.setState({
-              isUpdating: false,
-            });
-          });
-      }, timeout),
-    );
   }
 
   addDriverToFavorite = (driverCode: string): void => {
@@ -99,6 +76,33 @@ class SeasonResults extends PureComponent<
   componentWillUnmount() {
     this.saveFavoritesDrivers();
     this.setState({});
+  }
+
+  private load(timeout = 50): void {
+    if (this.state.isUpdating) {
+      return;
+    }
+
+    this.setState({ isUpdating: true });
+
+    clearTimeout(this.loadingTimerId);
+    this.loadingTimerId = Number(
+      setTimeout((): void => {
+        getSeasonsResults(this.props.season, this.props.round)
+          .then(data => {
+            this.setState({
+              racesResult: data.MRData.RaceTable.Races[0],
+              isUpdating: false,
+            });
+          })
+          .catch(error => {
+            alert(error);
+            this.setState({
+              isUpdating: false,
+            });
+          });
+      }, timeout),
+    );
   }
 
   render() {
