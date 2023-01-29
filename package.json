@@ -1,6 +1,6 @@
 {
   "name": "formula-1-season-standings",
-  "version": "3.0.0rc2",
+  "version": "3.0.0rc3",
   "description": "",
   "scripts": {
     "dev": "next dev -p 8100",

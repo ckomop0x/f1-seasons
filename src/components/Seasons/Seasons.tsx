@@ -21,7 +21,8 @@ const Season: FC<SeasonProps> = ({ season }) => {
     router.push(`/${el.value}`);
   };
 
-  const selectedSeason = season ?? new Date().getFullYear();
+  const normalizedSeason = Array.isArray(season) ? season.join('') : season;
+  const selectedSeason = normalizedSeason ?? new Date().getFullYear();
 
   return (
     <>

@@ -6,9 +6,10 @@ import styles from './RacesList.module.scss';
 
 export interface RacesListProps {
   races: any[];
+  isUpdating: boolean;
 }
 
-const RacesList: FC<RacesListProps> = ({ races }) => (
+const RacesList: FC<RacesListProps> = ({ races, isUpdating }) => (
   <div className={styles.wrapper}>
     {races?.map(
       ({ season, round, Circuit, raceName, date, time }: RaceSeason) => (

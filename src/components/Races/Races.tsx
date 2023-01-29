@@ -6,7 +6,7 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import getSeasonRaces from '../../services/get-season-races';
 
 interface RacesProps {
-  season: string | string[] | undefined;
+  season: number;
 }
 
 const Races: FC<RacesProps> = ({ season }) => {
@@ -19,8 +19,7 @@ const Races: FC<RacesProps> = ({ season }) => {
     }
 
     try {
-      const seasonString = Array.isArray(season) ? season.join('') : season;
-      const seasonRaces = await getSeasonRaces(seasonString);
+      const seasonRaces = await getSeasonRaces(season);
       setRaces(seasonRaces.MRData.RaceTable.Races);
       setIsUpdating(false);
     } catch {
@@ -35,7 +34,7 @@ const Races: FC<RacesProps> = ({ season }) => {
     }
   }, [loadRaces, season]);
 
-  return <RacesList races={races} />;
+  return <RacesList races={races} isUpdating={isUpdating} />;
 };
 
 export default Races;
