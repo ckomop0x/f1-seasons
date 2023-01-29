@@ -7,5 +7,6 @@ export default async function getSeasonsResults(
   const roundData = await fetch(
     `${API_ENDPOINT}${season}/${round}/results.json`,
   );
+
   return roundData.json();
 }

@@ -3,11 +3,12 @@
   --font-primary: Roboto, sans-serif;
   --font-secondary: 'Exo 2', sans-serif;
 
-  --color-primary: '#a50017';
-  --color-primary-lighten: '#7f1e1e';
-  --colorgray1: '#353238';
-  --colorgray2: '#E0E0E0';
-  --colorgray3: '#EDF5FC';
+  --color-primary: #a50017;
+  --color-primary-lighten: #7f1e1e;
+  --color-gray1: #353238;
+  --color-gray2: #E0E0E0;
+  --color-gray3: #EDF5FC;
+  --color-white: #FFF;
 }
 
 html,
@@ -15,6 +16,7 @@ body,
 #root {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 * {

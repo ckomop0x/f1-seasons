@@ -1,16 +1,16 @@
+import SeasonCard from 'components/Seasons/SeasonCard/SeasonCard';
+import { RaceSeason } from 'components/Seasons/types';
 import { FC } from 'react';
 
-import SeasonCard from '../SeasonCard';
-import { SeasonStyled } from '../styles';
-import { RaceSeason } from '../types';
+import styles from './RacesList.module.scss';
 
-export interface SeasonsListProps {
-  seasons: any;
+export interface RacesListProps {
+  races: any[];
 }
 
-const SeasonsList: FC<SeasonsListProps> = ({ seasons }) => (
-  <SeasonStyled>
-    {seasons.map(
+const RacesList: FC<RacesListProps> = ({ races }) => (
+  <div className={styles.wrapper}>
+    {races?.map(
       ({ season, round, Circuit, raceName, date, time }: RaceSeason) => (
         <SeasonCard
           raceName={raceName}
@@ -26,7 +26,7 @@ const SeasonsList: FC<SeasonsListProps> = ({ seasons }) => (
         />
       ),
     )}
-  </SeasonStyled>
+  </div>
 );
 
-export default SeasonsList;
+export default RacesList;

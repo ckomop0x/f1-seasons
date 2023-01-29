@@ -1,0 +1,23 @@
+.wrapper {
+  overflow: hidden;
+  width: 100%;
+
+  h2 {
+    font-family: var(--font-secondary);
+    text-align: center;
+    font-size: 1.5rem;
+  }
+}
+
+.backButton {
+  display: block;
+  margin: auto;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-primary);
+
+  :hover {
+    text-decoration: underline;
+  }
+}

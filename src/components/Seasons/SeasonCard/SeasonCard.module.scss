@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+  margin-bottom:  calc(var(--grid) * 2);
+  background: white;
+  color: var(--color-gray1);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+
+  @media (min-width: 600px) {
+    margin: 8px;
+    width: 47%;
+  }
+
+  @media (min-width: 900px) {
+    width: 31%;
+  }
+
+  @media (min-width: 1200px) {
+    width: 22%;
+  }
+
+  @media (min-width: 1500px) {
+    width: 18%;
+  }
+
+  .content {
+    padding:  calc(var(--grid) * 2.5);
+    background: var(--color-gray2);
+  }
+
+  h4 {
+    text-align: center;
+  }
+}

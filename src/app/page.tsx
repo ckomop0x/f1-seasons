@@ -1,12 +1,16 @@
-import Footer from 'components/Footer';
 import Seasons from 'components/Seasons/Seasons';
+import Footer from 'components/UI/Footer';
 import Header from 'components/UI/Header';
 
 const IndexPage = () => (
   <>
-    <Header />
-    {/* <Seasons />*/}
-    {/* <Footer />*/}
+    <Seasons />
+    <div
+      style={{
+        overflowY: 'scroll',
+        height: 'calc(100vh - calc(--var(grid) * 14))',
+      }}
+    ></div>
   </>
 );
 

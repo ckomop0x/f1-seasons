@@ -1,15 +1,11 @@
-import {
-  BackButton,
-  FavoriteButton,
-  StandingsStyled,
-  StandingsTable,
-  StandingsTableRow,
-} from 'components/Seasons/SeasonResults/styles';
-import { Result } from 'components/Seasons/types';
-import { FC, useEffect, useState } from 'react';
+import StandingsTable from 'components/RaceDetails/StandingsTable';
+import Link from 'next/link';
+import { FC, useCallback, useEffect, useState } from 'react';
 
 import getSeasonsResults from '../../services/get-seasons-results';
 import getSavedDrivers from '../../services/setSavedDrivers';
+
+import styles from './RaceDetails.module.scss';
 
 interface RaceDetailsProps {
   season: string | string[] | undefined;
@@ -18,7 +14,7 @@ interface RaceDetailsProps {
 
 export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
-  const [raceResults, setRaceResults] = useState<boolean>(true);
+  const [raceResults, setRaceResults] = useState<any>(true);
   const [savedDrivers, setSavedDrivers] = useState<string[]>(getSavedDrivers());
 
   const addDriverToFavorite = (driverCode: string): void => {
@@ -33,7 +29,7 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
     );
   };
 
-  const loadRaceResults = async (): Promise<void> => {
+  const loadRaceResults = useCallback(async (): Promise<void> => {
     if (!season || !raceId) {
       return;
     }
@@ -47,16 +43,15 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
       );
       setIsUpdating(false);
       setRaceResults(raceResultsResponse.MRData.RaceTable.Races[0]);
-    } catch (error: Error) {
+    } catch (error: any) {
       console.log(error?.message || 'Race results request failed');
       setIsUpdating(false);
     }
-  };
+  }, [season, raceId]);
 
-  const saveFavoritesDriversToLocalStorage = (): void => {
-    console.log('savedDrivers', savedDrivers);
+  const saveFavoritesDriversToLocalStorage = useCallback((): void => {
     localStorage.setItem('savedDrivers', JSON.stringify(savedDrivers));
-  };
+  }, [savedDrivers]);
 
   const favouriteClickHandler = (
     driverCode: string,
@@ -71,17 +66,19 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
 
   useEffect(() => {
     saveFavoritesDriversToLocalStorage();
-  }, [savedDrivers]);
+  }, [savedDrivers, saveFavoritesDriversToLocalStorage]);
 
   useEffect(() => {
     if (raceId && season) {
       void loadRaceResults();
     }
-  }, [season, raceId]);
+  }, [season, raceId, loadRaceResults]);
 
   return (
-    <StandingsStyled>
-      <BackButton href={`/${season}`}>&larr; Back to season</BackButton>
+    <div className={styles.wrapper}>
+      <Link className={styles.backButton} href={`/${season}`}>
+        &larr; Back to season
+      </Link>
       {isUpdating && (
         <div style={{ textAlign: 'center', marginTop: 40 }}>
           Loading results...
@@ -89,46 +86,11 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
       )}
       {raceResults && <h2>{raceResults?.Circuit?.circuitName}</h2>}
       {raceResults ? (
-        <StandingsTable>
-          <table>
-            <thead>
-              <tr>
-                <th>Position</th>
-                <th>Number</th>
-                <th>Driver</th>
-                <th>Favorites</th>
-              </tr>
-            </thead>
-            <tbody>
-              {raceResults?.Results?.map((result: Result, index: number) => {
-                const { Driver } = result;
-                const isDriverFavorite: boolean = savedDrivers.includes(
-                  Driver.driverId,
-                );
-                console.log(Driver);
-
-                return (
-                  <StandingsTableRow
-                    key={Driver.driverId}
-                    position={result.position}
-                    onClick={() =>
-                      favouriteClickHandler(Driver.driverId, isDriverFavorite)
-                    }
-                  >
-                    <td>{result.position}</td>
-                    <td>{result.number}</td>
-                    <td>
-                      {Driver.givenName} {Driver.familyName}
-                    </td>
-                    <td>
-                      <FavoriteButton>{isDriverFavorite && 'X'}</FavoriteButton>
-                    </td>
-                  </StandingsTableRow>
-                );
-              })}
-            </tbody>
-          </table>
-        </StandingsTable>
+        <StandingsTable
+          standings={raceResults}
+          savedDrivers={savedDrivers}
+          onFavouriteClick={favouriteClickHandler}
+        />
       ) : (
         !isUpdating && (
           <div style={{ textAlign: 'center', marginTop: 40 }}>
@@ -136,6 +98,6 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
           </div>
         )
       )}
-    </StandingsStyled>
+    </div>
   );
 };

@@ -1,6 +1,9 @@
 import Container from 'components/UI/Container';
+import Footer from 'components/UI/Footer';
+import Header from 'components/UI/Header';
 import { ReactNode } from 'react';
 
+import '../styles/index.scss';
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
@@ -9,7 +12,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <title>F1 Standings</title>
       </head>
       <body>
-        <Container>{children}</Container>
+        <Container>
+          <Header />
+          {children}
+          <Footer />
+        </Container>
       </body>
     </html>
   );

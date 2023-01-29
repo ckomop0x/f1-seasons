@@ -1,14 +1,15 @@
-import packageJson from '../../../package.json';
+import packageJson from '../../../../package.json';
 
-import { FooterStyled } from './FooterStyles';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <FooterStyled>
-      &copy; {year} <a href="https://github.com/ckomop0x">Pavel Klochkov</a>.
-      Icons & flags by&nbsp;
+    <footer className={styles.wrapper}>
+      &copy; 2018-{year}
+      &nbsp;<a href="https://github.com/ckomop0x">Pavel Klochkov</a>. Icons &
+      flags by&nbsp;
       <a
         href="https://www.flaticon.com"
         target="_blank"
@@ -17,7 +18,7 @@ const Footer = () => {
         Flaticon
       </a>
       . v{packageJson.version}
-    </FooterStyled>
+    </footer>
   );
 };
 

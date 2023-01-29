@@ -1,11 +1,10 @@
-import * as React from 'react';
+import SeasonCardButton from 'components/Seasons/SeasonCard/SeasonCardButton/SeasonCardButton';
+import SeasonCardTitle from 'components/Seasons/SeasonCard/SeasonCardTitle';
 import { FC } from 'react';
 
-import CardButton from '../../../styles/CardButton';
-import { CardTitle } from '../../../styles/CardTitle';
-import Flag from '../../Flag';
+import Flag from '../../UI/Flag';
 
-import { Card } from './SeasonCardStyles';
+import styles from './SeasonCard.module.scss';
 
 export interface SeasonCardProps {
   raceName: string;
@@ -28,8 +27,8 @@ const SeasonCard: FC<SeasonCardProps> = ({
   locality,
   date,
 }) => (
-  <Card title={circuitName}>
-    <CardTitle>{circuitName}</CardTitle>
+  <div title={circuitName} className={styles.wrapper}>
+    <SeasonCardTitle>{circuitName}</SeasonCardTitle>
     <div className="content">
       <Flag country={country} />
       <h4>
@@ -45,10 +44,10 @@ const SeasonCard: FC<SeasonCardProps> = ({
         <b>Date:</b> {date}
       </div>
     </div>
-    <CardButton href={`/${season}/${round}`} title="Go to standings">
+    <SeasonCardButton link={`/${season}/${round}`} title="Go to standings">
       Go to standings &rarr;
-    </CardButton>
-  </Card>
+    </SeasonCardButton>
+  </div>
 );
 
 export default SeasonCard;

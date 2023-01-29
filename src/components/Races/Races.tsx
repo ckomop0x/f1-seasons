@@ -1,5 +1,7 @@
-import SeasonsList from 'components/Seasons/SeasonsList';
-import { FC, useEffect, useState } from 'react';
+'use client';
+
+import RacesList from 'components/Races/RacesList';
+import { FC, useCallback, useEffect, useState } from 'react';
 
 import getSeasonRaces from '../../services/get-season-races';
 
@@ -11,7 +13,7 @@ const Races: FC<RacesProps> = ({ season }) => {
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [races, setRaces] = useState([]);
 
-  const loadRaces = async (): Promise<void> => {
+  const loadRaces = useCallback(async (): Promise<void> => {
     if (!season) {
       return;
     }
@@ -24,16 +26,16 @@ const Races: FC<RacesProps> = ({ season }) => {
     } catch {
       setIsUpdating(false);
     }
-  };
+  }, [season]);
 
   useEffect(() => {
     if (season) {
       void loadRaces();
       setIsUpdating(true);
     }
-  }, [season]);
+  }, [loadRaces, season]);
 
-  return <SeasonsList seasons={races} />;
+  return <RacesList races={races} />;
 };
 
 export default Races;

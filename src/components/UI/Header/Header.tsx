@@ -1,6 +1,6 @@
-import Logo from 'components/UI/Logo';
 import Image from 'next/image';
 import { FC } from 'react';
+import Logo from 'components/UI/Logo';
 
 import styles from './Header.module.scss';
 

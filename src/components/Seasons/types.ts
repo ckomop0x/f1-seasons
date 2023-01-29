@@ -79,9 +79,3 @@ export interface RacesResult {
   time: string;
   url: string;
 }
-
-export interface ActiveSeason {
-  season: string;
-  round: string;
-  year: string;
-}

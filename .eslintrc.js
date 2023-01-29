@@ -1,5 +1,12 @@
 module.exports = {
-  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
+  plugins: [
+    '@typescript-eslint',
+    'eslint-plugin-import-helpers',
+    'import',
+    'prettier',
+    'react',
+    'react-hooks',
+  ],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
@@ -10,7 +17,6 @@ module.exports = {
   ignorePatterns: [
     'jest-preprocess.js',
     'jest.config.js',
-    '.eslintrc.js',
     'loadershim.js',
     'next-env.d.ts',
   ],
@@ -55,24 +61,62 @@ module.exports = {
     ],
     'import/no-unused-modules': 'error',
     'import/no-useless-path-segments': 'error',
-    'import/order': [
+    'import-helpers/order-imports': [
       'error',
       {
-        alphabetize: {
-          order: 'asc',
-        },
-        'newlines-between': 'always',
-        pathGroups: [
-          {
-            pattern: '@components/**',
-            group: 'internal',
-          },
-          {
-            pattern: '@utils/**',
-            group: 'internal',
-          },
+        groups: [
+          ['/^react/', 'module'],
+          ['parent', 'sibling', 'index'],
+          '/.\\.css$/',
+          '/.\\.scss$/',
         ],
-        pathGroupsExcludedImportTypes: ['builtin'],
+        newlinesBetween: 'always',
+      },
+    ],
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     alphabetize: {
+    //       order: 'asc',
+    //       caseInsensitive: true
+    //     },
+    //   },
+    //   {
+    //
+    //     groups: [
+    //       ["/^react/", "/^next/", "module"],
+    //       ["parent", "sibling", "index"],
+    //       "/.\\.css$/",
+    //       "/.\\.scss$/",
+    //     ],
+    //     newlinesBetween: "always",
+    //   },
+    // ],
+    'padding-line-between-statements': [
+      'error',
+      {
+        blankLine: 'always',
+        prev: [
+          'const',
+          'let',
+          'var',
+          'if',
+          'for',
+          'try',
+          'switch',
+          'function',
+          'expression',
+          'block-like',
+        ],
+        next: [
+          'return',
+          'if',
+          'for',
+          'try',
+          'switch',
+          'function',
+          'block-like',
+        ],
       },
     ],
     'react/display-name': 0,
