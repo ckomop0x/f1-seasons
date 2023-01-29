@@ -136,19 +136,22 @@ class SeasonResults extends PureComponent<
                   this.state.racesResult.Results.map((result: Result) => {
                     const { Driver } = result;
                     const isDriverFavorite: boolean =
-                      this.state.savedDrivers.includes(Driver.code);
+                      this.state.savedDrivers.includes(Driver.driverId);
 
                     return (
                       <StandingsTableRow
-                        key={Driver.code}
+                        key={Driver.driverId}
                         position={result.position}
                         onClick={
                           isDriverFavorite
                             ? this.removeDriverFromFavorites.bind(
                                 this,
-                                Driver.code,
+                                Driver.driverId,
                               )
-                            : this.addDriverToFavorite.bind(this, Driver.code)
+                            : this.addDriverToFavorite.bind(
+                                this,
+                                Driver.driverId,
+                              )
                         }
                       >
                         <td>{result.position}</td>
@@ -156,7 +159,7 @@ class SeasonResults extends PureComponent<
                         <td>
                           {Driver.givenName} {Driver.familyName}
                         </td>
-                        <td>{Driver.code}</td>
+                        <td>{Driver.driverId}</td>
                         <td>
                           <FavoriteButton isDriverFavorite={isDriverFavorite} />
                         </td>

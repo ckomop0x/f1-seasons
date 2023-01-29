@@ -1,7 +1,5 @@
-import styled from '@emotion/styled'
-
-import starSolid from '../../../icons/star-solid.svg';
-import starRegular from '../../../icons/star-regular.svg';
+import styled from '@emotion/styled';
+import Link from 'next/link';
 
 interface StandingsTableRawTypes {
   position: any;
@@ -43,10 +41,10 @@ export const StandingsTable = styled.div`
       color: white;
     }
 
-    th:nth-child(1),
-    th:nth-child(2),
-    th:nth-child(4),
-    th:nth-child(5) {
+    th:nth-of-type(1),
+    th:nth-of-type(2),
+    th:nth-of-type(4),
+    th:nth-of-type(5) {
       width: ${({ theme }) => theme.sizes.grid * 5}px;
     }
   }
@@ -65,10 +63,10 @@ export const StandingsTableRow = styled.tr`
     padding: ${({ theme }) => theme.sizes.grid}px;
     border-bottom: 1px solid ${({ theme }) => theme.gray1};
 
-    :nth-child(1),
-    :nth-child(2),
-    :nth-child(4),
-    :nth-child(5) {
+    :nth-of-type(1),
+    :nth-of-type(2),
+    :nth-of-type(4),
+    :nth-of-type(5) {
       text-align: center;
     }
   }
@@ -76,15 +74,11 @@ export const StandingsTableRow = styled.tr`
 
 export const FavoriteButton = styled.button`
   border: none;
-  background-size: 100%;
-  background-repeat: no-repeat;
   width: ${({ theme }) => theme.sizes.grid * 3}px;
   height: ${({ theme }) => theme.sizes.grid * 3}px;
-  ${({ isDriverFavorite }: FavoriteButtonTypes) =>
-    isDriverFavorite ? `background: url(${starSolid})` : `background: url(${starRegular}`};
 `;
 
-export const BackButton = styled.button`
+export const BackButton = styled(Link)`
   display: block;
   margin: auto;
   border: none;

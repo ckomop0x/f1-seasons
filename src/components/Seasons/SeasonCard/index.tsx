@@ -1,7 +1,10 @@
 import * as React from 'react';
-import Flag from '../../Flag';
+import { FC } from 'react';
+
 import CardButton from '../../../styles/CardButton';
 import { CardTitle } from '../../../styles/CardTitle';
+import Flag from '../../Flag';
+
 import { Card } from './SeasonCardStyles';
 
 export interface SeasonCardProps {
@@ -14,41 +17,38 @@ export interface SeasonCardProps {
   circuitId: string;
   date: string;
   time: string;
-  onSeasonSelect(): void;
 }
 
-const SeasonCard = ({
+const SeasonCard: FC<SeasonCardProps> = ({
   raceName,
   circuitName,
+  season,
   round,
   country,
   locality,
   date,
-  onSeasonSelect
-}: SeasonCardProps) => {
-  return (
-    <Card title={circuitName}>
-      <CardTitle>{circuitName}</CardTitle>
-      <div className="content">
-        <Flag country={country} />
-        <h4>
-          {locality}, {country}
-        </h4>
-        <div>
-          <b>Round:</b> {round}
-        </div>
-        <div>
-          <b>Race:</b> {raceName}
-        </div>
-        <div>
-          <b>Date:</b> {date}
-        </div>
+}) => (
+  <Card title={circuitName}>
+    <CardTitle>{circuitName}</CardTitle>
+    <div className="content">
+      <Flag country={country} />
+      <h4>
+        {locality}, {country}
+      </h4>
+      <div>
+        <b>Round:</b> {round}
       </div>
-      <CardButton onClick={onSeasonSelect} title="Go to standings">
-        Go to standings &rarr;
-      </CardButton>
-    </Card>
-  );
-};
+      <div>
+        <b>Race:</b> {raceName}
+      </div>
+      <div>
+        <b>Date:</b> {date}
+      </div>
+    </div>
+    <CardButton href={`/${season}/${round}`} title="Go to standings">
+      Go to standings &rarr;
+    </CardButton>
+  </Card>
+);
 
 export default SeasonCard;

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
-const CardButton = styled.button`
+const CardButton = styled(Link)`
   display: block;
   width: 100%;
   background: ${({ theme }) => theme.colors.primaryColor};

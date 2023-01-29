@@ -1,32 +1,28 @@
-import * as React from 'react';
-import { FlagStyled } from './FlagStyles';
+import Image from 'next/image';
+import { FC } from 'react';
+
+import { FlagWrapper } from './Flag.styles';
 
 export interface FlagProps {
   country: string;
 }
 
-const Flag = ({ country }: FlagProps) => {
-  let flagUrl = "";
-  let countryName = country?.toLowerCase()?.replace(' ', '-')
+const Flag: FC<FlagProps> = ({ country }) => {
+  let countryName = country?.toLowerCase()?.replace(' ', '-');
 
-  if (countryName === "united-states") {
-    countryName = "usa"
-  }
-
-  try {
-    flagUrl = require(`./flags/${countryName?.toLowerCase()?.replace(' ', '-')}.svg`)
-  } catch (e) {
-    console.log(`Flag Icon for ${countryName} not found`)
+  if (countryName === 'united-states') {
+    countryName = 'usa';
   }
 
   return (
-    <FlagStyled>
-      <img
-        src={flagUrl}
+    <FlagWrapper>
+      <Image
+        src={`./flags/${countryName?.toLowerCase()?.replace(' ', '-')}.svg`}
         alt={country}
-        className="flag-icon"
+        width={60}
+        height={60}
       />
-    </FlagStyled>
+    </FlagWrapper>
   );
 };
 
