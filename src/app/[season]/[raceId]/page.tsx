@@ -1,6 +1,5 @@
 'use client';
 import { RaceDetails } from 'components/RaceDetails';
-import { NextPage } from 'next';
 
 interface RaceDetailsPageProps {
   params: {

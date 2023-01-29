@@ -1,5 +1,5 @@
 import Races from 'components/Races';
-import { NextPage } from 'next';
+import Seasons from 'components/Seasons/Seasons';
 
 interface SeasonPageProps {
   params: {
@@ -8,7 +8,7 @@ interface SeasonPageProps {
 }
 
 const SeasonPage = ({ params }: SeasonPageProps) => (
-  <Races season={params.season} />
+  <Seasons season={params.season} />
 );
 
 export default SeasonPage;
