@@ -4,6 +4,7 @@ import Header from 'components/UI/Header';
 import { ReactNode } from 'react';
 
 import '../styles/index.scss';
+import styles from './layout.module.scss';
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
@@ -14,7 +15,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Container>
           <Header />
-          {children}
+          <div className={styles.wrapper}>{children}</div>
           <Footer />
         </Container>
       </body>

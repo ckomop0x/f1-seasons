@@ -1,5 +1,5 @@
 'use client';
-import { FC, FormEvent, useState } from 'react';
+import { FC, FormEvent } from 'react';
 import Races from 'components/Races';
 import YearsSelect from 'components/Seasons/YearsSelect';
 import { useRouter } from 'next/navigation';
@@ -19,13 +19,12 @@ const Season: FC<SeasonProps> = ({ season }) => {
     const el: HTMLInputElement = event.target as HTMLInputElement;
 
     router.push(`/${el.value}`);
-    // setSelectedSeason(el.value);
   };
 
   const selectedSeason = season ?? new Date().getFullYear();
 
   return (
-    <div className={styles.wrapper}>
+    <>
       <h1 className={styles.selectedSeason}>
         Selected season: {selectedSeason}
       </h1>
@@ -35,7 +34,7 @@ const Season: FC<SeasonProps> = ({ season }) => {
         selectedYear={Number(selectedSeason)}
       />
       <Races season={Number(selectedSeason)} />
-    </div>
+    </>
   );
 };
 

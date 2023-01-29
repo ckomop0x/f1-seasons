@@ -1,0 +1,8 @@
+.wrapper {
+  background: var(--color-white);
+  color: var(--color-gray1);
+  overflow-x: auto;
+  overflow-y: auto;
+  flex: 1 auto;
+  padding: calc(var(--grid) * 2);
+}

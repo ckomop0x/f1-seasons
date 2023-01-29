@@ -1,4 +1,3 @@
-import Races from 'components/Races';
 import Seasons from 'components/Seasons/Seasons';
 
 interface SeasonPageProps {
