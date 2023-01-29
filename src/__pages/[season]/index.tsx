@@ -1,21 +1,21 @@
 import Footer from 'components/Footer';
-import Header from 'components/Header';
-import { RaceDetails } from 'components/RaceDetails';
+import Races from 'components/Races';
+import Header from 'components/UI/Header';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { Container } from 'styles/index';
 
-const RaceDetailsPage: NextPage = () => {
+const SeasonPage: NextPage = () => {
   const router = useRouter();
-  const { raceId, season } = router.query;
+  const { season } = router.query;
 
   return (
     <Container>
       <Header />
-      <RaceDetails season={season} raceId={raceId} />
+      <Races season={season} />
       <Footer />
     </Container>
   );
 };
 
-export default RaceDetailsPage;
+export default SeasonPage;

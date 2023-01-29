@@ -1,11 +1,12 @@
+import Logo from 'components/UI/Logo';
 import Image from 'next/image';
 import { FC } from 'react';
 
-import { HeaderStyled, Logo } from '../../styles';
+import styles from './Header.module.scss';
 
 const Header: FC = () => (
-  <HeaderStyled>
-    <Logo href="/" title="Formula 1 winners application" data-cy="logo">
+  <header className={styles.wrapper}>
+    <Logo link="/" title="Formula 1 standings">
       <Image
         src="/racing.svg"
         alt="Formula 1 winners application"
@@ -14,7 +15,7 @@ const Header: FC = () => (
       />
       <span className="logo-title">F1 Standings</span>
     </Logo>
-  </HeaderStyled>
+  </header>
 );
 
 export default Header;

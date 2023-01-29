@@ -1,27 +1,14 @@
 import Races from 'components/Races';
 import Loader from 'components/Seasons/Loader';
-import SeasonResults from 'components/Seasons/SeasonResults';
-import SeasonsList from 'components/Seasons/SeasonsList';
 import YearsSelect from 'components/Seasons/YearsSelect';
 import { PureComponent } from 'react';
 
 import calculateYears from '../../services/calculate-years';
-import getSeasonRaces from '../../services/get-season-races';
 
 import { MainContainer, SelectedSeason } from './styles';
 import { RaceSeason, ActiveSeason } from './types';
 
-interface SeasonsState {
-  year: number;
-  years: number[];
-  seasons: RaceSeason[];
-  isUpdating: boolean;
-  isSeasons: boolean;
-  activeSeason?: ActiveSeason;
-  error?: Error;
-}
-
-export default class Seasons extends PureComponent<{}, SeasonsState> {
+export default class Seasons extends PureComponent {
   constructor(props: any) {
     super(props);
 

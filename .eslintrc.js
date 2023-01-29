@@ -53,7 +53,6 @@ module.exports = {
         semi: true,
       },
     ],
-    'import/no-unresolved': 'warn',
     'import/no-unused-modules': 'error',
     'import/no-useless-path-segments': 'error',
     'import/order': [
