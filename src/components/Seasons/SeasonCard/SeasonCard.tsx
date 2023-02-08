@@ -1,5 +1,4 @@
 import SeasonCardButton from 'components/Seasons/SeasonCard/SeasonCardButton/SeasonCardButton';
-import SeasonCardTitle from 'components/Seasons/SeasonCard/SeasonCardTitle';
 import { FC } from 'react';
 
 import Flag from '../../UI/Flag';
@@ -28,12 +27,14 @@ const SeasonCard: FC<SeasonCardProps> = ({
   date,
 }) => (
   <div title={circuitName} className={styles.wrapper}>
-    <SeasonCardTitle>{circuitName}</SeasonCardTitle>
-    <div className="content">
+    <div className={styles.content}>
       <Flag country={country} />
-      <h4>
-        {locality}, {country}
-      </h4>
+      <h3>{circuitName}</h3>
+    </div>
+    <div className={styles.raceInfo}>
+      <div>
+        <b>City:</b> {locality}, {country}
+      </div>
       <div>
         <b>Round:</b> {round}
       </div>
@@ -44,6 +45,7 @@ const SeasonCard: FC<SeasonCardProps> = ({
         <b>Date:</b> {date}
       </div>
     </div>
+
     <SeasonCardButton link={`/${season}/${round}`} title="Go to standings">
       Go to standings &rarr;
     </SeasonCardButton>
