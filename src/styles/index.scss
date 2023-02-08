@@ -1,0 +1,32 @@
+:root {
+  --grid: 8px;
+  --font-primary: Roboto, sans-serif;
+  --font-secondary: 'Exo 2', sans-serif;
+
+  --color-primary: #a50017;
+  --color-primary-lighten: #7f1e1e;
+  --color-gray1: #353238;
+  --color-gray2: #E0E0E0;
+  --color-gray3: #EDF5FC;
+  --color-white: #FFF;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+* {
+  font-family: Roboto, sans-serif;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

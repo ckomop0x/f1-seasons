@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  margin-top: auto;
+  justify-content: center;
+  font-size: 0.8125rem;
+  background: var(--color-gray1);
+  color: white;
+  padding: calc(var(--grid) * 2);
+  height: calc(var(--grid) * 6);
+
+  a {
+    color: white;
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
+}
