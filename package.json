@@ -6,7 +6,9 @@
     "dev": "next dev -p 8100",
     "build": "next build",
     "start": "next start -p 8200",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx}\""
+    "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "test": "jest --env=jsdom --ci --verbose --passWithNoTests",
+    "test:dev": "jest --env=jsdom --coverage"
   },
   "author": "Pavel \"Ckomop0x\" Klochkov <paul.klochkov@gmail.com> (https://ckomop0x.github.io/)",
   "license": "ISC",
