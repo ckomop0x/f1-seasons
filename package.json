@@ -1,6 +1,6 @@
 {
   "name": "formula-1-season-standings",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "",
   "scripts": {
     "dev": "next dev -p 8100",
@@ -36,7 +36,7 @@
     "eslint-plugin-testing-library": "^5.10.2",
     "html-react-parser": "^3.0.8",
     "jest-environment-jsdom": "^29.4.3",
-    "next": "^13.2.1",
+    "next": "^13.2.3",
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
