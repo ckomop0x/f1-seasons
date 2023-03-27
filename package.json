@@ -47,7 +47,7 @@
     "@netlify/plugin-lighthouse": "^4.0.7",
     "@netlify/plugin-nextjs": "^4.32.2",
     "@types/nprogress": "0.2.0",
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.0.29",
     "@types/react-dom": "^18.0.11",
     "cypress": "12.8.1",
     "eslint": "^8.36.0",
