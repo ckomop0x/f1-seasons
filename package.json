@@ -46,7 +46,7 @@
   "devDependencies": {
     "@types/nprogress": "0.2.0",
     "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.6",
+    "@types/react-dom": "^18.2.7",
     "cypress": "12.17.2",
     "eslint": "^8.45.0",
     "husky": "^8.0.3",
