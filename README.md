@@ -1,8 +1,9 @@
 # Formula 1 – Seasons standings
 ![Version](https://img.shields.io/badge/version-2.2.2-blue.svg?cacheSeconds=2592000)
 ![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/35d6a461-03a6-4e88-85e7-502dbec57d19/deploy-status)](https://app.netlify.com/sites/f1-seasons/deploys)
 
-Small application that shows Formula 1 seasons standings.  
+A small application that shows Formula 1 seasons standings.  
   
 ### 🏠 [Homepage](https://f1-seasons.now.sh)
 ### 📄 [Documentation](https://github.com/ckomop0x/f1-seasons)
