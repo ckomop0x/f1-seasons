@@ -10,19 +10,19 @@ A small application that shows Formula 1 seasons standings.
 ## Install
 
 ```sh
-yarn install
+npm install
 ```
 
 ## Usage
 
 ```sh
-yarn start
+npm run start
 ```
 
 ## Run tests
 
 ```sh
-yarn test
+npm run test
 ```
 
 ## Used technologies:
