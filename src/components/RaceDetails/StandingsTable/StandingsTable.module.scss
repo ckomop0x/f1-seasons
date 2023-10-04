@@ -28,9 +28,7 @@
 
     tbody {
       tr {
-
-
-        :hover {
+        &:hover {
           cursor: pointer;
           background: rgba(255, 255, 0, 0.2);
         }
@@ -38,11 +36,10 @@
         td {
           padding: var(--grid);
           border-bottom: 1px solid var(--color-gray1);
+          height: 48px;
 
-          :nth-of-type(1),
-          :nth-of-type(2),
-          :nth-of-type(4),
-          :nth-of-type(5) {
+
+          &:last-of-type {
             text-align: center;
           }
         }

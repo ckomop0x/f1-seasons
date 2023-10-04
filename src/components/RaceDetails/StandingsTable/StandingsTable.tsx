@@ -47,7 +47,7 @@ const StandingsTable: FC<StandingsTableProps> = ({
                 {Driver.givenName} {Driver.familyName}
               </td>
               <td>
-                <FavoriteButton>{isDriverFavorite && 'X'}</FavoriteButton>
+                <FavoriteButton>{isDriverFavorite ? 'X' : ''}</FavoriteButton>
               </td>
             </tr>
           );
