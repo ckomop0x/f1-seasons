@@ -11,3 +11,6 @@ test/coverage
 build
 .next
 coverage
+/test-results/
+/playwright-report/
+/playwright/.cache/
