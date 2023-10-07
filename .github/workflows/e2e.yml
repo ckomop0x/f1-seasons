@@ -7,7 +7,11 @@ jobs:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Prepare testing env
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
       - name: Install dependencies
         run: npm ci && npx playwright install --with-deps
       - name: Run tests
