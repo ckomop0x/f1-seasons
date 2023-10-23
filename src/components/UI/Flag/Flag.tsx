@@ -17,7 +17,7 @@ const Flag: FC<FlagProps> = ({ country }) => {
   return (
     <div className={styles.wrapper}>
       <Image
-        src={`./flags/${countryName?.toLowerCase()?.replace(' ', '-')}.svg`}
+        src={`./flags/${countryName}.svg`}
         alt={country}
         width={60}
         height={60}
