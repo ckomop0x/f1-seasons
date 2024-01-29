@@ -14,7 +14,7 @@
   "author": "Pavel \"Ckomop0x\" Klochkov <paul.klochkov@gmail.com> (https://ckomop0x.github.io/)",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.23.7",
+    "@babel/core": "^7.23.9",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
