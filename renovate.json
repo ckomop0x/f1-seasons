@@ -17,5 +17,8 @@
       "npm version patch --no-git-tag-version"
     ],
     "fileFilters": ["package.json"]
-  }
+  },
+  "allowedPostUpgradeCommands": [
+    "npm version patch --no-git-tag-version"
+  ]
 }
