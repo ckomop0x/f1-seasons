@@ -2,6 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices",
+    "config:base",
     ":semanticCommits",
     ":dependencyDashboard",
     ":ignoreUnstable"
@@ -10,5 +11,11 @@
     "[bot] renovate"
   ],
   "prConcurrentLimit": 5,
-  "rebaseWhen": "auto"
+  "rebaseWhen": "auto",
+  "postUpgradeTasks": {
+    "commands": [
+      "npm version patch --no-git-tag-version"
+    ],
+    "fileFilters": ["package.json"]
+  }
 }
