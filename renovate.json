@@ -9,6 +9,6 @@
   "labels": [
     "[bot] renovate"
   ],
-  "prConcurrentLimit": 5,
+  "prConcurrentLimit": 10,
   "rebaseWhen": "auto"
 }
