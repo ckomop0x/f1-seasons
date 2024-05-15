@@ -44,7 +44,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@playwright/test": "1.43.1",
+    "@playwright/test": "1.44.0",
     "@types/node": "20.12.8",
     "@types/nprogress": "0.2.3",
     "@types/react": "18.3.2",
