@@ -19,8 +19,6 @@
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.11",
     "@types/react-test-renderer": "^18.0.7",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
     "classnames": "^2.5.1",
     "date-fns": "^3.3.1",
     "eslint-config-next": "^14.1.0",
@@ -40,7 +38,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.70.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.0.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
