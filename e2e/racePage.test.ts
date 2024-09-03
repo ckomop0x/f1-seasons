@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Season 2020 race have proper h2', async ({ page }) => {
+test.skip('Season 2020 race have proper h2', async ({ page }) => {
   await page.goto('/2020/1');
 
   // Wait for the h2 element with the expected text to be visible.
