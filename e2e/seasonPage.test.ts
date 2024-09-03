@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-xtest('Season 2020 have proper h1', async ({ page }) => {
+test.skip('Season 2020 have proper h1', async ({ page }) => {
   await page.goto('/2020');
 
   // Expect a title "to contain" a substring.
