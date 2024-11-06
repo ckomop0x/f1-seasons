@@ -1,5 +1,5 @@
 # 🏎️ Formula 1 – Seasons standings
-[![codecov](https://codecov.io/gh/ckomop0x/f1-seasons/graph/badge.svg?token=F3abPMMCM5)](https://codecov.io/gh/ckomop0x/f1-seasons)  
+[![codecov](https://codecov.io/gh/ckomop0x/f1-seasons/branch/main/graph/badge.svg?token=F3abPMMCM5)](https://codecov.io/gh/ckomop0x/f1-seasons)  
 It is a small application that shows Formula 1 season standings.
 
 ###  [Visit site](https://f1-seasons.vercel.app/)
