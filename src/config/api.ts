@@ -1,1 +1,2 @@
-export const API_ENDPOINT = 'https://ergast.com/api/f1/';
+export const API_ENDPOINT =
+  process.env.NEXT_PUBLIC_API_ENDPOINT || 'https://api.jolpi.ca/ergast/f1/';
