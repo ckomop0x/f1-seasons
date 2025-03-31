@@ -6,14 +6,17 @@ jobs:
   run-e2es:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.51.1-noble
+      options: --user 1001
     steps:
       - name: Prepare testing env
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
-          node-version: "18"
+          node-version: lts/*
       - name: Install dependencies
-        run: npm ci && npx playwright install --with-deps
+        run: npm ci
       - name: Run tests
         run: npx playwright test
         env:
