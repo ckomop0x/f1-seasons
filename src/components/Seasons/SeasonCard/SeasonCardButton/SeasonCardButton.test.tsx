@@ -23,9 +23,6 @@ describe('SeasonCardButton', () => {
       </SeasonCardButton>,
     );
 
-    expect(screen.getByRole('link')).toHaveAttribute(
-      'title',
-      'View standings',
-    );
+    expect(screen.getByRole('link')).toHaveAttribute('title', 'View standings');
   });
 });

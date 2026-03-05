@@ -1,25 +1,18 @@
-import importHelpers from 'eslint-plugin-import-helpers';
-import _import from 'eslint-plugin-import';
-import prettier from 'eslint-plugin-prettier';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
 import { fixupPluginRules } from '@eslint/compat';
-import globals from 'globals';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import globals from 'globals';
+import nextConfig from 'eslint-config-next';
+import importPlugin from 'eslint-plugin-import';
+import importHelpers from 'eslint-plugin-import-helpers';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+const nextPlugin = nextConfig[0].plugins['@next/next'];
 
-export default [
+export default tseslint.config([
   {
     ignores: [
       '**/jest-preprocess.js',
@@ -28,24 +21,28 @@ export default [
       '**/next-env.d.ts',
     ],
   },
-  ...compat.extends(
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'plugin:@next/next/recommended',
-    'plugin:jsx-a11y/recommended',
-  ),
+  {
+    plugins: { react: fixupPluginRules(reactPlugin) },
+    rules: {
+      ...reactPlugin.configs.flat.recommended.rules,
+      ...reactPlugin.configs.flat['jsx-runtime'].rules,
+    },
+    languageOptions: reactPlugin.configs.flat.recommended.languageOptions,
+  },
+  importPlugin.flatConfigs.recommended,
+  jsxA11y.flatConfigs.recommended,
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  eslintPluginPrettierRecommended,
+  nextPlugin.configs.recommended,
   {
     plugins: {
-      '@typescript-eslint': tseslint.plugin,
-      'import-helpers': importHelpers,
-      import: fixupPluginRules(_import),
-      prettier,
-      react,
-      'react-hooks': fixupPluginRules(reactHooks),
+      'import-helpers': fixupPluginRules(importHelpers),
+      'react-hooks': reactHooks,
     },
 
     languageOptions: {
+      ...reactPlugin.configs.flat.recommended.languageOptions,
       globals: {
         ...globals.browser,
       },
@@ -144,8 +141,6 @@ export default [
       'react/no-unescaped-entities': 0,
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/array-type': 'error',
-      // "@typescript-eslint/ban-types": "error",
-      '@typescript-eslint/class-name-casing': 'off',
       '@typescript-eslint/consistent-type-assertions': 'error',
       '@typescript-eslint/consistent-type-definitions': 'error',
       '@typescript-eslint/explicit-function-return-type': 'off',
@@ -158,45 +153,20 @@ export default [
       ],
 
       '@typescript-eslint/indent': 'off',
-      '@typescript-eslint/interface-name-prefix': 'off',
-
-      // "@typescript-eslint/member-delimiter-style": ["error", {
-      //     multiline: {
-      //         delimiter: "semi",
-      //         requireLast: true,
-      //     },
-      //
-      //     singleline: {
-      //         delimiter: "semi",
-      //         requireLast: false,
-      //     },
-      // }],
-
-      '@typescript-eslint/ban-ts-ignore': 'off',
-      '@typescript-eslint/camelcase': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/member-ordering': 'error',
       '@typescript-eslint/no-empty-function': 'off',
-      '@typescript-eslint/no-empty-interface': 'error',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-inferrable-types': 'error',
       '@typescript-eslint/no-misused-new': 'error',
       '@typescript-eslint/no-namespace': 'error',
-      '@typescript-eslint/no-parameter-properties': 'off',
       '@typescript-eslint/no-this-alias': 'error',
       '@typescript-eslint/no-use-before-define': 'off',
       '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/prefer-for-of': 'error',
       '@typescript-eslint/prefer-function-type': 'error',
       '@typescript-eslint/prefer-namespace-keyword': 'error',
-
-      // "@typescript-eslint/quotes": ["error", "single", {
-      //     avoidEscape: true,
-      // }],
-
-      // "@typescript-eslint/semi": ["error", "always"],
       '@typescript-eslint/triple-slash-reference': 'error',
-      // "@typescript-eslint/type-annotation-spacing": "error",
       '@typescript-eslint/unified-signatures': 'error',
       'arrow-body-style': 'error',
       'arrow-parens': ['error', 'as-needed'],
@@ -217,7 +187,6 @@ export default [
       'eol-last': 'error',
       eqeqeq: ['error', 'smart'],
       'guard-for-in': 'error',
-      'id-blacklist': 'off',
       'id-match': 'off',
       'linebreak-style': 'off',
       'max-classes-per-file': ['error', 1],
@@ -283,6 +252,7 @@ export default [
       'valid-typeof': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/set-state-in-effect': 'off',
     },
   },
-];
+]);

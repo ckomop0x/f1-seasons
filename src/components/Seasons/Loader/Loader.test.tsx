@@ -7,8 +7,6 @@ describe('Loader', () => {
   it('renders the loader placeholder text', () => {
     render(<Loader />);
 
-    expect(
-      screen.getByText(/Here should be Loader/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Here should be Loader/i)).toBeInTheDocument();
   });
 });

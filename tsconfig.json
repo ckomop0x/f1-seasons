@@ -21,6 +21,7 @@
     "noEmit": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["vitest/globals"],
     "paths": {
       "components/*": ["components/*"],
       "styles/*": ["styles/*"],
@@ -35,7 +36,8 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "vitest.setup.ts"
   ],
   "exclude": [
     "node_modules"

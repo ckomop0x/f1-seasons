@@ -21,17 +21,13 @@ describe('getSeasonRaces', () => {
   it('fetches races for the given year', async () => {
     const result = await getSeasonRaces(2020);
 
-    expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining('2020.json'),
-    );
+    expect(fetch).toHaveBeenCalledWith(expect.stringContaining('2020.json'));
     expect(result).toEqual(mockResponse);
   });
 
   it('accepts a string year', async () => {
     await getSeasonRaces('2021');
 
-    expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining('2021.json'),
-    );
+    expect(fetch).toHaveBeenCalledWith(expect.stringContaining('2021.json'));
   });
 });
