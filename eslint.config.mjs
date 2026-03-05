@@ -252,7 +252,7 @@ export default tseslint.config([
       'valid-typeof': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/set-state-in-effect': 'error',
     },
   },
 ]);
