@@ -10,7 +10,6 @@ interface RacesProps {
 }
 
 const Races: FC<RacesProps> = ({ season }) => {
-  const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [races, setRaces] = useState([]);
 
   useEffect(() => {
@@ -24,19 +23,14 @@ const Races: FC<RacesProps> = ({ season }) => {
       .then(data => {
         if (!controller.signal.aborted) {
           setRaces(data.MRData.RaceTable.Races);
-          setIsUpdating(false);
         }
       })
-      .catch(() => {
-        if (!controller.signal.aborted) {
-          setIsUpdating(false);
-        }
-      });
+      .catch(() => {});
 
     return () => controller.abort();
   }, [season]);
 
-  return <RacesList races={races} isUpdating={isUpdating} />;
+  return <RacesList races={races} />;
 };
 
 export default Races;
