@@ -1,7 +1,7 @@
 'use client';
 
 import RacesList from 'components/Races/RacesList';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import getSeasonRaces from '../../services/get-season-races';
 
@@ -13,26 +13,28 @@ const Races: FC<RacesProps> = ({ season }) => {
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [races, setRaces] = useState([]);
 
-  const loadRaces = useCallback(async (): Promise<void> => {
+  useEffect(() => {
     if (!season) {
       return;
     }
 
-    try {
-      const seasonRaces = await getSeasonRaces(season);
-      setRaces(seasonRaces.MRData.RaceTable.Races);
-      setIsUpdating(false);
-    } catch {
-      setIsUpdating(false);
-    }
-  }, [season]);
+    const controller = new AbortController();
 
-  useEffect(() => {
-    if (season) {
-      void loadRaces();
-      setIsUpdating(true);
-    }
-  }, [loadRaces, season]);
+    getSeasonRaces(season)
+      .then(data => {
+        if (!controller.signal.aborted) {
+          setRaces(data.MRData.RaceTable.Races);
+          setIsUpdating(false);
+        }
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) {
+          setIsUpdating(false);
+        }
+      });
+
+    return () => controller.abort();
+  }, [season]);
 
   return <RacesList races={races} isUpdating={isUpdating} />;
 };
