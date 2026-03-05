@@ -1,0 +1,2 @@
+pnpm run check-ts # run the "check-ts" package script
+pnpm run test:coverage # Test the project

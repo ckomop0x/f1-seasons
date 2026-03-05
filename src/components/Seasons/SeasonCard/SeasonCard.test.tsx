@@ -49,9 +49,8 @@ describe('SeasonCard', () => {
   it('renders a link to the race standings', () => {
     render(<SeasonCard {...defaultProps} />);
 
-    expect(screen.getByRole('link', { name: /Go to standings/i })).toHaveAttribute(
-      'href',
-      '/2020/1',
-    );
+    expect(
+      screen.getByRole('link', { name: /Go to standings/i }),
+    ).toHaveAttribute('href', '/2020/1');
   });
 });

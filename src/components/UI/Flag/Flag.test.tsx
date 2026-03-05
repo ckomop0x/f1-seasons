@@ -28,6 +28,9 @@ describe('Flag', () => {
     render(<Flag country="Great Britain" />);
     const img = screen.getByRole('img', { name: 'Great Britain' });
 
-    expect(img).toHaveAttribute('src', expect.stringContaining('great-britain'));
+    expect(img).toHaveAttribute(
+      'src',
+      expect.stringContaining('great-britain'),
+    );
   });
 });

@@ -8,9 +8,7 @@ describe('YearsSelect', () => {
   const noop = vi.fn();
 
   it('renders an option for each year', () => {
-    render(
-      <YearsSelect years={years} selectedYear={2024} onChange={noop} />,
-    );
+    render(<YearsSelect years={years} selectedYear={2024} onChange={noop} />);
 
     years.forEach(year => {
       expect(
@@ -20,9 +18,7 @@ describe('YearsSelect', () => {
   });
 
   it('marks the selected year as selected', () => {
-    render(
-      <YearsSelect years={years} selectedYear={2023} onChange={noop} />,
-    );
+    render(<YearsSelect years={years} selectedYear={2023} onChange={noop} />);
 
     const selectedOption = screen.getByRole('option', {
       name: '2023',
