@@ -13,8 +13,7 @@ interface RaceDetailsProps {
 }
 
 export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
-  const [isUpdating, setIsUpdating] = useState<boolean>(false);
-  const [raceResults, setRaceResults] = useState<any>(null);
+  const [raceResults, setRaceResults] = useState<any>(undefined);
   const [savedDrivers, setSavedDrivers] = useState<string[]>(getSavedDrivers());
 
   const addDriverToFavorite = (driverCode: string): void => {
@@ -56,13 +55,12 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
     getSeasonsResults(seasonString, raceIdString)
       .then(data => {
         if (!controller.signal.aborted) {
-          setRaceResults(data.MRData.RaceTable.Races[0]);
-          setIsUpdating(false);
+          setRaceResults(data.MRData.RaceTable.Races[0] ?? null);
         }
       })
       .catch(() => {
         if (!controller.signal.aborted) {
-          setIsUpdating(false);
+          setRaceResults(null);
         }
       });
 
@@ -74,7 +72,7 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
       <Link className={styles.backButton} href={`/${season}`}>
         &larr; Back to season
       </Link>
-      {isUpdating && (
+      {raceResults === undefined && (
         <div style={{ textAlign: 'center', marginTop: 40 }}>
           Loading results...
         </div>
@@ -87,7 +85,7 @@ export const RaceDetails: FC<RaceDetailsProps> = ({ season, raceId }) => {
           onFavouriteClick={favouriteClickHandler}
         />
       ) : (
-        !isUpdating && (
+        raceResults === null && (
           <div style={{ textAlign: 'center', marginTop: 40 }}>
             No results available
           </div>
